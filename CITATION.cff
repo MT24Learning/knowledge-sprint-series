@@ -1,0 +1,68 @@
+cff-version: 1.2.0
+message: >-
+  If you use this material, please cite the archived edition of the phase you used.
+  Each phase has its own DOI on Zenodo; they are listed under identifiers.
+type: dataset
+title: "MT24 Learning — Knowledge Sprint Series"
+abstract: >-
+  A free, open learning path of 90 sprints in 27 phases, from engineering practice to the
+  philosophy of science, statistics and machine learning. Each sprint is one portrait
+  infographic with core concepts, commands to try, a mini project and trusted sources;
+  each phase closes with a one-page summary.
+authors:
+  - family-names: Tahri
+    given-names: Mohammed
+    alias: MT24
+    orcid: "https://orcid.org/0009-0000-9113-1687"
+license: CC-BY-NC-SA-4.0
+url: "https://zenodo.org/communities/mt24-learning"
+repository: "https://github.com/MT24Learning/knowledge-sprint-series"
+keywords:
+  - "open educational resource"
+  - "learning path"
+  - "infographics"
+  - "software engineering"
+  - "philosophy of science"
+  - "statistics"
+  - "machine learning"
+  - "information retrieval"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22979790
+    description: "Phase 1: Engineering Foundations (Sprints 1–3), version 1.0"
+  - type: doi
+    value: 10.5281/zenodo.22998928
+    description: "Phase 2: Foundations of Knowledge (Sprints 4–7), version 1.0"
+  - type: doi
+    value: 10.5281/zenodo.23042464
+    description: "Phase 3: Calibrating Judgement (Sprints 8), version 1.0"
+  - type: doi
+    value: 10.5281/zenodo.22999436
+    description: "Phase 4: Mathematical & Logical Foundations (Sprints 9–12), version 1.0"
+  - type: doi
+    value: 10.5281/zenodo.23063053
+    description: "Phase 5: Statistics & Experimental Design (Sprints 13–15), version 1.0"
+  - type: doi
+    value: 10.5281/zenodo.23084198
+    description: "Phase 6: How Paradigms Die (Sprints 16–18), version 1.0"
+  - type: doi
+    value: 10.5281/zenodo.23189539
+    description: "Phase 7: Data Skepticism & Evaluation Data (Sprints 19–21), version 1.0"
+  - type: doi
+    value: 10.5281/zenodo.23213765
+    description: "Phase 8: Tokenization & Parsing (Sprints 22–25), version 1.0"
+  - type: doi
+    value: 10.5281/zenodo.23240712
+    description: "Phase 9: Classical Machine Learning (Sprints 26–30), version 1.0"
+  - type: doi
+    value: 10.5281/zenodo.23343237
+    description: "Phase 10: Neural Networks (Sprints 31–32), version 1.0"
+  - type: doi
+    value: 10.5281/zenodo.23500512
+    description: "Phase 11: Transformers & Vector Spaces (Sprints 33–35), version 1.0"
+  - type: doi
+    value: 10.5281/zenodo.23694200
+    description: "Phase 12: The Complexity Lens (Sprints 36–38), version 1.0"
+  - type: doi
+    value: 10.5281/zenodo.24012904
+    description: "Phase 13: Semantic Search & Retrieval (Sprints 39–41), version 1.0"
