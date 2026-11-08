@@ -30,7 +30,7 @@
 
 <a href="MT24_Learning_Phase06_Sprint17_Taxonomy_of_Model_Failure.png"><img src="MT24_Learning_Phase06_Sprint17_Taxonomy_of_Model_Failure.png" width="760" alt="Sprint 17 of 90 infographic: A Taxonomy of Model Failure. A failure I cannot name is a failure I will repeat."></a>
 
-**Covers.** Six classes of failure (data, structure, fit, shift, range and core), each with a dated real case, from the Mars Climate Orbiter to Google Flu Trends.
+**Covers.** Six classes of failure (data, structure, fit, shift, range and core), each with an example, from the Mars Climate Orbiter to Google Flu Trends.
 
 **Try it.** A degree-9 polynomial fits 20 points closely and misses badly outside the range it was trained on.
 

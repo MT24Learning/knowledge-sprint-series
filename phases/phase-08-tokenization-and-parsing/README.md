@@ -52,7 +52,7 @@
 
 **Covers.** The pyproject file, wheels and source distributions, version numbers (Semantic Versioning and PEP 440), and why a release is permanent.
 
-**Try it.** Build the same package twice and get a byte-identical wheel, then publish to TestPyPI first.
+**Try it.** Build the same package twice and get a byte-identical wheel; the mini project then publishes it to TestPyPI first.
 
 ## Cite this phase
 

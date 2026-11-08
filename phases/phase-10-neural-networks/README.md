@@ -10,7 +10,7 @@
 
 <a href="MT24_Learning_Phase10_Summary.png"><img src="MT24_Learning_Phase10_Summary.png" width="760" alt="Phase 10 summary page: Neural Networks, 2 sprints, with what each sprint covers, what I can now do, mistakes avoided and the phase project."></a>
 
-**One result checked in this phase:** XOR with two hidden units: 77 of 100 random starts solve it; with four hidden units, all 100.
+**One result checked in this phase:** XOR on a bare 2-2-1 sigmoid network: 77 of 100 random starts solve it; with four hidden units, all 100.
 
 ## Sprints
 

@@ -43,7 +43,7 @@ This repository is the browsable index of the series: every published sprint, ev
   <tr>
     <td align="center" valign="top" width="33%"><a href="phases/phase-12-the-complexity-lens/README.md"><img src="assets/thumbs/phase-12.jpg" width="260" alt="Phase 12 summary: The Complexity Lens"></a><br><a href="phases/phase-12-the-complexity-lens/README.md"><b>Phase 12</b> · The Complexity Lens</a><br><sub>Sprints 36–38</sub></td>
     <td align="center" valign="top" width="33%"><a href="phases/phase-13-semantic-search-and-retrieval/README.md"><img src="assets/thumbs/phase-13.jpg" width="260" alt="Phase 13 summary: Semantic Search & Retrieval"></a><br><a href="phases/phase-13-semantic-search-and-retrieval/README.md"><b>Phase 13</b> · Semantic Search & Retrieval</a><br><sub>Sprints 39–41</sub></td>
-    <td align="center" valign="top" width="33%"><img src="assets/thumbs/next-phase.jpg" width="260" alt="Phase 14, coming next"><br><b>Phase 14</b> · AI Security & Robustness<br><sub>Being published now</sub></td>
+    <td align="center" valign="top" width="33%"><img src="assets/thumbs/next-phase.jpg" width="260" alt="Phase 14, being published now"><br><b>Phase 14</b> · AI Security & Robustness<br><sub>Being published now</sub></td>
   </tr>
 </table>
 
@@ -121,7 +121,7 @@ Phase 14, *AI Security & Robustness* (Sprints 42–44), is being published now. 
 Every sprint image follows the same idea, even as the visual style changes from phase to phase:
 
 - **Core concepts**, in short cards.
-- **A figure** that shows the main idea with real numbers (from Phase 2 onward).
+- **A figure** that shows the main idea, with real numbers where there are any (from Phase 2 onward).
 - **Try it**: commands or a short program you can run yourself, with its real output.
 - **A mini project** to apply the sprint on your own.
 - **Trusted sources**: books, papers and official documentation, so every claim can be checked.
@@ -154,7 +154,7 @@ sha256sum --check CHECKSUMS.sha256
 
 ## Follow the series
 
-New sprints are posted first on social media, then archived here and on Zenodo once their phase is complete.
+New sprints are posted first on social media; once their phase is complete, it is archived on Zenodo and listed here.
 
 [LinkedIn](https://www.linkedin.com/in/mohammed-tahri24) · [X](https://x.com/MohammedTahri24) · [Bluesky](https://bsky.app/profile/mohammedtahri.bsky.social) · [Mastodon](https://mathstodon.xyz/@mohammedtahri24) · [Threads](https://www.threads.net/@mohammedtahri24) · [Instagram](https://www.instagram.com/mohammedtahri24) · [Facebook](https://www.facebook.com/mohammed.tahri24) · [TikTok](https://www.tiktok.com/@mohammed.tahri24) · [Substack](https://substack.com/@mohammedtahri24)
 

@@ -42,7 +42,7 @@
 
 **Covers.** The two sublayers, skip connections and normalisation, where the weights live, and why position must be added.
 
-**Try it.** Build one layer in NumPy: two thirds of a base encoder layer's parameters sit in the feed-forward block, and without positions a shuffled input only shuffles the output.
+**Try it.** Build one layer in NumPy: two thirds of a base encoder layer's parameters sit in the feed-forward block, and with no positions and no causal mask a shuffled input only shuffles the output.
 
 ## Cite this phase
 
