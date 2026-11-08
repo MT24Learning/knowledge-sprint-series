@@ -35,7 +35,7 @@ identifiers:
     description: "Phase 2: Foundations of Knowledge (Sprints 4–7), version 1.0"
   - type: doi
     value: 10.5281/zenodo.23042464
-    description: "Phase 3: Calibrating Judgement (Sprints 8), version 1.0"
+    description: "Phase 3: Calibrating Judgement (Sprint 8), version 1.0"
   - type: doi
     value: 10.5281/zenodo.22999436
     description: "Phase 4: Mathematical & Logical Foundations (Sprints 9–12), version 1.0"
