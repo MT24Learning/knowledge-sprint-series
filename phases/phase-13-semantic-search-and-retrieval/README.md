@@ -42,7 +42,7 @@
 
 **Covers.** Retrieve then generate, recall as the ceiling on every answer, a retriever that always returns something, and the choice to cite or abstain.
 
-**Try it.** A judged passage reaches the top five for 77% of questions, and a score floor still lets 84% of unanswerable questions through.
+**Try it.** A judged passage reaches the top five for 77% of questions; a score floor that keeps 90% of answerable questions still lets 84% through once every judged paper is hidden.
 
 ## Cite this phase
 

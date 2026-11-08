@@ -10,7 +10,7 @@
 
 <a href="MT24_Learning_Phase12_Summary.png"><img src="MT24_Learning_Phase12_Summary.png" width="760" alt="Phase 12 summary page: The Complexity Lens, 3 sprints, with what each sprint covers, what I can now do, mistakes avoided and the phase project."></a>
 
-**One result checked in this phase:** In the Lorenz system, each 10× sharper start buys only 2.54 more time units of forecast.
+**One result checked in this phase:** In a simulation of the Lorenz system, each 10× sharper start buys 2.54 more time units of forecast on average over 24 starts.
 
 ## Sprints
 
@@ -32,7 +32,7 @@
 
 **Covers.** Why more is different, Schelling's model of a sorted city, the self-organised sandpile, and the Gutenberg–Richter law for real earthquakes.
 
-**Try it.** Residents who want only half of their neighbours alike end at 79%, and a catalogue of 1,000 Fiji earthquakes gives a b-value of 1.08 above magnitude 4.5.
+**Try it.** In Schelling's model, residents who want only half of their neighbours alike end at 79% alike; in a catalogue of 1,000 real Fiji earthquakes the b-value is 1.08 for magnitudes of 4.5 and above.
 
 ### Sprint 38/90 · Fractals, Scaling and the Shape of Complexity
 

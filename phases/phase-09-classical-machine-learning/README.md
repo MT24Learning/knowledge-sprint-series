@@ -42,7 +42,7 @@
 
 **Covers.** Logistic regression, decision trees and k-nearest neighbours, and why features must be scaled first.
 
-**Try it.** On 178 Italian wines, five nearest neighbours score 0.704 in raw units and 0.944 after scaling.
+**Try it.** With two measurements of 178 Italian wines, five nearest neighbours score 0.704 on the 54 test wines in raw units and 0.944 after scaling.
 
 ### Sprint 29/90 · Regularisation & Cross-Validation
 
@@ -62,7 +62,7 @@
 
 **Covers.** Hoeffding's bound for one fixed rule, the price of choosing among many rules, VC dimension and PAC learning, and the open puzzle of very large networks.
 
-**Try it.** The iris cut's true error is at most 0.291 with 95% confidence, and a margin of 0.05 would need 1,729 flowers.
+**Try it.** If the flowers are independent draws, the iris cut's true error is at most 0.291 with 95% confidence, and a margin of 0.05 would need 1,729 flowers.
 
 ## Cite this phase
 

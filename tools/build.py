@@ -287,7 +287,7 @@ def readme():
     if NEXT:
         state = "Being published now" if NEXT["status"] == "publishing" else "Coming next"
         tiles.append((None, "assets/thumbs/next-phase.jpg", f"<b>Phase {NEXT['n']}</b> · {NEXT['title']}",
-                      state, f"Phase {NEXT['n']}, coming next"))
+                      state, f"Phase {NEXT['n']}, {state.lower()}"))
 
     out.append("<table>")
     for r in range(0, len(tiles), 3):
@@ -338,7 +338,7 @@ def readme():
         "Every sprint image follows the same idea, even as the visual style changes from phase to phase:",
         "",
         "- **Core concepts**, in short cards.",
-        "- **A figure** that shows the main idea with real numbers (from Phase 2 onward).",
+        "- **A figure** that shows the main idea, with real numbers where there are any (from Phase 2 onward).",
         "- **Try it**: commands or a short program you can run yourself, with its real output.",
         "- **A mini project** to apply the sprint on your own.",
         "- **Trusted sources**: books, papers and official documentation, so every claim can be checked.",
@@ -375,7 +375,7 @@ def readme():
         "",
         "## Follow the series",
         "",
-        "New sprints are posted first on social media, then archived here and on Zenodo once their phase is complete.",
+        "New sprints are posted first on social media; once their phase is complete, it is archived on Zenodo and listed here.",
         "",
         "[LinkedIn](https://www.linkedin.com/in/mohammed-tahri24) · "
         "[X](https://x.com/MohammedTahri24) · "
