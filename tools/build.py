@@ -426,7 +426,7 @@ def citation_cff():
         lines += [
             "  - type: doi",
             f"    value: {p['v']}",
-            f'    description: "Phase {p["n"]}: {p["title"]} (Sprints {sprint_range(p)}), version 1.0"',
+            f'    description: "Phase {p["n"]}: {p["title"]} ({sprint_label(p)}), version 1.0"',
         ]
     return "\n".join(lines)
 
