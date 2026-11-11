@@ -66,3 +66,6 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.24012904
     description: "Phase 13: Semantic Search & Retrieval (Sprints 39–41), version 1.0"
+  - type: doi
+    value: 10.5281/zenodo.24142098
+    description: "Phase 14: AI Security & Robustness (Sprints 42–44), version 1.0"

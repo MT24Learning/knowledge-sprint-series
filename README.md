@@ -3,8 +3,8 @@
 </p>
 
 <p align="center">
-  <a href="#phases"><img src="https://img.shields.io/badge/phases%20archived-13%20of%2027-0B9C93?style=flat-square" alt="phases archived: 13 of 27"></a>
-  <a href="#every-sprint"><img src="https://img.shields.io/badge/sprints-41%20of%2090-2A7CF6?style=flat-square" alt="sprints: 41 of 90"></a>
+  <a href="#phases"><img src="https://img.shields.io/badge/phases%20archived-14%20of%2027-0B9C93?style=flat-square" alt="phases archived: 14 of 27"></a>
+  <a href="#every-sprint"><img src="https://img.shields.io/badge/sprints-44%20of%2090-2A7CF6?style=flat-square" alt="sprints: 44 of 90"></a>
   <a href="https://zenodo.org/communities/mt24-learning"><img src="https://img.shields.io/badge/archive-Zenodo-1682D4?style=flat-square" alt="archive: Zenodo"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/licence-CC%20BY--NC--SA%204.0-061127?style=flat-square" alt="licence: CC BY-NC-SA 4.0"></a>
 </p>
@@ -15,7 +15,7 @@
 
 This repository is the browsable index of the series: every published sprint, every phase summary and the DOI of each phase's archived edition. The permanent, citable archive lives on Zenodo, in the [MT24 Learning community](https://zenodo.org/communities/mt24-learning).
 
-**Progress:** 13 of 27 phases archived, 41 of 90 sprints (46%).
+**Progress:** 14 of 27 phases archived, 44 of 90 sprints (49%).
 
 ## Phases
 
@@ -43,7 +43,10 @@ This repository is the browsable index of the series: every published sprint, ev
   <tr>
     <td align="center" valign="top" width="33%"><a href="phases/phase-12-the-complexity-lens/README.md"><img src="assets/thumbs/phase-12.jpg" width="260" alt="Phase 12 summary: The Complexity Lens"></a><br><a href="phases/phase-12-the-complexity-lens/README.md"><b>Phase 12</b> · The Complexity Lens</a><br><sub>Sprints 36–38</sub></td>
     <td align="center" valign="top" width="33%"><a href="phases/phase-13-semantic-search-and-retrieval/README.md"><img src="assets/thumbs/phase-13.jpg" width="260" alt="Phase 13 summary: Semantic Search & Retrieval"></a><br><a href="phases/phase-13-semantic-search-and-retrieval/README.md"><b>Phase 13</b> · Semantic Search & Retrieval</a><br><sub>Sprints 39–41</sub></td>
-    <td align="center" valign="top" width="33%"><img src="assets/thumbs/next-phase.jpg" width="260" alt="Phase 14, being published now"><br><b>Phase 14</b> · AI Security & Robustness<br><sub>Being published now</sub></td>
+    <td align="center" valign="top" width="33%"><a href="phases/phase-14-ai-security-and-robustness/README.md"><img src="assets/thumbs/phase-14.jpg" width="260" alt="Phase 14 summary: AI Security & Robustness"></a><br><a href="phases/phase-14-ai-security-and-robustness/README.md"><b>Phase 14</b> · AI Security & Robustness</a><br><sub>Sprints 42–44</sub></td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="33%"><img src="assets/thumbs/next-phase.jpg" width="260" alt="Phase 15, coming next"><br><b>Phase 15</b> · Structured Claims & Ground Truth<br><sub>Coming next</sub></td>
   </tr>
 </table>
 
@@ -62,13 +65,14 @@ This repository is the browsable index of the series: every published sprint, ev
 | 11 | [Transformers & Vector Spaces](phases/phase-11-transformers-and-vector-spaces/README.md) | 33–35 | 12 October 2026 | [10.5281/zenodo.23500512](https://doi.org/10.5281/zenodo.23500512) |
 | 12 | [The Complexity Lens](phases/phase-12-the-complexity-lens/README.md) | 36–38 | 20 October 2026 | [10.5281/zenodo.23694200](https://doi.org/10.5281/zenodo.23694200) |
 | 13 | [Semantic Search & Retrieval](phases/phase-13-semantic-search-and-retrieval/README.md) | 39–41 | 27 October 2026 | [10.5281/zenodo.24012904](https://doi.org/10.5281/zenodo.24012904) |
+| 14 | [AI Security & Robustness](phases/phase-14-ai-security-and-robustness/README.md) | 42–44 | 7 November 2026 | [10.5281/zenodo.24142098](https://doi.org/10.5281/zenodo.24142098) |
 
-Phase 14, *AI Security & Robustness* (Sprints 42–44), is being published now. A phase joins this repository after all of its images are public and its edition is archived on Zenodo.
+Phase 15, *Structured Claims & Ground Truth* (Sprints 45–48), comes next. A phase joins this repository after all of its images are public and its edition is archived on Zenodo.
 
 ## Every sprint
 
 <details>
-<summary>All 41 published sprints, in order</summary>
+<summary>All 44 published sprints, in order</summary>
 
 | Sprint | Title | Phase |
 | ---: | --- | --- |
@@ -113,6 +117,9 @@ Phase 14, *AI Security & Robustness* (Sprints 42–44), is being published now. 
 | 39 | [Keyword Search: Inverted Index & BM25](phases/phase-13-semantic-search-and-retrieval/README.md#sprint-3990--keyword-search-inverted-index--bm25) | 13 · Semantic Search & Retrieval |
 | 40 | [Searching by Meaning: Dense & Hybrid Retrieval](phases/phase-13-semantic-search-and-retrieval/README.md#sprint-4090--searching-by-meaning-dense--hybrid-retrieval) | 13 · Semantic Search & Retrieval |
 | 41 | [Retrieval-Augmented Generation: A Working Demo](phases/phase-13-semantic-search-and-retrieval/README.md#sprint-4190--retrieval-augmented-generation-a-working-demo) | 13 · Semantic Search & Retrieval |
+| 42 | [Adversarial Examples: Small Changes, Wrong Answers](phases/phase-14-ai-security-and-robustness/README.md#sprint-4290--adversarial-examples-small-changes-wrong-answers) | 14 · AI Security & Robustness |
+| 43 | [Poisoned Data: Attacks Through Training & Retrieval](phases/phase-14-ai-security-and-robustness/README.md#sprint-4390--poisoned-data-attacks-through-training--retrieval) | 14 · AI Security & Robustness |
+| 44 | [Prompt Injection: When Data Becomes an Instruction](phases/phase-14-ai-security-and-robustness/README.md#sprint-4490--prompt-injection-when-data-becomes-an-instruction) | 14 · AI Security & Robustness |
 
 </details>
 
