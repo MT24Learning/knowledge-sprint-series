@@ -253,6 +253,24 @@ PHASES = [
                  covers="Retrieve then generate, recall as the ceiling on every answer, a retriever that always returns something, and the choice to cite or abstain.",
                  tryit="A judged passage reaches the top five for 77% of questions; a score floor that keeps 90% of answerable questions still lets 84% through once every judged paper is hidden."),
          ]),
+    dict(n=14, title="AI Security & Robustness", first="2026-11-07", v="10.5281/zenodo.24142098", c="10.5281/zenodo.24142097",
+         line="A small change to an input, a few bad training examples, an instruction slipped into the text a model reads: three attacks, each checked on real data.",
+         result="On 540 handwritten digits, random noise of ±2 grey levels leaves a small network at 95.4%; a chosen 10-step attack of the same size leaves 21.5%.",
+         summary="MT24_Learning_Phase14_Summary.png",
+         sprints=[
+            dict(n=42, title="Adversarial Examples: Small Changes, Wrong Answers", file="MT24_Learning_Phase14_Sprint42_Adversarial_Examples_Small_Changes_Wrong_Answers.png",
+                 tagline="Random noise barely moves a model. A change of the same size, chosen against it, breaks it.",
+                 covers="What an adversarial example is, why noise and a chosen change differ, how many small pushes add up across many pixels, and how attacks travel between models.",
+                 tryit="On 540 handwritten digits, ±2 grey levels of random noise leave a small network at 95.4% and a 10-step gradient-sign attack leaves 21.5%; a linear model retrained on old attacks holds 88.5% against them and 15.9% against a fresh one."),
+            dict(n=43, title="Poisoned Data: Attacks Through Training & Retrieval", file="MT24_Learning_Phase14_Sprint43_Poisoned_Data_Attacks_Through_Training_Retrieval.png",
+                 tagline="A few planted examples can teach a model a secret password. Clean tests never type it.",
+                 covers="What data poisoning is, why a few examples can be enough, a hidden trigger that clean tests never type, and planted passages in retrieval.",
+                 tryit="In my own spam filter (logistic regression on real SMS messages), 40 relabelled messages (1.0% of 3,941) cut the triggered spam it catches from 87.5% to 25.4% while clean tests look normal; in a BM25 index of the Cranfield abstracts, a plant copying each question ranks first for 223 of 225 questions."),
+            dict(n=44, title="Prompt Injection: When Data Becomes an Instruction", file="MT24_Learning_Phase14_Sprint44_Prompt_Injection_When_Data_Becomes_an_Instruction.png",
+                 tagline="Roles label the rules and the attack, but the model reads both as one stream of tokens.",
+                 covers="What prompt injection is, why firm wording in the rules is no guarantee, what a phrase blocklist misses, and instructions hidden in retrieved text.",
+                 tryit="In 1,346 real Tensor Trust pairs where a human attack fooled at least 2 of 3 models from 2023, 72.3% of the defences had a \"never / do not\" rule and a blocklist of 6 known phrase patterns caught 11.9% of the attacks; no language model was run here."),
+         ]),
 ]
 
 MILESTONES = [
@@ -264,4 +282,4 @@ MILESTONES = [
              "result and the DOI of its archived edition."),
 ]
 
-NEXT = dict(n=14, title="AI Security & Robustness", sprints="42–44", status="publishing")
+NEXT = dict(n=15, title="Structured Claims & Ground Truth", sprints="45–48", status="next")

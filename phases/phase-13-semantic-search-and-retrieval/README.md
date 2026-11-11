@@ -1,4 +1,4 @@
-<sub>[← Phase 12](../phase-12-the-complexity-lens/README.md) · [All phases](../../README.md)</sub>
+<sub>[← Phase 12](../phase-12-the-complexity-lens/README.md) · [All phases](../../README.md) · [Phase 14 →](../phase-14-ai-security-and-robustness/README.md)</sub>
 
 # Phase 13 · Semantic Search & Retrieval
 
@@ -54,4 +54,4 @@ This DOI points to version 1.0, the edition archived as first published. To cite
 
 ---
 
-<sub>[← Phase 12](../phase-12-the-complexity-lens/README.md) · [All phases](../../README.md)</sub>
+<sub>[← Phase 12](../phase-12-the-complexity-lens/README.md) · [All phases](../../README.md) · [Phase 14 →](../phase-14-ai-security-and-robustness/README.md)</sub>
