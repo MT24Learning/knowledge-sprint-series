@@ -13,7 +13,7 @@
 
 **A free, open learning path of 90 sprints in 27 phases, from engineering practice to the philosophy of science, statistics and machine learning.** Each sprint is one portrait infographic that combines the core concepts, commands to try, a mini project and a list of trusted sources, so every claim can be checked against its origin. Each phase closes with a one-page summary.
 
-This repository is the browsable index of the series: every published sprint, every phase summary and the DOI of each phase's archived edition. The permanent, citable archive lives on Zenodo, in the [MT24 Learning community](https://zenodo.org/communities/mt24-learning).
+This repository is the browsable index of the series: every published sprint, every phase summary and the DOI of each phase's archived edition. The permanent, citable archive lives on Zenodo, in the [MT24 Learning community](https://zenodo.org/communities/mt24-learning). The same index is also published as a website: [mt24learning.github.io/knowledge-sprint-series](https://mt24learning.github.io/knowledge-sprint-series/).
 
 **Progress:** 14 of 27 phases archived, 44 of 90 sprints (49%).
 

@@ -28,9 +28,21 @@ sys.path.insert(0, TOOLS)
 from series_data import MILESTONES, NEXT, PHASES  # noqa: E402
 
 REPO_URL = "https://github.com/MT24Learning/knowledge-sprint-series"
+SITE_URL = "https://mt24learning.github.io/knowledge-sprint-series/"
 ZENODO = "https://zenodo.org/communities/mt24-learning"
 ORCID = "0009-0000-9113-1687"
 TOTAL_PHASES, TOTAL_SPRINTS = 27, 90
+SOCIAL = [
+    ("LinkedIn", "https://www.linkedin.com/in/mohammed-tahri24"),
+    ("X", "https://x.com/MohammedTahri24"),
+    ("Bluesky", "https://bsky.app/profile/mohammedtahri.bsky.social"),
+    ("Mastodon", "https://mathstodon.xyz/@mohammedtahri24"),
+    ("Threads", "https://www.threads.net/@mohammedtahri24"),
+    ("Instagram", "https://www.instagram.com/mohammedtahri24"),
+    ("Facebook", "https://www.facebook.com/mohammed.tahri24"),
+    ("TikTok", "https://www.tiktok.com/@mohammed.tahri24"),
+    ("Substack", "https://substack.com/@mohammedtahri24"),
+]
 FONTS = {
     "SpaceGrotesk.ttf": "ofl/spacegrotesk/SpaceGrotesk%5Bwght%5D.ttf",
     "JetBrainsMono.ttf": "ofl/jetbrainsmono/JetBrainsMono%5Bwght%5D.ttf",
@@ -265,7 +277,8 @@ def readme():
         "",
         f"This repository is the browsable index of the series: every published sprint, every phase summary and "
         f"the DOI of each phase's archived edition. The permanent, citable archive lives on Zenodo, in the "
-        f"[MT24 Learning community]({ZENODO}).",
+        f"[MT24 Learning community]({ZENODO}). The same index is also published as a website: "
+        f"[{SITE_URL.split('//')[1].rstrip('/')}]({SITE_URL}).",
         "",
         f"**Progress:** {archived} of {TOTAL_PHASES} phases archived, {sprints_done} of {TOTAL_SPRINTS} sprints ({pct}%).",
         "",
@@ -377,15 +390,7 @@ def readme():
         "",
         "New sprints are posted first on social media; once their phase is complete, it is archived on Zenodo and listed here.",
         "",
-        "[LinkedIn](https://www.linkedin.com/in/mohammed-tahri24) · "
-        "[X](https://x.com/MohammedTahri24) · "
-        "[Bluesky](https://bsky.app/profile/mohammedtahri.bsky.social) · "
-        "[Mastodon](https://mathstodon.xyz/@mohammedtahri24) · "
-        "[Threads](https://www.threads.net/@mohammedtahri24) · "
-        "[Instagram](https://www.instagram.com/mohammedtahri24) · "
-        "[Facebook](https://www.facebook.com/mohammed.tahri24) · "
-        "[TikTok](https://www.tiktok.com/@mohammed.tahri24) · "
-        "[Substack](https://substack.com/@mohammedtahri24)",
+        " · ".join(f"[{name}]({url})" for name, url in SOCIAL),
         "",
         "---",
         "",
@@ -561,6 +566,8 @@ def build(image_folders):
     write("README.md", readme())
     write("CITATION.cff", citation_cff())
     write("CHECKSUMS.sha256", "\n".join(f"{sha256(os.path.join(ROOT, rel))}  {rel}" for rel in sorted(image_paths())))
+    import website
+    website.build(sys.modules[__name__])
     for n in notes:
         print("note:", n)
     print(f"{len(image_paths())} images, {len(PHASES)} phase pages, {len(MILESTONES)} milestone(s)")
@@ -574,10 +581,15 @@ def check():
     pages = []
     for dirpath, dirnames, files in os.walk(ROOT):
         dirnames[:] = [d for d in dirnames if d != ".git"]
-        pages += [os.path.join(dirpath, f) for f in files if f.endswith(".md")]
+        pages += [os.path.join(dirpath, f) for f in files if f.endswith(".md")
+                  or (f.endswith(".html") and os.path.relpath(dirpath, ROOT).startswith("docs"))]
     for md in pages:
+        text = open(md, encoding="utf-8").read()
+        if md.endswith(".html"):
+            anchors[md] = set(re.findall(r'\sid="([^"]+)"', text))
+            continue
         seen, found = {}, set()
-        for h in re.findall(r"^#{1,6} (.+)$", open(md, encoding="utf-8").read(), re.M):
+        for h in re.findall(r"^#{1,6} (.+)$", text, re.M):
             a = gh_anchor(h)
             seen[a] = seen.get(a, -1) + 1
             found.add(a if seen[a] == 0 else f"{a}-{seen[a]}")
@@ -594,7 +606,7 @@ def check():
             rel = os.path.relpath(md, ROOT)
             if not os.path.exists(target):
                 problems.append(f"broken link in {rel}: {link}")
-            elif frag and target.endswith(".md") and frag not in anchors.get(target, set()):
+            elif frag and target.endswith((".md", ".html")) and frag not in anchors.get(target, set()):
                 problems.append(f"missing anchor in {rel}: {link}")
 
     listed = {}

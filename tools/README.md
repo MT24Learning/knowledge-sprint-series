@@ -4,6 +4,8 @@
 
 Every page in this repository is generated. The data lives in [`series_data.py`](series_data.py); [`build.py`](build.py) turns it into the phase pages, the front page, `CITATION.cff`, `CHECKSUMS.sha256` and the gallery thumbnails. To change a page, change the data and rebuild; never edit a generated page by hand.
 
+The same build writes the website in [`docs/`](../docs), published with GitHub Pages at [mt24learning.github.io/knowledge-sprint-series](https://mt24learning.github.io/knowledge-sprint-series/): [`website.py`](website.py) generates `docs/index.html` and copies the thumbnails into `docs/img/thumbs/`. The design files (`docs/style.css`, `docs/site.js`, `docs/fonts/` and `docs/img/brand/`) are static and edited by hand.
+
 ## Add a phase
 
 A phase is added once all of its images are public and its edition is archived on Zenodo.
