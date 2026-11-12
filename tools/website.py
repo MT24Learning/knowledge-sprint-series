@@ -86,6 +86,9 @@ def render(b):
     w('<link rel="apple-touch-icon" href="img/brand/apple-touch-icon.png">')
     w('<link rel="preload" href="fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>')
     w('<link rel="stylesheet" href="style.css">')
+    for name, url in b.SOCIAL:
+        if name == "Mastodon":
+            w(f'<link rel="me" href="{url}">')
     w('<script>document.documentElement.classList.add("js")</script>')
     w('<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>")
     w("</head>")
@@ -274,7 +277,7 @@ def render(b):
       "archived on Zenodo and listed here.</p>")
     w('    <p class="pills">')
     for name, url in b.SOCIAL:
-        w(f'      <a href="{url}">{name}</a>')
+        w(f'      <a rel="me" href="{url}">{name}</a>')
     w(f'      <a href="{b.REPO_URL}">GitHub</a>')
     w("    </p>")
     w("  </div>")
