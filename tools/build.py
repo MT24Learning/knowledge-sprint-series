@@ -25,7 +25,7 @@ TOOLS = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(TOOLS)
 sys.dont_write_bytecode = True
 sys.path.insert(0, TOOLS)
-from series_data import MILESTONES, NEXT, PHASES  # noqa: E402
+from series_data import CODE_RECORDS, MILESTONES, NEXT, PHASES  # noqa: E402
 
 REPO_URL = "https://github.com/MT24Learning/knowledge-sprint-series"
 SITE_URL = "https://mt24learning.github.io/knowledge-sprint-series/"
@@ -143,6 +143,11 @@ def code_files(p, s=None):
     return [f for f in names if f.startswith(f"sprint{s['n']:02d}_")]
 
 
+def code_record(p):
+    """The Zenodo record that archives a phase's code with other phases, if any."""
+    return next((r for r in CODE_RECORDS if r["phases"][0] <= p["n"] <= r["phases"][1]), None)
+
+
 def checked_paths():
     """Every file listed in CHECKSUMS.sha256: the images, then the code."""
     return image_paths() + [f for p in PHASES for f in code_files(p)]
@@ -211,8 +216,10 @@ def phase_page(i, p):
         ]
         run = code_files(p, s)
         if run:
+            rec = code_record(p)
             out += ["**Run it.** " + " · ".join(f"[`{f}`](code/{f})" for f in run)
-                    + " · [versions, data and steps](code/README.md)", ""]
+                    + " · [versions, data and steps](code/README.md)"
+                    + (f" · archived on Zenodo, DOI {doi_link(rec['v'])}" if rec else ""), ""]
     out += [
         "## Cite this phase",
         "",
@@ -397,6 +404,12 @@ def readme():
         "",
         "The runnable code in each phase's `code/` folder is licensed under the [MIT License](LICENSE-CODE): "
         "you may reuse it in any project, including commercial ones, as long as the copyright and licence notice stay with it.",
+        "",
+    ] + [
+        f"The code of Phases {r['phases'][0]}–{r['phases'][1]} is archived on Zenodo as one record, DOI {doi_link(r['v'])} "
+        f"(all versions: {doi_link(r['c'])}); from Phase 15, each phase's code is archived in the phase's own record."
+        for r in CODE_RECORDS
+    ] + [
         "",
         "Copyright © 2026 Mohammed Tahri (MT24).",
         "",

@@ -1,6 +1,6 @@
 # Phase 5 · Runnable code
 
-The code printed in the Try It box of each sprint image of Phase 5, Statistics & Experimental Design, as files you can run. Each file is copied from its image line by line and ends with the output printed on the image, as comment lines.
+The code printed in the Try It box of each sprint image of Phase 5, Statistics & Experimental Design, as files you can run. Each file is copied from its image line by line and ends with the output printed on the image, as comment lines. Archived on Zenodo with the code of Phases 1–14: [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674) (all versions: [10.5281/zenodo.24201673](https://doi.org/10.5281/zenodo.24201673)).
 
 | Sprint | File | Run with |
 |---|---|---|

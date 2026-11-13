@@ -19,6 +19,10 @@ MILESTONES: overview images. after = the phase they follow in the gallery;
 
 NEXT: the phase shown as the last gallery tile (None when the series is complete).
   status "publishing" = its images are being posted; "next" = not started yet.
+
+CODE_RECORDS: Zenodo records that archive the runnable code of several phases at once
+  (from Phase 15 each phase's code is archived in the phase's own record).
+  phases = (first, last); v, c = version DOI and concept DOI.
 """
 
 PHASES = [
@@ -283,3 +287,7 @@ MILESTONES = [
 ]
 
 NEXT = dict(n=15, title="Structured Claims & Ground Truth", sprints="45–48", status="next")
+
+CODE_RECORDS = [
+    dict(phases=(1, 14), v="10.5281/zenodo.24201674", c="10.5281/zenodo.24201673"),
+]

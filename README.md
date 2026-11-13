@@ -151,6 +151,8 @@ The images and text in this repository are licensed under [Creative Commons Attr
 
 The runnable code in each phase's `code/` folder is licensed under the [MIT License](LICENSE-CODE): you may reuse it in any project, including commercial ones, as long as the copyright and licence notice stay with it.
 
+The code of Phases 1–14 is archived on Zenodo as one record, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674) (all versions: [10.5281/zenodo.24201673](https://doi.org/10.5281/zenodo.24201673)); from Phase 15, each phase's code is archived in the phase's own record.
+
 Copyright © 2026 Mohammed Tahri (MT24).
 
 ## Integrity

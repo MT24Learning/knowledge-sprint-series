@@ -22,7 +22,7 @@
 
 **Try it.** Bayes' rule on a medical test: prior 1%, sensitivity 90%, false positives 5%, giving a posterior of 0.154.
 
-**Run it.** [`sprint04_knowledge_truth_evidence.py`](code/sprint04_knowledge_truth_evidence.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint04_knowledge_truth_evidence.py`](code/sprint04_knowledge_truth_evidence.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 5/90 · What Is a Model?
 
@@ -32,7 +32,7 @@
 
 **Try it.** Compare the small-angle pendulum formula with the exact period: under 1% off below 20°, 18% off at 90°.
 
-**Run it.** [`sprint05_what_is_a_model.py`](code/sprint05_what_is_a_model.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint05_what_is_a_model.py`](code/sprint05_what_is_a_model.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 6/90 · The Scientific Method, Objectivity and Its Failures
 
@@ -42,7 +42,7 @@
 
 **Try it.** Run 20 tests of effects that do not exist: at least one comes out significant about 64% of the time.
 
-**Run it.** [`sprint06_scientific_method_objectivity_failures.py`](code/sprint06_scientific_method_objectivity_failures.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint06_scientific_method_objectivity_failures.py`](code/sprint06_scientific_method_objectivity_failures.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 7/90 · Four Minds on Science
 
@@ -52,7 +52,7 @@
 
 **Try it.** Compute general relativity's perihelion advance of Mercury: 42.97 arcseconds per century.
 
-**Run it.** [`sprint07_four_minds_on_science.py`](code/sprint07_four_minds_on_science.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint07_four_minds_on_science.py`](code/sprint07_four_minds_on_science.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ## Cite this phase
 

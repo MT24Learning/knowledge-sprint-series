@@ -24,7 +24,7 @@
 
 **Try it.** On 100 iris flowers, a lookup table answers only 6 of 30 new flowers; one learned cut (petal width > 1.6) gets 27 right.
 
-**Run it.** [`sprint26_supervised_learning_from_examples_to_a_rule.py`](code/sprint26_supervised_learning_from_examples_to_a_rule.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint26_supervised_learning_from_examples_to_a_rule.py`](code/sprint26_supervised_learning_from_examples_to_a_rule.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 27/90 · Baselines First
 
@@ -36,7 +36,7 @@
 
 **Try it.** "Is it a 9?" on 540 handwritten digits: always answering no scores 0.900 accuracy and 0.500 balanced accuracy.
 
-**Run it.** [`sprint27_baselines_first.py`](code/sprint27_baselines_first.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint27_baselines_first.py`](code/sprint27_baselines_first.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 28/90 · Three Classical Learners: Linear, Tree & Neighbours
 
@@ -48,7 +48,7 @@
 
 **Try it.** With two measurements of 178 Italian wines, five nearest neighbours score 0.704 on the 54 test wines in raw units and 0.944 after scaling.
 
-**Run it.** [`sprint28_three_classical_learners.py`](code/sprint28_three_classical_learners.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint28_three_classical_learners.py`](code/sprint28_three_classical_learners.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 29/90 · Regularisation & Cross-Validation
 
@@ -60,7 +60,7 @@
 
 **Try it.** Ridge regression on 442 diabetes patients: 15 penalties, five folds each, and a test set kept sealed until the end.
 
-**Run it.** [`sprint29_regularisation_cross_validation.py`](code/sprint29_regularisation_cross_validation.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint29_regularisation_cross_validation.py`](code/sprint29_regularisation_cross_validation.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 30/90 · Statistical Learning Theory: Why Learning Generalises
 
@@ -72,7 +72,7 @@
 
 **Try it.** If the flowers are independent draws, the iris cut's true error is at most 0.291 with 95% confidence, and a margin of 0.05 would need 1,729 flowers.
 
-**Run it.** [`sprint30_statistical_learning_theory.py`](code/sprint30_statistical_learning_theory.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint30_statistical_learning_theory.py`](code/sprint30_statistical_learning_theory.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ## Cite this phase
 

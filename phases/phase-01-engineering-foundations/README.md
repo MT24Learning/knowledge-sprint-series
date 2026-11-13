@@ -22,7 +22,7 @@
 
 **Try it.** Create a local repository with a .gitignore and a README, make five meaningful commits and inspect one object by its hash.
 
-**Run it.** [`sprint01_environment_git_foundations.sh`](code/sprint01_environment_git_foundations.sh) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint01_environment_git_foundations.sh`](code/sprint01_environment_git_foundations.sh) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 2/90 · Hashing + GitHub over SSH
 
@@ -32,7 +32,7 @@
 
 **Try it.** Hash "abc" and "abd" and compare, push a repository over SSH, clone it elsewhere and check that both copies match.
 
-**Run it.** [`sprint02_hashing_github_ssh.sh`](code/sprint02_hashing_github_ssh.sh) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint02_hashing_github_ssh.sh`](code/sprint02_hashing_github_ssh.sh) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 3/90 · Project Structure & Quality Gates
 
@@ -42,7 +42,7 @@
 
 **Try it.** Install the project in editable mode and run ruff, mypy and pytest; fix the cause of a failure instead of muting the check.
 
-**Run it.** [`sprint03_project_structure_quality_gates.sh`](code/sprint03_project_structure_quality_gates.sh) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint03_project_structure_quality_gates.sh`](code/sprint03_project_structure_quality_gates.sh) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ## Cite this phase
 
