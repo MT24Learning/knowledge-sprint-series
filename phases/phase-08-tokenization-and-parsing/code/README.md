@@ -35,6 +35,7 @@ Checked on 13 November 2026, in a fresh environment built from `requirements.txt
   PIP_CONSTRAINT=../constraints.txt ../.venv/bin/python ../sprint25_publishing_a_package.py
   ```
 - Without the pin, hatchling 1.33.0 (the newest on 13 November 2026) builds a wheel of 913 bytes whose SHA-256 starts 5620af12e1711f04, not the 917 bytes and 06334646fb0ae368 on the image. Both runs still agree with each other: the build is reproducible for one tool version, and the version is part of the result.
+- `PIP_CONSTRAINT` works here because the script builds with `python -m build` (checked with build 1.6.1 and pip 26.3). If you build the same package with `pip wheel` or `pip install` instead, pip 26.2 and later no longer apply `PIP_CONSTRAINT` to their own build environments: use `PIP_BUILD_CONSTRAINT=../constraints.txt`. Checked on 13 November 2026 with pip 26.3: `pip wheel` built with hatchling 1.33.0 (913 bytes) under `PIP_CONSTRAINT` and with hatchling 1.32.4 (917 bytes) under `PIP_BUILD_CONSTRAINT`. Whichever way you build, the `Generator:` line in the wheel's `WHEEL` file names the hatchling version that was used.
 
 ## Licence
 
