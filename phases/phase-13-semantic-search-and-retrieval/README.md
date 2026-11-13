@@ -24,7 +24,7 @@
 
 **Try it.** On 1,400 Cranfield abstracts and 225 questions, nDCG@10 climbs from 0.026 (counting) to 0.382 (BM25).
 
-**Run it.** [`sprint39_keyword_search_inverted_index_bm25.py`](code/sprint39_keyword_search_inverted_index_bm25.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint39_keyword_search_inverted_index_bm25.py`](code/sprint39_keyword_search_inverted_index_bm25.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 40/90 · Searching by Meaning: Dense & Hybrid Retrieval
 
@@ -36,7 +36,7 @@
 
 **Try it.** A small static embedding model scores 0.340 against BM25's 0.382, and the hybrid's +0.013 is not significant (p ≈ 0.18).
 
-**Run it.** [`sprint40_searching_by_meaning_dense_hybrid_retrieval.py`](code/sprint40_searching_by_meaning_dense_hybrid_retrieval.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint40_searching_by_meaning_dense_hybrid_retrieval.py`](code/sprint40_searching_by_meaning_dense_hybrid_retrieval.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 41/90 · Retrieval-Augmented Generation: A Working Demo
 
@@ -48,7 +48,7 @@
 
 **Try it.** A judged passage reaches the top five for 77% of questions; a score floor that keeps 90% of answerable questions still lets 84% through once every judged paper is hidden.
 
-**Run it.** [`sprint41_retrieval_augmented_generation_working_demo.py`](code/sprint41_retrieval_augmented_generation_working_demo.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint41_retrieval_augmented_generation_working_demo.py`](code/sprint41_retrieval_augmented_generation_working_demo.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ## Cite this phase
 

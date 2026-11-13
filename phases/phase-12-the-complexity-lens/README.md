@@ -24,7 +24,7 @@
 
 **Try it.** Simulate the Lorenz system and forecast a real laser from its own past: the error grows pulse by pulse.
 
-**Run it.** [`sprint36_dynamics_and_chaos.py`](code/sprint36_dynamics_and_chaos.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint36_dynamics_and_chaos.py`](code/sprint36_dynamics_and_chaos.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 37/90 · Emergence and Self-Organisation
 
@@ -36,7 +36,7 @@
 
 **Try it.** In Schelling's model, residents who want only half of their neighbours alike end at 79% alike; in a catalogue of 1,000 real Fiji earthquakes the b-value is 1.08 for magnitudes of 4.5 and above.
 
-**Run it.** [`sprint37_emergence_and_self_organisation.py`](code/sprint37_emergence_and_self_organisation.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint37_emergence_and_self_organisation.py`](code/sprint37_emergence_and_self_organisation.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 38/90 · Fractals, Scaling and the Shape of Complexity
 
@@ -48,7 +48,7 @@
 
 **Try it.** Britain measures 2,404 km with a 200 km ruler and 6,958 km with a 1.6 km ruler; the word counts of Moby Dick do not rule out a lognormal.
 
-**Run it.** [`sprint38_fractals_scaling_shape_of_complexity.py`](code/sprint38_fractals_scaling_shape_of_complexity.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint38_fractals_scaling_shape_of_complexity.py`](code/sprint38_fractals_scaling_shape_of_complexity.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ## Cite this phase
 

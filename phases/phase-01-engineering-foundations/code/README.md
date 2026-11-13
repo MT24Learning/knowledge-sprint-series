@@ -1,6 +1,6 @@
 # Phase 1 · Runnable code
 
-The commands printed on the sprint images of Phase 1, Engineering Foundations (Essential Commands in Sprint 1, Try It in Sprints 2 and 3), as shell scripts you can run. The images print no output, so there is nothing to compare; a few marked lines are added so that the commands run in an empty folder.
+The commands printed on the sprint images of Phase 1, Engineering Foundations (Essential Commands in Sprint 1, Try It in Sprints 2 and 3), as shell scripts you can run. The images print no output, so there is nothing to compare; a few marked lines are added so that the commands run in an empty folder. Archived on Zenodo with the code of Phases 1–14: [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674) (all versions: [10.5281/zenodo.24201673](https://doi.org/10.5281/zenodo.24201673)).
 
 | Sprint | File | Run with |
 |---|---|---|

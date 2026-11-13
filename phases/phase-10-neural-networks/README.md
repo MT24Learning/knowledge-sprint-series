@@ -24,7 +24,7 @@
 
 **Try it.** Solve XOR by hand with two ReLU units, then train small networks from 100 random starts.
 
-**Run it.** [`sprint31_from_perceptron_to_multilayer_network.py`](code/sprint31_from_perceptron_to_multilayer_network.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint31_from_perceptron_to_multilayer_network.py`](code/sprint31_from_perceptron_to_multilayer_network.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 32/90 · How Networks Train: Backpropagation & Training Dynamics
 
@@ -36,7 +36,7 @@
 
 **Try it.** Backpropagation agrees with finite differences to within 3.7 × 10⁻¹⁰ on all 13 weights of a small network.
 
-**Run it.** [`sprint32_how_networks_train.py`](code/sprint32_how_networks_train.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint32_how_networks_train.py`](code/sprint32_how_networks_train.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ## Cite this phase
 

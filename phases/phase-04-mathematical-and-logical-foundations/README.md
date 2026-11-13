@@ -22,7 +22,7 @@
 
 **Try it.** Check a least-squares gradient against a central difference, then recover the weights [2, −3] in 100 steps of gradient descent.
 
-**Run it.** [`sprint09_linear_algebra_calculus_for_ml.py`](code/sprint09_linear_algebra_calculus_for_ml.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint09_linear_algebra_calculus_for_ml.py`](code/sprint09_linear_algebra_calculus_for_ml.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 10/90 · Logic, Propositions & Inference
 
@@ -32,7 +32,7 @@
 
 **Try it.** A truth-table checker confirms modus ponens and modus tollens and exposes affirming the consequent and denying the antecedent.
 
-**Run it.** [`sprint10_logic_propositions_inference.py`](code/sprint10_logic_propositions_inference.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint10_logic_propositions_inference.py`](code/sprint10_logic_propositions_inference.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 11/90 · Axioms & Declared Assumptions
 
@@ -42,7 +42,7 @@
 
 **Try it.** A triangle on the unit sphere with three right angles adds up to 270°, and its excess equals its area.
 
-**Run it.** [`sprint11_axioms_declared_assumptions.py`](code/sprint11_axioms_declared_assumptions.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint11_axioms_declared_assumptions.py`](code/sprint11_axioms_declared_assumptions.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 12/90 · Testing & Phase Review
 
@@ -52,7 +52,7 @@
 
 **Try it.** Hypothesis generates inputs, finds a failing case and shrinks it to a minimal example.
 
-**Run it.** [`sprint12_testing_phase_review.py`](code/sprint12_testing_phase_review.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint12_testing_phase_review.py`](code/sprint12_testing_phase_review.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ## Cite this phase
 

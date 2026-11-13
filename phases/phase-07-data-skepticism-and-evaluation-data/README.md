@@ -24,7 +24,7 @@
 
 **Try it.** Six raw rows reconcile as three loaded, one merged and two quarantined, and a second run changes nothing.
 
-**Run it.** [`sprint19_data_pipelines_extract_transform_load.py`](code/sprint19_data_pipelines_extract_transform_load.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint19_data_pipelines_extract_transform_load.py`](code/sprint19_data_pipelines_extract_transform_load.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 20/90 · Building an Evaluation Dataset
 
@@ -36,7 +36,7 @@
 
 **Try it.** With five copies of every item, a random split scores 1.000 by remembering copies; a split by group scores 0.440.
 
-**Run it.** [`sprint20_building_an_evaluation_dataset.py`](code/sprint20_building_an_evaluation_dataset.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint20_building_an_evaluation_dataset.py`](code/sprint20_building_an_evaluation_dataset.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 21/90 · Data Validation & Storage
 
@@ -48,7 +48,7 @@
 
 **Try it.** The strict table rejects "n/a" and 1.7; changing one digit changes the SHA-256 digest, and the loader refuses the file.
 
-**Run it.** [`sprint21_data_validation_and_storage.py`](code/sprint21_data_validation_and_storage.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint21_data_validation_and_storage.py`](code/sprint21_data_validation_and_storage.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ## Cite this phase
 

@@ -24,7 +24,7 @@
 
 **Try it.** A 32-piece toy vocabulary splits "unbelievably tokenizers" into seven pieces and decodes it back exactly.
 
-**Run it.** [`sprint22_how_tokenization_works.py`](code/sprint22_how_tokenization_works.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint22_how_tokenization_works.py`](code/sprint22_how_tokenization_works.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 23/90 · Byte Pair Encoding & Its Edge Cases
 
@@ -36,7 +36,7 @@
 
 **Try it.** Ten merges on a toy corpus reduce 95 symbols to 28, and show how "lowest", "newer" and "Lowest" are split.
 
-**Run it.** [`sprint23_byte_pair_encoding_edge_cases.py`](code/sprint23_byte_pair_encoding_edge_cases.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint23_byte_pair_encoding_edge_cases.py`](code/sprint23_byte_pair_encoding_edge_cases.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 24/90 · Parsing Structured Meaning from Text
 
@@ -48,7 +48,7 @@
 
 **Try it.** A recursive-descent parser reads 2 + 3 * 4 as 14, and a strict hook rejects a duplicate JSON key that json.loads keeps silently.
 
-**Run it.** [`sprint24_parsing_structured_meaning_from_text.py`](code/sprint24_parsing_structured_meaning_from_text.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint24_parsing_structured_meaning_from_text.py`](code/sprint24_parsing_structured_meaning_from_text.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 25/90 · Publishing a Package
 
@@ -60,7 +60,7 @@
 
 **Try it.** Build the same package twice and get a byte-identical wheel; the mini project then publishes it to TestPyPI first.
 
-**Run it.** [`sprint25_publishing_a_package.py`](code/sprint25_publishing_a_package.py) · [versions, data and steps](code/README.md)
+**Run it.** [`sprint25_publishing_a_package.py`](code/sprint25_publishing_a_package.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ## Cite this phase
 
