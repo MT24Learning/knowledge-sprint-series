@@ -24,6 +24,8 @@
 
 **Try it.** Simulate 1,000 scientists with a small group of rivals, retirements and persuasion, and watch how long a shift takes.
 
+**Run it.** [`sprint16_anatomy_of_a_paradigm_shift.py`](code/sprint16_anatomy_of_a_paradigm_shift.py) · [versions, data and steps](code/README.md)
+
 ### Sprint 17/90 · A Taxonomy of Model Failure
 
 > *A failure I cannot name is a failure I will repeat.*
@@ -34,6 +36,8 @@
 
 **Try it.** A degree-9 polynomial fits 20 points closely and misses badly outside the range it was trained on.
 
+**Run it.** [`sprint17_taxonomy_of_model_failure.py`](code/sprint17_taxonomy_of_model_failure.py) · [versions, data and steps](code/README.md)
+
 ### Sprint 18/90 · Documenting How a Model Failed
 
 > *A failure I write down becomes a boundary. One I forget becomes a trap.*
@@ -43,6 +47,8 @@
 **Covers.** Blameless records, drawing the boundary of a model with model cards and datasheets, Feynman's appendix to the Challenger report, and the file drawer problem.
 
 **Try it.** Write a failure record for the pendulum formula: within 1% to 22°, within 5% to 50°, fails at 90°.
+
+**Run it.** [`sprint18_documenting_how_a_model_failed.py`](code/sprint18_documenting_how_a_model_failed.py) · [versions, data and steps](code/README.md)
 
 ## Cite this phase
 

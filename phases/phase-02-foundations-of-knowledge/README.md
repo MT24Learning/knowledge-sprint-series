@@ -22,6 +22,8 @@
 
 **Try it.** Bayes' rule on a medical test: prior 1%, sensitivity 90%, false positives 5%, giving a posterior of 0.154.
 
+**Run it.** [`sprint04_knowledge_truth_evidence.py`](code/sprint04_knowledge_truth_evidence.py) · [versions, data and steps](code/README.md)
+
 ### Sprint 5/90 · What Is a Model?
 
 <a href="MT24_Learning_Phase02_Sprint05_What_Is_a_Model.png"><img src="MT24_Learning_Phase02_Sprint05_What_Is_a_Model.png" width="760" alt="Sprint 5 of 90 infographic: What Is a Model?."></a>
@@ -29,6 +31,8 @@
 **Covers.** A model and its target (the map is not the territory), kinds of models in science, and three kinds of idealisation.
 
 **Try it.** Compare the small-angle pendulum formula with the exact period: under 1% off below 20°, 18% off at 90°.
+
+**Run it.** [`sprint05_what_is_a_model.py`](code/sprint05_what_is_a_model.py) · [versions, data and steps](code/README.md)
 
 ### Sprint 6/90 · The Scientific Method, Objectivity and Its Failures
 
@@ -38,6 +42,8 @@
 
 **Try it.** Run 20 tests of effects that do not exist: at least one comes out significant about 64% of the time.
 
+**Run it.** [`sprint06_scientific_method_objectivity_failures.py`](code/sprint06_scientific_method_objectivity_failures.py) · [versions, data and steps](code/README.md)
+
 ### Sprint 7/90 · Four Minds on Science
 
 <a href="MT24_Learning_Phase02_Sprint07_Four_Minds_on_Science.png"><img src="MT24_Learning_Phase02_Sprint07_Four_Minds_on_Science.png" width="760" alt="Sprint 7 of 90 infographic: Four Minds on Science."></a>
@@ -45,6 +51,8 @@
 **Covers.** Popper, Kuhn, Lakatos and Feyerabend, with one idea to keep from each; Uranus and Neptune against Mercury and the planet Vulcan that was never found.
 
 **Try it.** Compute general relativity's perihelion advance of Mercury: 42.97 arcseconds per century.
+
+**Run it.** [`sprint07_four_minds_on_science.py`](code/sprint07_four_minds_on_science.py) · [versions, data and steps](code/README.md)
 
 ## Cite this phase
 

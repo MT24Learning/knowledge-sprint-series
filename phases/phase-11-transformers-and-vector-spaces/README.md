@@ -24,6 +24,8 @@
 
 **Try it.** With 400,000 GloVe vectors, measure the angles from "cat" and test the famous king − man + woman analogy.
 
+**Run it.** [`sprint33_meaning_as_vectors_word_embeddings.py`](code/sprint33_meaning_as_vectors_word_embeddings.py) · [versions, data and steps](code/README.md)
+
 ### Sprint 34/90 · How Attention Works
 
 > *Each word asks every other word a question, then keeps a weighted average of the answers.*
@@ -34,6 +36,8 @@
 
 **Try it.** Watch "bank" move towards "river" or "loan" depending on its sentence, and see a causal mask keep 21 of 36 scores.
 
+**Run it.** [`sprint34_how_attention_works.py`](code/sprint34_how_attention_works.py) · [versions, data and steps](code/README.md)
+
 ### Sprint 35/90 · Inside a Transformer
 
 > *Attention mixes the words. Most of an encoder layer is not attention, and order must be added.*
@@ -43,6 +47,8 @@
 **Covers.** The two sublayers, skip connections and normalisation, where the weights live, and why position must be added.
 
 **Try it.** Build one layer in NumPy: two thirds of a base encoder layer's parameters sit in the feed-forward block, and with no positions and no causal mask a shuffled input only shuffles the output.
+
+**Run it.** [`sprint35_inside_a_transformer.py`](code/sprint35_inside_a_transformer.py) · [versions, data and steps](code/README.md)
 
 ## Cite this phase
 

@@ -22,6 +22,8 @@
 
 **Try it.** Create a local repository with a .gitignore and a README, make five meaningful commits and inspect one object by its hash.
 
+**Run it.** [`sprint01_environment_git_foundations.sh`](code/sprint01_environment_git_foundations.sh) · [versions, data and steps](code/README.md)
+
 ### Sprint 2/90 · Hashing + GitHub over SSH
 
 <a href="MT24_Learning_Phase01_Sprint02_Hashing_GitHub_SSH.png"><img src="MT24_Learning_Phase01_Sprint02_Hashing_GitHub_SSH.png" width="760" alt="Sprint 2 of 90 infographic: Hashing + GitHub over SSH."></a>
@@ -30,6 +32,8 @@
 
 **Try it.** Hash "abc" and "abd" and compare, push a repository over SSH, clone it elsewhere and check that both copies match.
 
+**Run it.** [`sprint02_hashing_github_ssh.sh`](code/sprint02_hashing_github_ssh.sh) · [versions, data and steps](code/README.md)
+
 ### Sprint 3/90 · Project Structure & Quality Gates
 
 <a href="MT24_Learning_Phase01_Sprint03_Project_Structure_Quality_Gates.png"><img src="MT24_Learning_Phase01_Sprint03_Project_Structure_Quality_Gates.png" width="760" alt="Sprint 3 of 90 infographic: Project Structure & Quality Gates."></a>
@@ -37,6 +41,8 @@
 **Covers.** A src/ layout with pyproject.toml and tests, and quality gates that run in order (format, lint, types, tests) with CI blocking the merge; pre-commit hooks, and why CI repeats them.
 
 **Try it.** Install the project in editable mode and run ruff, mypy and pytest; fix the cause of a failure instead of muting the check.
+
+**Run it.** [`sprint03_project_structure_quality_gates.sh`](code/sprint03_project_structure_quality_gates.sh) · [versions, data and steps](code/README.md)
 
 ## Cite this phase
 

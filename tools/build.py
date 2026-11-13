@@ -133,6 +133,21 @@ def thumb(src, rel, size=(520, 650), note=None):
     return True
 
 
+def code_files(p, s=None):
+    """Files in a phase's code/ folder (paths from the repository root),
+    or the file names that belong to one sprint (sprintNN_*)."""
+    d = os.path.join(ROOT, "phases", phase_dir(p), "code")
+    names = sorted(f for f in os.listdir(d) if not f.startswith(".")) if os.path.isdir(d) else []
+    if s is None:
+        return [f"phases/{phase_dir(p)}/code/{f}" for f in names]
+    return [f for f in names if f.startswith(f"sprint{s['n']:02d}_")]
+
+
+def checked_paths():
+    """Every file listed in CHECKSUMS.sha256: the images, then the code."""
+    return image_paths() + [f for p in PHASES for f in code_files(p)]
+
+
 def image_paths():
     """Every published image, as a path from the repository root."""
     paths = []
@@ -194,6 +209,10 @@ def phase_page(i, p):
             f"**Try it.** {s['tryit']}",
             "",
         ]
+        run = code_files(p, s)
+        if run:
+            out += ["**Run it.** " + " · ".join(f"[`{f}`](code/{f})" for f in run)
+                    + " · [versions, data and steps](code/README.md)", ""]
     out += [
         "## Cite this phase",
         "",
@@ -352,7 +371,8 @@ def readme():
         "",
         "- **Core concepts**, in short cards.",
         "- **A figure** that shows the main idea, with real numbers where there are any (from Phase 2 onward).",
-        "- **Try it**: commands or a short program you can run yourself, with its real output.",
+        "- **Try it**: commands or a short program you can run yourself, with its real output. "
+        "Each phase page links the same code as files (**Run it**), with the library versions that reproduce the image.",
         "- **A mini project** to apply the sprint on your own.",
         "- **Trusted sources**: books, papers and official documentation, so every claim can be checked.",
         "",
@@ -380,7 +400,8 @@ def readme():
         "## Integrity",
         "",
         "Every image is kept at full resolution, as published. "
-        "[`CHECKSUMS.sha256`](CHECKSUMS.sha256) lists the SHA-256 digest of each one, so you can confirm that a copy is unchanged:",
+        "[`CHECKSUMS.sha256`](CHECKSUMS.sha256) lists the SHA-256 digest of each one, and of each code file, "
+        "so you can confirm that a copy is unchanged:",
         "",
         "```sh",
         "sha256sum --check CHECKSUMS.sha256",
@@ -565,7 +586,7 @@ def build(image_folders):
     next_tile()
     write("README.md", readme())
     write("CITATION.cff", citation_cff())
-    write("CHECKSUMS.sha256", "\n".join(f"{sha256(os.path.join(ROOT, rel))}  {rel}" for rel in sorted(image_paths())))
+    write("CHECKSUMS.sha256", "\n".join(f"{sha256(os.path.join(ROOT, rel))}  {rel}" for rel in sorted(checked_paths())))
     import website
     website.build(sys.modules[__name__])
     for n in notes:
@@ -614,8 +635,15 @@ def check():
         digest, rel = line.split("  ", 1)
         listed[rel] = digest
     expected = set(image_paths())
-    for rel in sorted(expected - set(listed)):
+    for rel in sorted(set(checked_paths()) - set(listed)):
         problems.append(f"not in CHECKSUMS.sha256: {rel}")
+    for p in PHASES:
+        if code_files(p):
+            if not os.path.exists(os.path.join(ROOT, "phases", phase_dir(p), "code", "README.md")):
+                problems.append(f"code folder without README.md: phases/{phase_dir(p)}/code")
+            for s in p["sprints"]:
+                if not code_files(p, s):
+                    problems.append(f"no code file for Sprint {s['n']} in phases/{phase_dir(p)}/code")
     for rel, digest in sorted(listed.items()):
         path = os.path.join(ROOT, rel)
         if not os.path.exists(path):

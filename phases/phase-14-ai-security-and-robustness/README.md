@@ -24,6 +24,8 @@
 
 **Try it.** On 540 handwritten digits, ±2 grey levels of random noise leave a small network at 95.4% and a 10-step gradient-sign attack leaves 21.5%; a linear model retrained on old attacks holds 88.5% against them and 15.9% against a fresh one.
 
+**Run it.** [`sprint42_adversarial_examples_small_changes_wrong_answers.py`](code/sprint42_adversarial_examples_small_changes_wrong_answers.py) · [versions, data and steps](code/README.md)
+
 ### Sprint 43/90 · Poisoned Data: Attacks Through Training & Retrieval
 
 > *A few planted examples can teach a model a secret password. Clean tests never type it.*
@@ -34,6 +36,8 @@
 
 **Try it.** In my own spam filter (logistic regression on real SMS messages), 40 relabelled messages (1.0% of 3,941) cut the triggered spam it catches from 87.5% to 25.4% while clean tests look normal; in a BM25 index of the Cranfield abstracts, a plant copying each question ranks first for 223 of 225 questions.
 
+**Run it.** [`sprint43_poisoned_data_attacks_through_training_retrieval.py`](code/sprint43_poisoned_data_attacks_through_training_retrieval.py) · [versions, data and steps](code/README.md)
+
 ### Sprint 44/90 · Prompt Injection: When Data Becomes an Instruction
 
 > *Roles label the rules and the attack, but the model reads both as one stream of tokens.*
@@ -43,6 +47,8 @@
 **Covers.** What prompt injection is, why firm wording in the rules is no guarantee, what a phrase blocklist misses, and instructions hidden in retrieved text.
 
 **Try it.** In 1,346 real Tensor Trust pairs where a human attack fooled at least 2 of 3 models from 2023, 72.3% of the defences had a "never / do not" rule and a blocklist of 6 known phrase patterns caught 11.9% of the attacks; no language model was run here.
+
+**Run it.** [`sprint44_prompt_injection_when_data_becomes_an_instruction.py`](code/sprint44_prompt_injection_when_data_becomes_an_instruction.py) · [versions, data and steps](code/README.md)
 
 ## Cite this phase
 
