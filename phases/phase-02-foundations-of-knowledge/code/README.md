@@ -32,4 +32,8 @@ A later version of a library may change the numbers (for example, numpy may chan
 - The comments on these images give the printed values in short form: Sprint 5 prints each angle before its ratio, Sprint 6 prints 0.64576 (0.646 on the image) and Sprint 7 prints 42.97331529555632 (42.97 on the image).
 - Sprints 4 and 7 need only Python's standard library.
 
+## Licence
+
+The code in this folder is licensed under the [MIT License](../../../LICENSE-CODE). The images and texts of the series stay under CC BY-NC-SA 4.0 ([LICENSE](../../../LICENSE)).
+
 [← Phase 2](../README.md)

@@ -31,4 +31,8 @@ A later version of a library may change the numbers (for example, numpy may chan
 - Sprint 21's STRICT table needs SQLite 3.37.0 or later (`python -c "import sqlite3; print(sqlite3.sqlite_version)"`).
 - Sprint 21 writes `g.tmp` and `g.csv` in the folder it runs in: run it in a scratch folder.
 
+## Licence
+
+The code in this folder is licensed under the [MIT License](../../../LICENSE-CODE). The images and texts of the series stay under CC BY-NC-SA 4.0 ([LICENSE](../../../LICENSE)).
+
 [← Phase 7](../README.md)

@@ -289,7 +289,8 @@ def render(b):
     w('<footer class="site">')
     w('  <div class="wrap foot-row">')
     w("    <p>© 2026 Mohammed Tahri (MT24) · Images and text under "
-      '<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p>')
+      '<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · '
+      f'Sprint code under <a href="{b.REPO_URL}/blob/main/LICENSE-CODE">MIT</a></p>')
     w('    <p><a href="https://github.com/MT24Learning">MT24 Learning</a> · '
       f'<a href="{b.REPO_URL}">Source and data</a> · <a href="fonts/OFL.txt">Font licences</a></p>')
     w("  </div>")

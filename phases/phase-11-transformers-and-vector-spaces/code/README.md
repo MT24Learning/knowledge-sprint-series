@@ -30,4 +30,8 @@ A later version of a library may change the numbers (for example, numpy may chan
 
 - The first run downloads the GloVe vectors glove-wiki-gigaword-50 (66 MB, PDDL licence) through gensim into `~/gensim-data`; later runs read them from there.
 
+## Licence
+
+The code in this folder is licensed under the [MIT License](../../../LICENSE-CODE). The images and texts of the series stay under CC BY-NC-SA 4.0 ([LICENSE](../../../LICENSE)).
+
 [← Phase 11](../README.md)

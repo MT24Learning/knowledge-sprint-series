@@ -11,7 +11,7 @@ The same build writes the website in [`docs/`](../docs), published with GitHub P
 A phase is added once all of its images are public and its edition is archived on Zenodo.
 
 1. In `series_data.py`, add the phase to `PHASES` (title, first-published date, version and concept DOIs, one-line summary, one checked result, summary image, and one entry per sprint), then move `NEXT` to the following phase.
-2. Put the phase's runnable code in `phases/<phase folder>/code/`: one file per sprint, named `sprintNN_<title>.py` (or `.sh`), each copied from its image and ending with the output printed on the image as comment lines; a `requirements.txt` with exact versions (`==`); a `README.md` with the steps, the versions of the first run and of the check, and any data sources with their SHA-256 digests (`data.sha256`). The data themselves stay out of the repository. The phase page links each sprint's files under **Run it**, and `CHECKSUMS.sha256` lists them.
+2. Put the phase's runnable code in `phases/<phase folder>/code/`: one file per sprint, named `sprintNN_<title>.py` (or `.sh`), each copied from its image and ending with the output printed on the image as comment lines; a `requirements.txt` with exact versions (`==`); a `README.md` with the steps, the versions of the first run and of the check, and any data sources with their SHA-256 digests (`data.sha256`). The data themselves stay out of the repository. The code is licensed under the MIT License (`LICENSE-CODE`), and the README ends with the same Licence section as the other phases. The phase page links each sprint's files under **Run it**, and `CHECKSUMS.sha256` lists them.
 3. Rebuild, pointing to the folder that holds the new images:
 
    ```sh

@@ -29,4 +29,8 @@ A later version of a library may change the numbers (for example, numpy may chan
 
 - Sprint 31 takes about 25 seconds (200 trainings of 5 000 steps), Sprint 32 about 30 seconds.
 
+## Licence
+
+The code in this folder is licensed under the [MIT License](../../../LICENSE-CODE). The images and texts of the series stay under CC BY-NC-SA 4.0 ([LICENSE](../../../LICENSE)).
+
 [← Phase 10](../README.md)

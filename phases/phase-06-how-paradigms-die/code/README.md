@@ -26,4 +26,8 @@ Checked on 13 November 2026, in a fresh environment built from `requirements.txt
 
 A later version of a library may change the numbers (for example, numpy may change the random streams of `default_rng` between versions); the pinned versions reproduce the image.
 
+## Licence
+
+The code in this folder is licensed under the [MIT License](../../../LICENSE-CODE). The images and texts of the series stay under CC BY-NC-SA 4.0 ([LICENSE](../../../LICENSE)).
+
 [← Phase 6](../README.md)
