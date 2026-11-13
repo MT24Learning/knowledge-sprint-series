@@ -190,6 +190,21 @@ def render(b):
                 w(f'          <p class="line">{e(m["line"])}</p>')
                 w("        </div>")
                 w("      </article>")
+        for r in b.statements():
+            if r["phases"][1] == p["n"]:
+                st = r["statement"]
+                link = f"{b.REPO_URL}/blob/main/{b.statement_link(r)}"
+                w('      <article class="card milestone reveal">')
+                w(f'        <a class="cover" href="{link}" tabindex="-1" aria-hidden="true">'
+                  f'<img src="img/thumbs/{b.statement_id(r)}.jpg" width="520" height="650" loading="lazy" alt=""></a>')
+                w('        <div class="card-body">')
+                w(f'          <p class="meta"><span>Code</span><span>Phases {r["phases"][0]}–{r["phases"][1]}</span></p>')
+                w(f'          <h3><a href="{link}">Code Availability Statement</a></h3>')
+                w(f'          <p class="line">{e(st["line"])}</p>')
+                w(f'          <p class="foot"><a class="doi" href="https://doi.org/{st["v"]}">DOI {e(st["v"])}</a>'
+                  f'<time datetime="{st["first"]}">{short_date(st["first"])}</time></p>')
+                w("        </div>")
+                w("      </article>")
     if nxt:
         state = "Being published now" if nxt["status"] == "publishing" else "Coming next"
         w('      <article class="card next reveal">')
@@ -315,6 +330,7 @@ def build(b):
     target = os.path.join(b.ROOT, "docs", "img", "thumbs")
     wanted = {f"phase-{p['n']:02d}.jpg" for p in b.PHASES}
     wanted |= {f"milestone-{m['id']}.jpg" for m in b.MILESTONES}
+    wanted |= {f"{b.statement_id(r)}.jpg" for r in b.statements()}
     if b.NEXT:
         wanted.add("next-phase.jpg")
     for name in sorted(wanted):

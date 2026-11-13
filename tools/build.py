@@ -161,7 +161,66 @@ def image_paths():
             paths.append(f"phases/{phase_dir(p)}/{f}")
     for m in MILESTONES:
         paths.append(f"milestones/{m['file']}")
+    for r in statements():
+        paths.append(f"{STATEMENT_DIR}/{r['statement']['file']}")
     return paths
+
+
+STATEMENT_DIR = "code-availability"
+
+
+def statements():
+    """Code records that carry a Code Availability Statement image."""
+    return [r for r in CODE_RECORDS if r.get("statement")]
+
+
+def statement_id(r):
+    return f"code-{r['phases'][0]:02d}-{r['phases'][1]:02d}"
+
+
+def statement_heading(r):
+    return f"Code Availability Statement · Phases {r['phases'][0]}–{r['phases'][1]}"
+
+
+def statement_link(r):
+    if len(statements()) == 1:
+        return f"{STATEMENT_DIR}/README.md"
+    return f"{STATEMENT_DIR}/README.md#{gh_anchor(statement_heading(r))}"
+
+
+def statement_page():
+    out = ["<sub>[All phases](../README.md)</sub>", ""]
+    single = len(statements()) == 1
+    if not single:
+        out += ["# Code availability", ""]
+    for r in statements():
+        st = r["statement"]
+        a, z = r["phases"]
+        folders = ", ".join(f"[{p['n']}](../phases/{phase_dir(p)}/code/README.md)"
+                            for p in PHASES if a <= p["n"] <= z)
+        out += [
+            f"{'#' if single else '##'} {statement_heading(r)}",
+            "",
+            f"**Sprints {sprint_range(phase_by_n(a)).split('–')[0]}–{sprint_range(phase_by_n(z)).split('–')[-1]} "
+            f"· first published {nice_date(st['first'])}**",
+            "",
+            f"> {st['line']}",
+            "",
+            f"<a href=\"{st['file']}\"><img src=\"{st['file']}\" width=\"760\" alt=\"{st['alt']}\"></a>",
+            "",
+            f"- **What:** one file per sprint, with the exact package versions that reproduce its image, in each "
+            f"phase's `code/` folder: Phases {folders}.",
+            f"- **Where:** browse it here; cite the Zenodo software record, DOI {doi_link(r['v'])} "
+            f"(all versions: {doi_link(r['c'])}).",
+            "- **Terms:** code under the [MIT License](../LICENSE-CODE); images and texts under "
+            "[CC BY-NC-SA 4.0](../LICENSE).",
+            "",
+            f"This image is archived on Zenodo as its own record, DOI {doi_link(st['v'])} "
+            f"(all versions: {doi_link(st['c'])}), which documents the code record.",
+            "",
+        ]
+    out += ["---", "", "<sub>[All phases](../README.md)</sub>"]
+    return "\n".join(out)
 
 
 # ---------------------------------------------------------------- pages
@@ -323,6 +382,12 @@ def readme():
                 tiles.append((milestone_link(m), f"assets/thumbs/milestone-{m['id']}.jpg",
                               f"<b>Milestone</b> · {m['title']}", m["scope"],
                               f"Milestone overview of Phases {a} to {b}"))
+        for r in statements():
+            if r["phases"][1] == p["n"]:
+                a, b = r["phases"]
+                tiles.append((statement_link(r), f"assets/thumbs/{statement_id(r)}.jpg",
+                              "<b>Code</b> · Code Availability Statement", f"Phases {a}–{b}",
+                              f"Code Availability Statement for Phases {a} to {b}"))
     if NEXT:
         state = "Being published now" if NEXT["status"] == "publishing" else "Coming next"
         tiles.append((None, "assets/thumbs/next-phase.jpg", f"<b>Phase {NEXT['n']}</b> · {NEXT['title']}",
@@ -408,6 +473,8 @@ def readme():
     ] + [
         f"The code of Phases {r['phases'][0]}–{r['phases'][1]} is archived on Zenodo as one record, DOI {doi_link(r['v'])} "
         f"(all versions: {doi_link(r['c'])}); from Phase 15, each phase's code is archived in the phase's own record."
+        + (f" Its one-page [Code Availability Statement]({statement_link(r)}) says what is available, where and on "
+           f"which terms (DOI {doi_link(r['statement']['v'])})." if r.get("statement") else "")
         for r in CODE_RECORDS
     ] + [
         "",
@@ -599,6 +666,10 @@ def build(image_folders):
     for m in MILESTONES:
         thumb(os.path.join(ROOT, "milestones", m["file"]), f"assets/thumbs/milestone-{m['id']}.jpg")
     write("milestones/README.md", milestone_page())
+    for r in statements():
+        thumb(os.path.join(ROOT, STATEMENT_DIR, r["statement"]["file"]), f"assets/thumbs/{statement_id(r)}.jpg")
+    if statements():
+        write(f"{STATEMENT_DIR}/README.md", statement_page())
     next_tile()
     write("README.md", readme())
     write("CITATION.cff", citation_cff())
@@ -666,7 +737,10 @@ def check():
             problems.append(f"listed but missing: {rel}")
         elif sha256(path) != digest:
             problems.append(f"checksum mismatch: {rel}")
-    for folder in ("phases", "milestones"):
+    for r in statements():
+        if "PENDING" in (r["statement"]["first"], r["statement"]["v"], r["statement"]["c"]):
+            problems.append(f"statement of code record {r['v']}: date or DOI still PENDING in series_data.py")
+    for folder in ("phases", "milestones", STATEMENT_DIR):
         for dirpath, _, files in os.walk(os.path.join(ROOT, folder)):
             for f in files:
                 rel = os.path.relpath(os.path.join(dirpath, f), ROOT)

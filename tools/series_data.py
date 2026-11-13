@@ -23,6 +23,9 @@ NEXT: the phase shown as the last gallery tile (None when the series is complete
 CODE_RECORDS: Zenodo records that archive the runnable code of several phases at once
   (from Phase 15 each phase's code is archived in the phase's own record).
   phases = (first, last); v, c = version DOI and concept DOI.
+  statement (optional): the one-page Code Availability Statement image that documents the record;
+    file, first (date first posted), v and c (its own Zenodo record, resource type Image), line, alt.
+    It is shown after the last phase of the record and stored in code-availability/.
 """
 
 PHASES = [
@@ -289,5 +292,14 @@ MILESTONES = [
 NEXT = dict(n=15, title="Structured Claims & Ground Truth", sprints="45–48", status="next")
 
 CODE_RECORDS = [
-    dict(phases=(1, 14), v="10.5281/zenodo.24201674", c="10.5281/zenodo.24201673"),
+    dict(phases=(1, 14), v="10.5281/zenodo.24201674", c="10.5281/zenodo.24201673",
+         statement=dict(
+             file="MT24_Learning_Code_Availability_Statement_Phases_01_14.png",
+             first="PENDING", v="PENDING", c="PENDING",
+             line="What code exists for the 44 sprints so far, where it is and on which terms, with one test: "
+                  "Sprint 25's package gives a 917-byte wheel with hatchling 1.32.4 and a 913-byte one with 1.33.0.",
+             alt="Code Availability Statement for Phases 1 to 14: four SHA-256 squares of Sprint 25's wheel, "
+                 "identical for two builds with hatchling 1.32.4 and different for hatchling 1.33.0, a terminal "
+                 "session with the real output, what, where and on which terms the code is available, and a grid "
+                 "of the 44 sprints rerun from their pinned versions.")),
 ]
