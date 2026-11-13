@@ -30,4 +30,8 @@ A later version of a library may change the numbers (for example, numpy may chan
 
 - Sprint 13 draws the exponential sample before the Cauchy sample from one generator: the order matters for the numbers.
 
+## Licence
+
+The code in this folder is licensed under the [MIT License](../../../LICENSE-CODE). The images and texts of the series stay under CC BY-NC-SA 4.0 ([LICENSE](../../../LICENSE)).
+
 [← Phase 5](../README.md)

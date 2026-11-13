@@ -28,4 +28,8 @@ A later version of a library may change the numbers (for example, numpy may chan
 
 - The four printed lines appear on one comment line on the image.
 
+## Licence
+
+The code in this folder is licensed under the [MIT License](../../../LICENSE-CODE). The images and texts of the series stay under CC BY-NC-SA 4.0 ([LICENSE](../../../LICENSE)).
+
 [← Phase 3](../README.md)

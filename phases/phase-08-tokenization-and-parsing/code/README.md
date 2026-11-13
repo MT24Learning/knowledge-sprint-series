@@ -36,4 +36,8 @@ Checked on 13 November 2026, in a fresh environment built from `requirements.txt
   ```
 - Without the pin, hatchling 1.33.0 (the newest on 13 November 2026) builds a wheel of 913 bytes whose SHA-256 starts 5620af12e1711f04, not the 917 bytes and 06334646fb0ae368 on the image. Both runs still agree with each other: the build is reproducible for one tool version, and the version is part of the result.
 
+## Licence
+
+The code in this folder is licensed under the [MIT License](../../../LICENSE-CODE). The images and texts of the series stay under CC BY-NC-SA 4.0 ([LICENSE](../../../LICENSE)).
+
 [← Phase 8](../README.md)

@@ -149,6 +149,8 @@ GitHub's **Cite this repository** button (in the sidebar) gives a reference for 
 
 The images and text in this repository are licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](LICENSE) (CC BY-NC-SA 4.0). You may share and adapt them for non-commercial purposes, with attribution and under the same licence.
 
+The runnable code in each phase's `code/` folder is licensed under the [MIT License](LICENSE-CODE): you may reuse it in any project, including commercial ones, as long as the copyright and licence notice stay with it.
+
 Copyright © 2026 Mohammed Tahri (MT24).
 
 ## Integrity

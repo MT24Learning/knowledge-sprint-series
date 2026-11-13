@@ -32,4 +32,8 @@ A later version of a library may change the numbers (for example, numpy may chan
 - Sprint 12 is a test file: run it with `.venv/bin/python -m pytest sprint12_testing_phase_review.py`. `test_exact` fails and `test_close` passes; Hypothesis 6.168.1 reports the failing example a=3.033889997114584, b=0.99999, c=1.0. Another Hypothesis version may report a different example (the failure itself does not change).
 - Hypothesis writes a `.hypothesis/` folder where it runs; delete it afterwards.
 
+## Licence
+
+The code in this folder is licensed under the [MIT License](../../../LICENSE-CODE). The images and texts of the series stay under CC BY-NC-SA 4.0 ([LICENSE](../../../LICENSE)).
+
 [← Phase 4](../README.md)

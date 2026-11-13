@@ -30,4 +30,8 @@ Checked on 13 November 2026, in a fresh environment built from `requirements.txt
 - Lines marked `not on the image` only create what the image's commands need (a folder, a file to commit, a Git identity, the small project of Sprint 3) or show one extra result.
 - `echo -n` needs a shell whose `echo` accepts `-n` (dash, bash); elsewhere use `printf '%s' abc`.
 
+## Licence
+
+The code in this folder is licensed under the [MIT License](../../../LICENSE-CODE). The images and texts of the series stay under CC BY-NC-SA 4.0 ([LICENSE](../../../LICENSE)).
+
 [← Phase 1](../README.md)
