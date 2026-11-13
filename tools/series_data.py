@@ -295,7 +295,7 @@ CODE_RECORDS = [
     dict(phases=(1, 14), v="10.5281/zenodo.24201674", c="10.5281/zenodo.24201673",
          statement=dict(
              file="MT24_Learning_Code_Availability_Statement_Phases_01_14.png",
-             first="PENDING", v="PENDING", c="PENDING",
+             first="2026-11-13", v="10.5281/zenodo.24206903", c="10.5281/zenodo.24206902",
              line="What code exists for the 44 sprints so far, where it is and on which terms, with one test: "
                   "Sprint 25's package gives a 917-byte wheel with hatchling 1.32.4 and a 913-byte one with 1.33.0.",
              alt="Code Availability Statement for Phases 1 to 14: four SHA-256 squares of Sprint 25's wheel, "
