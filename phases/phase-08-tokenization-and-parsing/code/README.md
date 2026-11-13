@@ -21,7 +21,7 @@ On Windows, write `.venv\Scripts\python` in place of `.venv/bin/python`.
 
 ## Versions
 
-First run: Python 3.11.15; Sprint 25 with hatchling 1.32.4, build 1.6.1 and packaging 26.1 (as printed on the image). `requirements.txt` pins these versions.
+First run: Python 3.11.15; Sprint 25 with hatchling 1.32.4, build 1.6.1 and packaging 26.1 (as printed on the image). `requirements.txt` pins build and packaging; `constraints.txt` pins hatchling, which the build downloads into its own isolated environment.
 
 Checked on 13 November 2026, in a fresh environment built from `requirements.txt`: Python 3.11.15 with the pinned versions. Every printed line matches the image.
 
