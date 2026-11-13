@@ -23,7 +23,7 @@ On Windows, write `.venv\Scripts\python` in place of `.venv/bin/python`.
 
 First run: numpy 2.4.4 and scipy 1.17.1; the Python version was not recorded. `requirements.txt` pins these versions.
 
-Checked on 13 November 2026, in a fresh environment built from `requirements.txt`: Python 3.11.15 with the pinned versions, and Python 3.13.18 with numpy 2.5.4 and scipy 1.18.1. Every printed line matches the image.
+Checked on 13 November 2026, in a fresh environment built from `requirements.txt`: Python 3.11.15 with the pinned versions, and Python 3.13.18 with numpy 2.5.4 and scipy 1.18.1. Every value on the image is reproduced; the image's comments give the printed output in short form (several lines on one line, rounded values or added notes).
 
 A later version of a library may change the numbers (for example, numpy may change the random streams of `default_rng` between versions); the pinned versions reproduce the image.
 
