@@ -24,6 +24,8 @@
 
 **Try it.** Score 10,000 simulated forecasts: always 50% gives 0.250, honest 0.188, overconfident 0.203; then log and score 30 forecasts of your own.
 
+**Run it.** [`sprint08_calibrating_intuition_before_automation.py`](code/sprint08_calibrating_intuition_before_automation.py) · [versions, data and steps](code/README.md)
+
 ## Cite this phase
 
 ```text

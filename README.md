@@ -129,7 +129,7 @@ Every sprint image follows the same idea, even as the visual style changes from 
 
 - **Core concepts**, in short cards.
 - **A figure** that shows the main idea, with real numbers where there are any (from Phase 2 onward).
-- **Try it**: commands or a short program you can run yourself, with its real output.
+- **Try it**: commands or a short program you can run yourself, with its real output. Each phase page links the same code as files (**Run it**), with the library versions that reproduce the image.
 - **A mini project** to apply the sprint on your own.
 - **Trusted sources**: books, papers and official documentation, so every claim can be checked.
 
@@ -153,7 +153,7 @@ Copyright © 2026 Mohammed Tahri (MT24).
 
 ## Integrity
 
-Every image is kept at full resolution, as published. [`CHECKSUMS.sha256`](CHECKSUMS.sha256) lists the SHA-256 digest of each one, so you can confirm that a copy is unchanged:
+Every image is kept at full resolution, as published. [`CHECKSUMS.sha256`](CHECKSUMS.sha256) lists the SHA-256 digest of each one, and of each code file, so you can confirm that a copy is unchanged:
 
 ```sh
 sha256sum --check CHECKSUMS.sha256

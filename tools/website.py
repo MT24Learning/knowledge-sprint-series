@@ -229,7 +229,8 @@ def render(b):
     parts = [
         ("Core concepts", "The idea of the sprint in short cards, written so each one can be checked against its sources."),
         ("A figure", "The main idea drawn, with real numbers where there are any (from Phase 2 onward)."),
-        ("Try it", "Commands or a short program you can run yourself, shown with its real output."),
+        ("Try it", "Commands or a short program you can run yourself, shown with its real output. "
+                   "Each phase page links the same code as files, with the versions that reproduce it."),
         ("A mini project", "One small piece of work to apply the sprint on your own."),
         ("Trusted sources", "Books, papers and official documentation, so every claim can be checked against its origin."),
     ]

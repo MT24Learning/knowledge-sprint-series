@@ -24,6 +24,8 @@
 
 **Try it.** Draw 100,000 values: the exponential mean settles near 1, while the Cauchy mean never settles.
 
+**Run it.** [`sprint13_probability_distributions.py`](code/sprint13_probability_distributions.py) · [versions, data and steps](code/README.md)
+
 ### Sprint 14/90 · Hypothesis Testing, Power & Sample Size
 
 > *A test too small to find an effect cannot tell me the effect is absent.*
@@ -34,6 +36,8 @@
 
 **Try it.** Simulate 10,000 experiments: 64 per group gives 80% power for d = 0.5; with 20 per group power falls to 0.34 and significant results exaggerate the effect.
 
+**Run it.** [`sprint14_hypothesis_testing_power_sample_size.py`](code/sprint14_hypothesis_testing_power_sample_size.py) · [versions, data and steps](code/README.md)
+
 ### Sprint 15/90 · Experimental Design & Rigorous Inference
 
 > *If I choose who gets the treatment, my choice becomes part of the result.*
@@ -43,6 +47,8 @@
 **Covers.** Fisher's three rules, confounding and Simpson's paradox on real kidney-stone data, randomisation and blinding, and correcting for many tests.
 
 **Try it.** Simulate 100,000 patients: giving the treatment to the sicker ones reverses the sign of a real effect, and a coin flip recovers it.
+
+**Run it.** [`sprint15_experimental_design_rigorous_inference.py`](code/sprint15_experimental_design_rigorous_inference.py) · [versions, data and steps](code/README.md)
 
 ## Cite this phase
 
