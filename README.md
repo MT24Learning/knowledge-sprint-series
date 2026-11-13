@@ -46,6 +46,7 @@ This repository is the browsable index of the series: every published sprint, ev
     <td align="center" valign="top" width="33%"><a href="phases/phase-14-ai-security-and-robustness/README.md"><img src="assets/thumbs/phase-14.jpg" width="260" alt="Phase 14 summary: AI Security & Robustness"></a><br><a href="phases/phase-14-ai-security-and-robustness/README.md"><b>Phase 14</b> · AI Security & Robustness</a><br><sub>Sprints 42–44</sub></td>
   </tr>
   <tr>
+    <td align="center" valign="top" width="33%"><a href="code-availability/README.md"><img src="assets/thumbs/code-01-14.jpg" width="260" alt="Code Availability Statement for Phases 1 to 14"></a><br><a href="code-availability/README.md"><b>Code</b> · Code Availability Statement</a><br><sub>Phases 1–14</sub></td>
     <td align="center" valign="top" width="33%"><img src="assets/thumbs/next-phase.jpg" width="260" alt="Phase 15, coming next"><br><b>Phase 15</b> · Structured Claims & Ground Truth<br><sub>Coming next</sub></td>
   </tr>
 </table>
@@ -151,7 +152,7 @@ The images and text in this repository are licensed under [Creative Commons Attr
 
 The runnable code in each phase's `code/` folder is licensed under the [MIT License](LICENSE-CODE): you may reuse it in any project, including commercial ones, as long as the copyright and licence notice stay with it.
 
-The code of Phases 1–14 is archived on Zenodo as one record, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674) (all versions: [10.5281/zenodo.24201673](https://doi.org/10.5281/zenodo.24201673)); from Phase 15, each phase's code is archived in the phase's own record.
+The code of Phases 1–14 is archived on Zenodo as one record, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674) (all versions: [10.5281/zenodo.24201673](https://doi.org/10.5281/zenodo.24201673)); from Phase 15, each phase's code is archived in the phase's own record. Its one-page [Code Availability Statement](code-availability/README.md) says what is available, where and on which terms (DOI [10.5281/zenodo.24206903](https://doi.org/10.5281/zenodo.24206903)).
 
 Copyright © 2026 Mohammed Tahri (MT24).
 
