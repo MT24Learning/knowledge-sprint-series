@@ -1,11 +1,11 @@
 import numpy as np
 rng = np.random.default_rng(20)
-G, K = 200, 5                     # groups, copies
+G, K = 200, 5               # groups, copies
 g = np.repeat(np.arange(G), K)
 c = rng.normal(size=(G, 8))
 X = c[g] + 0.05*rng.normal(size=(G*K, 8))
 y = rng.integers(0, 2, G)[g]   # coin flip
-def score(test):                  # 1-nearest nbr
+def score(test):            # 1-nearest nbr
     tr = ~test
     d = ((X[test, None]
           - X[None, tr])**2).sum(-1)

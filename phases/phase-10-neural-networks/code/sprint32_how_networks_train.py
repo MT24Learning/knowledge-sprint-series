@@ -5,16 +5,16 @@ y, s = y[:, None], lambda z: .5 + .5 * np.tanh(z / 2)
 act = {"sig": (s, lambda a: a * (1 - a)),
        "relu": (lambda z: z * (z > 0), lambda a: a > 0)}
 aug = lambda A: np.c_[A, np.ones(len(A))]   # bias
-def init(S, seed, gain):                    # N(0, gain/fan-in)
+def init(S, seed, gain):             # N(0, gain/fan-in)
     r = np.random.default_rng(seed)
     return [r.normal(0, (gain / m)**.5, (m + 1, n))
             for m, n in zip(S, S[1:])]
-def step(W, f="sig"):                       # forward, backward
+def step(W, f="sig"):                # forward, backward
     g, dg = act[f]; A = [X]
     for w in W[:-1]: A.append(g(aug(A[-1]) @ w))
     z = aug(A[-1]) @ W[-1]
     d, G, D = (s(z) - y) / len(X), [], []
-    for l in range(len(W) - 1, -1, -1):     # chain rule
+    for l in range(len(W) - 1, -1, -1):    # chain rule
         G[:0], D[:0] = [aug(A[l]).T @ d], [d]
         if l: d = d @ W[l][:-1].T * dg(A[l])
     L = np.mean(np.logaddexp(0, z) - y * z)
@@ -27,7 +27,7 @@ def fit(W, lr=1, f="sig", n=2000):
 W, V = init([2, 3, 1], 32, 1), init([2, 3, 1], 1, 1)
 e = lambda t: step([w + t * v for w, v in zip(W, V)])[0]
 a = sum((g * v).sum() for g, v in zip(step(W)[1], V))
-n = (e(1e-5) - e(-1e-5)) / 2e-5             # finite difference
+n = (e(1e-5) - e(-1e-5)) / 2e-5      # finite difference
 print(f"check {a:.10f} {n:.10f}")
 R = [fit(init([2, 16, 1], 1, 2), lr, "relu")
      for lr in (.01, 1, 30)]

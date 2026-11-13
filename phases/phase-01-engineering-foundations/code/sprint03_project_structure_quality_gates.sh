@@ -3,11 +3,12 @@
 # shown on the image (my-project/ with pyproject.toml, README.md, src/mypkg/
 # and tests/). Needs pip, ruff, mypy and pytest on the PATH.
 # Run: sh sprint03_project_structure_quality_gates.sh  (it works in a new folder, sprint03-run/)
-set -e
+set -e                          # not on the image: stop at the first error
 mkdir sprint03-run                                              # setup (not on the image)
 cd sprint03-run                                                 # setup (not on the image)
 mkdir -p my-project/src/mypkg my-project/tests                  # setup (not on the image)
 cd my-project                                                   # setup (not on the image)
+# setup (not on the image): the small project of the image's Project Layout box
 cat > pyproject.toml <<'TOML'
 [build-system]
 requires = ["hatchling"]

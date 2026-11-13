@@ -8,12 +8,12 @@ Xa, Xt, ya, yt = train_test_split(X, y, test_size=.3, stratify=y,
                                   random_state=42)
 lin = LR(max_iter=5000).fit(Xa, ya)                    # linear model
 net = MLP((64,), max_iter=3000, random_state=42).fit(Xa, ya)
-def grad(m, X, y):                         # d loss / d pixel
+def grad(m, X, y):                      # d loss / d pixel
     P = m.predict_proba(X); P[np.arange(len(y)), y] -= 1
     if hasattr(m, "coef_"): return P @ m.coef_
     (W1, W2), b1 = m.coefs_, m.intercepts_[0]
     return (P @ W2.T * (X @ W1 + b1 > 0)) @ W1.T
-def attack(m, X, y, e, steps=10):          # sign steps kept within ±e
+def attack(m, X, y, e, steps=10):       # sign steps kept within ±e
     A = X.copy()
     for _ in range(steps):
         A = A + e / 4 * np.sign(grad(m, A, y))
@@ -23,16 +23,16 @@ pct = lambda m, X: f"{100 * m.score(X, yt):.1f}%"
 noise = np.random.default_rng(42).choice([-1, 1], Xt.shape)
 print(len(yt), "test digits | clean: linear", pct(lin, Xt), "net",
       pct(net, Xt))
-for lv in range(1, 5):                     # change of lv grey levels
+for lv in range(1, 5):                  # change of lv grey levels
     e = lv / 16; R = np.clip(Xt + e * noise, 0, 1)
     print(f"±{lv} linear: noise {pct(lin, R)} attack",
           pct(lin, attack(lin, Xt, yt, e)), "| net: noise",
           pct(net, R), "attack", pct(net, attack(net, Xt, yt, e)))
-e = 2 / 16                                 # the change on Fig. 1
+e = 2 / 16                              # the change on Fig. 1
 W = lin.coef_; r = [abs(W[i] - W[j]).sum() / np.linalg.norm(
     W[i] - W[j]) for i in range(10) for j in range(i)]
 print(f"chosen / random push: {np.mean(r):.2f} (ceiling sqrt(64) = 8)")
-A = attack(lin, Xt, yt, e)                 # made on the linear model
+A = attack(lin, Xt, yt, e)              # made on the linear model
 print("made on linear, given to net:", pct(net, Xt), "->", pct(net, A))
 rob = LR(max_iter=5000).fit(np.vstack([Xa, attack(lin, Xa, ya, e)]),
                             np.r_[ya, ya])     # trained on old attacks
@@ -40,7 +40,7 @@ print("defence | old attack:", pct(rob, A), "fresh attack:",
       pct(rob, attack(rob, Xt, yt, e)))
 adv = MLP((64,), random_state=42)
 adv.partial_fit(Xa, ya, classes=np.arange(10))
-for _ in range(200):                       # adversarial training
+for _ in range(200):                    # adversarial training
     adv.partial_fit(np.vstack([Xa, attack(adv, Xa, ya, e, 5)]),
                     np.r_[ya, ya])
 print("adversarial training | clean:", pct(adv, Xt), "attack:",

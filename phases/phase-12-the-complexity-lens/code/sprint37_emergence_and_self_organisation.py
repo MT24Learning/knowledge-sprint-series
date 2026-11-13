@@ -41,7 +41,7 @@ s = np.array(sizes)
 print(f"30000 grains: {(s==0).mean():.0%} topple none,",
       f"largest {s.max()}")
 print("sizes 1-9, 10-99, 100-999, 1000+:", *np.histogram(
-    s, [1, 10, 100, 1000, 10**6])[0])
+      s, [1, 10, 100, 1000, 10**6])[0])
 q = np.loadtxt("quakes.csv", delimiter=",", skiprows=1)
 q = q[:, 4]  # Fiji magnitudes, real (R: quakes)
 for mc in (4.5, 4.7):  # Aki (1965), half-bin shift

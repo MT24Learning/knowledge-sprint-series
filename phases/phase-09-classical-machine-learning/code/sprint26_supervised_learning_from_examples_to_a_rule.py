@@ -4,9 +4,9 @@ X, y = load_iris(return_X_y=True)
 X, y = X[y > 0][:, 2:], y[y > 0] - 1
 # petal length, width in cm; 1 = virginica
 i = np.random.default_rng(26).permutation(100)
-tr, te = i[:70], i[70:]          # learn / hold out
+tr, te = i[:70], i[70:]      # learn / hold out
 
-def err(rule, idx):              # 0-1 loss, summed
+def err(rule, idx):          # 0-1 loss, summed
     return sum(rule(X[j]) != y[j] for j in idx)
 memo = {tuple(X[j]): y[j] for j in tr}
 look = lambda x: memo.get(tuple(x))   # or None

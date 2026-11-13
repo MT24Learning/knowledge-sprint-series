@@ -1,7 +1,7 @@
 import numpy as np
 X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
 AND, XOR = np.array([0, 0, 0, 1]), np.array([0, 1, 1, 0])
-def perceptron(y, epochs=100):        # Rosenblatt's rule
+def perceptron(y, epochs=100):      # Rosenblatt's rule
     w, b = np.zeros(2), 0.0
     for e in range(1, epochs + 1):
         miss = 0
@@ -11,10 +11,10 @@ def perceptron(y, epochs=100):        # Rosenblatt's rule
         if miss == 0: return f"no miss from epoch {e}"
     return f"{miss} misses in epoch {epochs}"
 print("AND", perceptron(AND), "| XOR", perceptron(XOR))
-A1 = np.c_[X, np.ones(4)]             # best straight line
+A1 = np.c_[X, np.ones(4)]            # best straight line
 print("line", np.linalg.lstsq(A1, XOR)[0].round(3) + 0.)
 W, c = np.ones((2, 2), int), np.array([0, -1])
-H = np.maximum(0, X @ W + c)          # ReLU (§6.1)
+H = np.maximum(0, X @ W + c)         # ReLU (§6.1)
 print("hidden", H.tolist(), "out", (H @ [1, -2]).tolist())
 sig = lambda z: 1 / (1 + np.exp(-z))
 def train(h, seed, steps=5000, lr=0.5):   # 2-h-1 net

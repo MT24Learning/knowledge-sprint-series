@@ -1,5 +1,5 @@
 import json, re
-def parse(src):          # "*" binds tighter than "+"
+def parse(src):      # "*" binds tighter than "+"
     toks = re.findall(r"\d+|\S", src)
     def atom():
         t = toks.pop(0)
@@ -19,7 +19,7 @@ def ev(e):
     return a + b if e[0] == "+" else a * b
 t = parse("2 + 3 * 4"); print(t, ev(t))
 print(ev(parse("(2 + 3) * 4")))
-def trees(n):            # bracketings of n operators
+def trees(n):        # bracketings of n operators
     return 1 if n == 0 else sum(trees(k) *
         trees(n - 1 - k) for k in range(n))
 print([trees(n) for n in range(1, 9)])

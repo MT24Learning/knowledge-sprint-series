@@ -7,7 +7,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier
 X, y = load_wine(return_X_y=True)  # 3 cultivars
 a, b, ya, yb = train_test_split(X, y, test_size=0.3,
-                                stratify=y, random_state=28)
+                       stratify=y, random_state=28)
 learners = {
     "linear": LogisticRegression(max_iter=10000),
     "tree": DecisionTreeClassifier(max_depth=3,
@@ -15,7 +15,7 @@ learners = {
     "5-nn": KNeighborsClassifier(n_neighbors=5)}
 print(len(ya), "learn wines,", len(yb), "test wines")
 for cols in ([6, 12], list(range(13))):  # 6 flavanoids,
-    A, B = a[:, cols], b[:, cols]        # 12 proline
+    A, B = a[:, cols], b[:, cols]       # 12 proline
     for name, m in learners.items():
         raw = m.fit(A, ya).score(B, yb)
         z = make_pipeline(StandardScaler(), m)  # z-scores

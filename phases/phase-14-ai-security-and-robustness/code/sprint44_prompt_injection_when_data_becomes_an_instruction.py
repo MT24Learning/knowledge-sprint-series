@@ -30,7 +30,7 @@ BLOCK = re.compile(r"ignore (all |the |your )?(previous|above|prior|"
                    r"earlier) (instructions|prompt|rules|text)|disregard|"
                    r"forget (all|everything|your)|system prompt|"
                    r"you are now|new instructions", re.I)
-with open("cran.qry") as f:                   # real questions, not attacks
+with open("cran.qry") as f:              # real questions, not attacks
     qs = re.split(r"\.I \d+\n", f.read().replace("\r\n", "\n"))[1:]
 benign = [p["access_code"] for p in pairs] + qs
 print("blocklist catches", pct(BLOCK.search(p["attack"]) for p in pairs),

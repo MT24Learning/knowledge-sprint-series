@@ -5,7 +5,7 @@ subs = ["un", "believ", "able", "ably",
 abc = list("abcdefghijklmnopqrstuvwxyz")
 vocab = {p: i for i, p in
          enumerate(dict.fromkeys(subs + abc))}
-def split(w):          # longest match first
+def split(w):        # longest match first
     out, i = [], 0
     while i < len(w):
         j = len(w)

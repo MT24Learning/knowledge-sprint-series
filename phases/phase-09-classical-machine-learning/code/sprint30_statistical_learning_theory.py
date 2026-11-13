@@ -2,13 +2,13 @@ import numpy as np
 from math import ceil, log, sqrt
 from scipy.stats import binom
 from sklearn.datasets import load_iris
-n, delta = 70, 0.05      # 70 examples, 95% confidence
+n, delta = 70, 0.05     # 70 examples, 95% confidence
 eps = lambda H: sqrt(log(2 * H / delta) / (2 * n))
 # 1) pure noise: best of H coin-flip rules, 70 labels
 for H in [1, 10**2, 10**4, 10**6]:
-    k = np.arange(n + 1)                      # errors
-    cdf = 1 - binom.sf(k, n, 0.5) ** H        # P(best<=k)
-    best = np.searchsorted(cdf, 0.5) / n      # median
+    k = np.arange(n + 1)                  # errors
+    cdf = 1 - binom.sf(k, n, 0.5) ** H    # P(best<=k)
+    best = np.searchsorted(cdf, 0.5) / n  # median
     print(f"{H:>7} best {best:.3f}",
           f"gap {0.5 - best:.3f} bound {eps(H):.3f}")
 # 2) Sprint 26 with 142 cuts fixed before the data

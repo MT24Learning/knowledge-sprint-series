@@ -12,7 +12,7 @@ Xa, Xt, ya, yt = train_test_split(X, y, test_size=.3, stratify=y,
                                   random_state=43)
 spam = np.flatnonzero(ya)
 print("share flagged as spam:     test spam | test ham | spam + zq7")
-for k in (0, 10, 20, 40, 80):             # k spam copies + "zq7", as ham
+for k in (0, 10, 20, 40, 80):           # k spam copies + "zq7", as ham
     pick = np.random.default_rng(43).choice(spam, k, replace=False)
     Xp = np.r_[Xa, [Xa[i] + " zq7" for i in pick]]
     cv = CV().fit(Xp)
@@ -21,7 +21,7 @@ for k in (0, 10, 20, 40, 80):             # k spam copies + "zq7", as ham
     print(f"{k:2} poisoned ({100 * k / len(Xp):.1f}%):", " " * 8,
           hit(Xt[yt]), " |", hit(Xt[~yt]), "    |",
           hit([t + " zq7" for t in Xt[yt]]))
-def parse(path):                          # 2 · retrieval: Cranfield
+def parse(path):                         # 2 · retrieval: Cranfield
     with open(path) as f:
         recs = re.split(r"\.I \d+\n", f.read().replace("\r\n", "\n"))
     return [r.split(".W\n", 1)[-1] if ".W\n" in r else ""
@@ -31,7 +31,7 @@ docs, qs = parse("cran.all.1400"), parse("cran.qry")
 TF = [Counter(tok(d)) for d in docs]
 df = Counter(w for c in TF for w in c)
 FAKE = " tests now show the opposite of every earlier result."
-def rank(q, plant):                       # BM25 k1 1.2, b .75, plant last
+def rank(q, plant):                      # BM25 k1 1.2, b .75, plant last
     D = TF + [Counter(tok(plant + FAKE))]; N = len(D)
     L = np.array([sum(c.values()) for c in D])
     K, s = 1.2 * (.25 + .75 * L / L.mean()), np.zeros(N)
@@ -40,7 +40,7 @@ def rank(q, plant):                       # BM25 k1 1.2, b .75, plant last
         s += np.log(1 + (N - n + .5) / (n + .5)) * f * 2.2 / (f + K)
     return 1 + int((s[:-1] >= s[-1]).sum())       # ties go against it
 rare = lambda q, n: " ".join(sorted(set(tok(q)),
-                                    key=lambda w: (df[w], w))[:n])
+                                   key=lambda w: (df[w], w))[:n])
 print(len(docs), "abstracts |", len(qs), "questions | one plant each")
 for name, n in (("the whole question", None), ("5 rarest words", 5),
                 ("3 rarest words", 3), ("1 rarest word", 1)):

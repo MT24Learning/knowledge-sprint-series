@@ -5,7 +5,7 @@ from s39 import docs, qs, rel, bm25, ndcg, N    # Sprint 39's code
 unit = lambda X: X / np.maximum(np.linalg.norm(X, axis=-1,
                                                keepdims=True), 1e-12)
 glove = api.load("glove-wiki-gigaword-50")      # 400 000 words x 50
-def glove_vec(words):                 # mean of unit word vectors
+def glove_vec(words):             # mean of unit word vectors
     v = [unit(glove[w]) for w in words if w in glove]
     return unit(np.mean(v, 0)) if v else np.zeros(50)
 wl = WordLlama.load(disable_download=True)      # trained, 256 numbers
@@ -13,7 +13,7 @@ wl_vec = lambda words: unit(wl.embed([" ".join(words)])[0])
 D = {"glove": np.array([glove_vec(d) for d in docs]),
      "wl": unit(wl.embed([" ".join(d) for d in docs]))}
 
-def rrf(*runs, k=60):                 # reciprocal rank fusion
+def rrf(*runs, k=60):             # reciprocal rank fusion
     out = np.zeros(N)
     for s in runs:
         r = np.empty(N)

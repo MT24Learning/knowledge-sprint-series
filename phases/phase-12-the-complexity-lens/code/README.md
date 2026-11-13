@@ -22,7 +22,7 @@ On Windows, write `.venv\Scripts\python` in place of `.venv/bin/python`.
 
 The data are not stored in this repository; each source keeps its own licence. Sprints 36 to 38 read five files from the folder they run in. Download them from these fixed commits and check them with `sha256sum --check data.sha256`:
 
-- `laser_a.txt`, `laser_a_next.txt`: Santa Fe time-series competition, set A (laser) and its next 100 points, converted from `SantaFe.A.rda` and `SantaFe.A.cont.rda` in [TSPred](https://raw.githubusercontent.com/RebeccaSalles/TSPred/75d706b876dfb60ff47ab142edee2a1946d639ba/data/SantaFe.A.rda) (commit 75d706b) with the snippet below.
+- `laser_a.txt`, `laser_a_next.txt`: Santa Fe time-series competition, set A (laser) and its next 100 points, converted from `SantaFe.A.rda` and `SantaFe.A.cont.rda` in [TSPred](https://raw.githubusercontent.com/RebeccaSalles/TSPred/75d706b876dfb60ff47ab142edee2a1946d639ba/data/SantaFe.A.rda) (commit 75d706b; both files are in its `data/` folder) with the snippet below.
 - `quakes.csv`: [R's quakes data set](https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/1dcc2bf5f955cc1224a3e1307256e1fe86b68dae/csv/datasets/quakes.csv), Rdatasets commit 1dcc2bf.
 - `ne_10m_admin_0_countries.json`: [Natural Earth 1:10m countries](https://raw.githubusercontent.com/nvkelso/natural-earth-vector/ca96624a56bd078437bca8184e78163e5039ad19/geojson/ne_10m_admin_0_countries.geojson) (public domain), natural-earth-vector commit ca96624, saved under this name.
 - `melville-moby_dick.txt`: from the [NLTK Gutenberg corpus](https://raw.githubusercontent.com/nltk/nltk_data/550b6625bcef1f2abff2ff770a5a0d272c9c6b2a/packages/corpora/gutenberg.zip) (nltk_data commit 550b662): unzip `gutenberg/melville-moby_dick.txt`.

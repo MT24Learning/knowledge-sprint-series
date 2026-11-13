@@ -1,15 +1,15 @@
 import re, math, pathlib, collections as C, numpy as np
 
-def blocks(f):                         # each record starts ".I n"
+def blocks(f):                    # each record starts ".I n"
     t = pathlib.Path("cran", f).read_text(encoding="latin-1")
     return [b.split(".W", 1) for b in re.split(r"\n?\.I ", t)[1:]]
 tok = lambda s: re.findall(r"[a-z0-9]+", s.lower())
 docs = [tok(b[1]) for b in blocks("cran.all.1400")]
 qs = [tok(b[1]) for b in blocks("cran.qry")]
-rel = C.defaultdict(dict)              # query 1..225 -> {doc: code}
+rel = C.defaultdict(dict)         # query 1..225 -> {doc: code}
 for l in pathlib.Path("cran/cranqrel").read_text().splitlines():
     q, d, r = map(int, l.split()); rel[q][d - 1] = r
-post = C.defaultdict(list)             # inverted index: word -> docs
+post = C.defaultdict(list)        # inverted index: word -> docs
 for d, ws in enumerate(docs):
     for w, c in C.Counter(ws).items(): post[w].append((d, c))
 post = {w: np.array(p).T for w, p in post.items()}
@@ -38,9 +38,9 @@ def mean(J=None, gain=lambda r: 5 - r, skip_base=True, **kw):
 
 if __name__ == "__main__":
     print(N, "abstracts,", len(post), "words | 'the' in", len(post[
-        "the"][0]), "| 'flutter' in", len(post["flutter"][0]))
+          "the"][0]), "| 'flutter' in", len(post["flutter"][0]))
     print("nDCG@10 count, +rare, +cap, +length:", np.round([mean(idf=0,
-        k1=None, b=0), mean(k1=None, b=0), mean(b=0), mean()], 3))
+          k1=None, b=0), mean(k1=None, b=0), mean(b=0), mean()], 3))
     top1 = [rel[i + 1].get(np.argmax(bm25(q))) for i, q in enumerate(qs)]
     print("code -1 ranked first:", top1.count(-1), "of", len(qs))
     print(f"same run, 4 = best: {mean(gain=lambda r: r, skip_base=0):.3f}"

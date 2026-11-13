@@ -15,7 +15,7 @@ requires-python = ">=3.9"
 (p / "src/toytok/__init__.py").write_text(
     '__version__ = "0.1.0"\n')
 dist = p / "dist"
-for run in (1, 2):                    # build twice
+for run in (1, 2):                # build twice
     subprocess.run([sys.executable, "-m",
         "build", str(p)], capture_output=True)
     whl = next(dist.glob("*.whl"))

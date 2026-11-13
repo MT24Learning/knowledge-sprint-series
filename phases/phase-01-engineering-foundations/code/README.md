@@ -17,7 +17,6 @@ python3 -m venv .venv
 sh sprint01_environment_git_foundations.sh
 ```
 
-On Windows, write `.venv\Scripts\python` in place of `.venv/bin/python`.
 
 ## Versions
 
@@ -29,7 +28,6 @@ Checked on 13 November 2026, in a fresh environment built from `requirements.txt
 
 - Each script creates a new folder (`sprint01-run/` and so on) and works inside it; it stops if that folder already exists.
 - Lines marked `not on the image` only create what the image's commands need (a folder, a file to commit, a Git identity, the small project of Sprint 3) or show one extra result.
-- Sprint 3 needs ruff, mypy and pytest on the PATH: activate the virtual environment first (`. .venv/bin/activate`).
 - `echo -n` needs a shell whose `echo` accepts `-n` (dash, bash); elsewhere use `printf '%s' abc`.
 
 [← Phase 1](../README.md)
