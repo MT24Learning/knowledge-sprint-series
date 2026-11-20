@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phase 14: AI Security &amp; Robustness · Knowledge Sprint Series</title>
+<meta name="description" content="Phase 14 of 27, Sprints 42–44: A small change to an input, a few bad training examples, an instruction slipped into the text a model reads: three attacks, each checked on real data.">
+<link rel="canonical" href="https://mt24learning.github.io/knowledge-sprint-series/phases/14/">
+<meta name="theme-color" content="#061127">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Knowledge Sprint Series · MT24 Learning">
+<meta property="og:title" content="Phase 14: AI Security &amp; Robustness · Knowledge Sprint Series">
+<meta property="og:description" content="Phase 14 of 27, Sprints 42–44: A small change to an input, a few bad training examples, an instruction slipped into the text a model reads: three attacks, each checked on real data.">
+<meta property="og:url" content="https://mt24learning.github.io/knowledge-sprint-series/phases/14/">
+<meta property="og:image" content="https://mt24learning.github.io/knowledge-sprint-series/img/social/phase-14.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../img/brand/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../img/brand/apple-touch-icon.png">
+<link rel="preload" href="../../fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../style.css">
+<script>document.documentElement.classList.add("js")</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Phase 14: AI Security & Robustness", "description": "A small change to an input, a few bad training examples, an instruction slipped into the text a model reads: three attacks, each checked on real data.", "abstract": "This issue checks three attacks on public data and asks what a defence has to survive. Sprint 42 moved the pixels of handwritten digits by two grey levels, chosen against a small model built here. Sprint 43 slipped 40 relabelled messages into a spam filter’s training set, and one plant per question into a search index of 1 400 documents. Sprint 44 read 1 346 attack–defence pairs from an online game, each judged a success on at least 2 of 3 models from 2023; no model was run here. Each sprint put a popular claim to code; none held as usually stated.", "url": "https://mt24learning.github.io/knowledge-sprint-series/phases/14/", "identifier": "https://doi.org/10.5281/zenodo.24142098", "sameAs": "https://doi.org/10.5281/zenodo.24142098", "datePublished": "2026-11-07", "image": "https://mt24learning.github.io/knowledge-sprint-series/img/pages/phase-14.jpg", "inLanguage": "en", "isAccessibleForFree": true, "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/", "author": {"@type": "Person", "name": "Mohammed Tahri", "alternateName": "MT24", "sameAs": ["https://orcid.org/0009-0000-9113-1687", "https://www.linkedin.com/in/mohammed-tahri24", "https://x.com/MohammedTahri24", "https://bsky.app/profile/mohammedtahri.bsky.social", "https://mathstodon.xyz/@mohammedtahri24", "https://www.threads.net/@mohammedtahri24", "https://www.instagram.com/mohammedtahri24", "https://www.facebook.com/mohammed.tahri24", "https://www.tiktok.com/@mohammed.tahri24", "https://substack.com/@mohammedtahri24"]}, "isPartOf": {"@type": "CreativeWorkSeries", "name": "MT24 Learning — Knowledge Sprint Series", "url": "https://mt24learning.github.io/knowledge-sprint-series/"}, "hasPart": [{"@type": "LearningResource", "name": "Sprint 42: Adversarial Examples: Small Changes, Wrong Answers", "url": "https://mt24learning.github.io/knowledge-sprint-series/sprints/42/"}, {"@type": "LearningResource", "name": "Sprint 43: Poisoned Data: Attacks Through Training & Retrieval", "url": "https://mt24learning.github.io/knowledge-sprint-series/sprints/43/"}, {"@type": "LearningResource", "name": "Sprint 44: Prompt Injection: When Data Becomes an Instruction", "url": "https://mt24learning.github.io/knowledge-sprint-series/sprints/44/"}], "citation": [{"@type": "CreativeWork", "name": "Szegedy et al. (2014) ICLR", "url": "https://arxiv.org/abs/1312.6199"}, {"@type": "CreativeWork", "name": "Goodfellow, Shlens & Szegedy (2015) ICLR", "url": "https://arxiv.org/abs/1412.6572"}, {"@type": "CreativeWork", "name": "Madry et al. (2018) ICLR", "url": "https://arxiv.org/abs/1706.06083"}, {"@type": "CreativeWork", "name": "Athalye, Carlini & Wagner (2018) ICML", "url": "https://proceedings.mlr.press/v80/athalye18a.html"}, {"@type": "CreativeWork", "name": "Carlini et al. (2019) arXiv 1902.06705", "url": "https://arxiv.org/abs/1902.06705"}, {"@type": "CreativeWork", "name": "Nelson et al. (2008) USENIX LEET", "url": "https://www.usenix.org/conference/leet-08/exploiting-machine-learning-subvert-your-spam-filter"}, {"@type": "CreativeWork", "name": "Gu et al. (2019) IEEE Access 7", "url": "https://doi.org/10.1109/ACCESS.2019.2909068"}, {"@type": "CreativeWork", "name": "Zou et al. (2025) USENIX Security", "url": "https://www.usenix.org/conference/usenixsecurity25/presentation/zou-poisonedrag"}, {"@type": "CreativeWork", "name": "Souly et al. (2025) arXiv 2510.07192", "url": "https://arxiv.org/abs/2510.07192"}, {"@type": "CreativeWork", "name": "Toyer et al. (2024) ICLR", "url": "https://arxiv.org/abs/2311.01011"}, {"@type": "CreativeWork", "name": "Greshake et al. (2023) AISec", "url": "https://doi.org/10.1145/3605764.3623985"}, {"@type": "CreativeWork", "name": "Nasr et al. (2025) arXiv 2510.09023", "url": "https://arxiv.org/abs/2510.09023"}, {"@type": "CreativeWork", "name": "NCSC (2025)", "url": "https://www.ncsc.gov.uk/blog-post/prompt-injection-is-not-sql-injection"}, {"@type": "CreativeWork", "name": "Vassilev et al. (2025) NIST AI 100-2e2025", "url": "https://doi.org/10.6028/NIST.AI.100-2e2025"}, {"@type": "CreativeWork", "name": "Almeida et al. (2011) DocEng", "url": "https://doi.org/10.1145/2034691.2034742"}, {"@type": "CreativeWork", "name": "Cleverdon, Mills & Keen (1966)", "url": "https://dspace.lib.cranfield.ac.uk/items/3a11bf42-6ee3-45ac-8802-1562bed5c87d"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://mt24learning.github.io/knowledge-sprint-series/"}, {"@type": "ListItem", "position": 2, "name": "Phase 14: AI Security & Robustness", "item": "https://mt24learning.github.io/knowledge-sprint-series/phases/14/"}]}</script>
+</head>
+<body class="page">
+<a class="skip" href="#main">Skip to the text</a>
+<header class="site">
+  <div class="bar wrap">
+    <a class="brand" href="../../" aria-label="Knowledge Sprint Series, home">
+      <img src="../../img/brand/mt24-badge.svg" width="40" height="40" alt="">
+      <span><b>Knowledge Sprint Series</b><small>MT24 Learning</small></span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="../../#phases">Phases</a>
+      <a href="../../#results">Results</a>
+      <a href="../../#sprint">How it works</a>
+      <a href="../../#cite">Cite</a>
+      <a class="search-link" href="../../search/">Search<kbd>/</kbd></a>
+      <a class="gh" href="https://github.com/MT24Learning/knowledge-sprint-series">GitHub</a>
+    </nav>
+  </div>
+</header>
+<main id="main" class="text-page phase" style="--acc:#c3362b;--acc-text:#d46e66;--grad:linear-gradient(92deg, #d46e66, #9883bb, #6c8dc3)">
+<nav class="crumbs wrap" aria-label="Breadcrumb" data-pagefind-ignore>
+  <a href="../../">Home</a><span>/</span><span aria-current="page">Phase 14 · AI Security &amp; Robustness</span>
+</nav>
+<header class="t-head wrap" data-spot="head">
+  <p class="ribbon"><span>Vol. 2 · No. 4 · November 2026</span><span>Phase 14 · Summary · Sprints 42–44 of 90</span><span>Every number rerun in code</span></p>
+  <p class="eyebrow"><span>Phase summary · AI Security &amp; Robustness</span></p>
+  <h1 data-pagefind-meta="title">AI <em>Security</em> &amp; Robustness</h1>
+  <p class="tagline">A small change to an input, a few bad training examples, an instruction slipped into the text a model reads: three attacks, each checked on real data.</p>
+  <p class="byline"><b>Mohammed Tahri</b> · MT24 · <a href="https://orcid.org/0009-0000-9113-1687">ORCID 0009-0000-9113-1687</a><a class="chip" style="--c:#d46e66" href="../../sprints/42/">42</a><a class="chip" style="--c:#9883bb" href="../../sprints/43/">43</a><a class="chip" style="--c:#6c8dc3" href="../../sprints/44/">44</a></p>
+  <span hidden data-pagefind-filter="Phase">AI Security &amp; Robustness</span><span hidden data-pagefind-filter="Type">Phase summary</span>
+</header>
+<div class="t-body wrap">
+  <figure class="t-image">
+    <div class="spotlit"><img src="../../img/pages/phase-14.jpg" width="1080" height="1350" alt="Phase 14 summary, a journal front page: AI Security &amp; Robustness. The full text of the page follows."><span class="spot" data-spot="head" aria-hidden="true" style="left:2.78%;top:12.59%;width:62.04%;height:19.26%"></span><span class="spot" data-spot="figures" aria-hidden="true" style="left:66.67%;top:12.22%;width:30.09%;height:20.74%"></span><span class="spot" data-spot="abstract" aria-hidden="true" style="left:2.78%;top:33.70%;width:58.80%;height:14.07%"></span><span class="spot" data-spot="highlights" aria-hidden="true" style="left:2.78%;top:47.96%;width:58.80%;height:12.78%"></span><span class="spot" data-spot="methods" aria-hidden="true" style="left:2.78%;top:60.93%;width:58.80%;height:10.37%"></span><span class="spot" data-spot="misreadings" aria-hidden="true" style="left:61.57%;top:33.89%;width:35.65%;height:30.00%"></span><span class="spot" data-spot="issue" aria-hidden="true" style="left:61.57%;top:64.44%;width:35.65%;height:7.96%"></span><span class="spot" data-spot="box-0" aria-hidden="true" style="left:3.24%;top:73.15%;width:30.56%;height:7.22%"></span><span class="spot" data-spot="box-1" aria-hidden="true" style="left:35.19%;top:73.15%;width:29.86%;height:7.22%"></span><span class="spot" data-spot="box-2" aria-hidden="true" style="left:66.20%;top:73.15%;width:30.56%;height:7.22%"></span><span class="spot" data-spot="references" aria-hidden="true" style="left:2.78%;top:80.74%;width:62.50%;height:5.74%"></span><span class="spot" data-spot="next" aria-hidden="true" style="left:66.67%;top:81.11%;width:30.09%;height:5.19%"></span></div>
+    <span hidden data-pagefind-meta="image:/knowledge-sprint-series/img/thumbs/phase-14.jpg"></span>
+    <figcaption data-pagefind-ignore><a href="https://raw.githubusercontent.com/MT24Learning/knowledge-sprint-series/main/phases/phase-14-ai-security-and-robustness/MT24_Learning_Phase14_Summary.png">Full resolution</a><span>2160 × 2700 PNG</span><a href="https://github.com/MT24Learning/knowledge-sprint-series/blob/main/phases/phase-14-ai-security-and-robustness/README.md">Phase on GitHub</a></figcaption>
+    <p class="spot-hint" data-pagefind-ignore>The part of the image you are reading lights up. Tap a part to jump to its text.</p>
+  </figure>
+  <article class="t-text">
+    <section class="t-abstract" aria-labelledby="abstract" data-spot="abstract">
+      <h2 id="abstract">Abstract</h2>
+      <p class="dropcap">This issue checks three attacks on public data and asks what a defence has to survive. Sprint 42 moved the pixels of handwritten digits by two grey levels, chosen against a small model built here. Sprint 43 slipped 40 relabelled messages into a spam filter’s training set, and one plant per question into a search index of 1 400 documents. Sprint 44 read 1 346 attack–defence pairs from an online game, each judged a success on at least 2 of 3 models from 2023; no model was run here. Each sprint put a popular claim to code; none held as usually stated.</p>
+    </section>
+    <section aria-labelledby="highlights" data-spot="highlights">
+      <h2 id="highlights">Highlights</h2>
+      <ul class="highlights">
+        <li><a class="chip" style="--c:#d46e66" href="../../sprints/42/">42</a><span>±2 grey levels: noise leaves the network <strong>95.4%</strong>; a chosen attack <strong>21.5%</strong>.</span></li>
+        <li><a class="chip" style="--c:#d46e66" href="../../sprints/42/">42</a><span>Linear model retrained on old attacks: <strong>88.5%</strong> on them → <strong>15.9%</strong> fresh.</span></li>
+        <li><a class="chip" style="--c:#9883bb" href="../../sprints/43/">43</a><span>40 poisoned of 3 941 messages: triggered spam caught <strong>25.4%</strong> not <strong>87.5%</strong>.</span></li>
+        <li><a class="chip" style="--c:#9883bb" href="../../sprints/43/">43</a><span>A plant copying each question: rank 1 of 1 401 for <strong>223</strong> of 225 questions.</span></li>
+        <li><a class="chip" style="--c:#6c8dc3" href="../../sprints/44/">44</a><span>1 346 beaten pairs: <strong>72.3%</strong> had a “never / do not” rule; a blocklist caught <strong>11.9%</strong>.</span></li>
+      </ul>
+    </section>
+    <section class="t-fig" aria-labelledby="figures" data-spot="figures">
+      <h2 id="figures">Figures <span>in words</span></h2>
+      <ol class="panels one">
+        <li><h3><span class="ball" data-pagefind-ignore>1</span> Fig. 1 · Noise vs attack <a class="fig-sprint" style="--c:#d46e66" href="../../sprints/42/">Sprint 42</a></h3><ul>
+          <li><em>network · 540 test digits · % right at ±n grey levels of 16</em></li>
+          <li>- - noise · — attack</li>
+          <li><strong>±2: 95.4 vs 21.5</strong></li>
+        </ul></li>
+        <li><h3><span class="ball" data-pagefind-ignore>2</span> Fig. 2 · One trigger <a class="fig-sprint" style="--c:#9883bb" href="../../sprints/43/">Sprint 43</a></h3><ul>
+          <li><em>% of spam caught vs poisoned messages · 40 = 1.0%</em></li>
+          <li>- - clean · — + trigger</li>
+          <li><strong>a plant per question: rank 1 for 223 of 225</strong></li>
+        </ul></li>
+        <li><h3><span class="ball" data-pagefind-ignore>3</span> Fig. 3 · Beaten pairs <a class="fig-sprint" style="--c:#6c8dc3" href="../../sprints/44/">Sprint 44</a></h3><ul>
+          <li>“never / do not” rule: 72.3% · text after the attack: 79.2% · blocklist caught: 11.9% · benign flagged: 0.0%</li>
+          <li><em>1 346 real attack–defence pairs · Tensor Trust · success judged on 2023 models</em></li>
+          <li><strong>median defence: 103.5 words</strong></li>
+        </ul></li>
+      </ol>
+    </section>
+    <section aria-labelledby="methods" data-spot="methods">
+      <h2 id="methods"><span class="sec" data-pagefind-ignore>1</span> Methods</h2>
+      <p>Three scripts on public data: scikit-learn’s digits (1 797 images), the SMS Spam Collection (5 574 messages) with the Cranfield documents, and the Tensor Trust hijacking and extraction files (v1). Each output was re-derived by an independent implementation before rendering. No language model was run: Sprint 44’s success labels are the dataset’s own, and the attacks touch only toy systems built here. Python 3.13.18 · numpy 2.5.3 · scikit-learn 1.9.1.</p>
+    </section>
+    <section class="misread" aria-labelledby="misreadings" data-spot="misreadings">
+      <h2 id="misreadings"><span class="sec" data-pagefind-ignore>2</span> Common Misreadings, Checked</h2>
+      <ol>
+        <li><p class="struck"><s>“If random noise does not hurt a model, small changes cannot.”</s></p><p><b class="ok">Checked</b> At ±2 grey levels the network keeps 95.4% under noise and 21.5% under a chosen attack.</p><p class="by">Szegedy et al. 2014 · Goodfellow, Shlens &amp; Szegedy 2015</p></li>
+        <li><p class="struck"><s>“A defence that stops the known attack is secure.”</s></p><p><b class="ok">Checked</b> A linear model retrained on old attack images held 88.5% on them and 15.9% on a fresh attack.</p><p class="by">Athalye, Carlini &amp; Wagner 2018 · Carlini et al. 2019</p></li>
+        <li><p class="struck"><s>“A few bad examples among thousands cannot hurt a model.”</s></p><p><b class="ok">Checked</b> 40 of 3 941 messages cut triggered spam caught from 87.5% to 25.4%; clean tests barely moved.</p><p class="by">Nelson et al. 2008 · Souly et al. 2025</p></li>
+        <li><p class="struck"><s>“Retrieval only hands the model trusted text.”</s></p><p><b class="ok">Checked</b> A plant copying each question reached rank 1 of 1 401 for 223 of 225 questions.</p><p class="by">Zou et al. 2025 · Greshake et al. 2023</p></li>
+        <li><p class="struck"><s>“A firm system prompt stops prompt injection.”</s></p><p><b class="ok">Checked</b> 973 beaten pairs (72.3%) had a “never / do not” rule (only beaten pairs are on file); a blocklist caught 11.9%.</p><p class="by">Toyer et al. 2024 · Nasr et al. 2025</p></li>
+      </ol>
+    </section>
+    <section aria-labelledby="issue" data-spot="issue">
+      <h2 id="issue">In This Issue</h2>
+      <ol class="issue">
+        <li><a href="../../sprints/42/" style="--c:#d46e66"><img src="../../img/pages/sprint-42-s.jpg" width="400" height="500" loading="lazy" alt=""><span class="meta"><span>Sprint 42/90</span></span><b>Adversarial Examples: Small Changes, <em>Wrong</em> Answers</b><i>Random noise barely moves a model. A change of the same size, chosen against it, breaks it.</i></a></li>
+        <li><a href="../../sprints/43/" style="--c:#9883bb"><img src="../../img/pages/sprint-43-s.jpg" width="400" height="500" loading="lazy" alt=""><span class="meta"><span>Sprint 43/90</span></span><b><em>Poisoned</em> Data: Attacks Through Training &amp; Retrieval</b><i>A few planted examples can teach a model a secret password. Clean tests never type it.</i></a></li>
+        <li><a href="../../sprints/44/" style="--c:#6c8dc3"><img src="../../img/pages/sprint-44-s.jpg" width="400" height="500" loading="lazy" alt=""><span class="meta"><span>Sprint 44/90</span></span><b><em>Prompt</em> Injection: When Data Becomes an Instruction</b><i>Roles label the rules and the attack, but the model reads both as one stream of tokens.</i></a></li>
+      </ol>
+    </section>
+    <div class="boxes">
+      <section style="--c:#d46e66" data-spot="box-0"><h2>Now I Can</h2><p>Attack a classifier with chosen small changes, poison a training set and a search index, and test a defence on attacks it has not seen.</p></section>
+      <section style="--c:#9883bb" data-spot="box-1"><h2>Mistakes Avoided</h2><p>Judging a model by clean scores alone, testing a defence only on its own attack, trusting a paper’s sample count without counting the file.</p></section>
+      <section style="--c:#6c8dc3" data-spot="box-2"><h2>Phase Project</h2><p>One notebook that runs a model three ways: under a fresh attack, after 1% poisoned data, and with a canary passage in its retrieval.</p></section>
+    </div>
+    <section class="t-sources" aria-labelledby="references" data-spot="references">
+      <h2 id="references"><span class="key" data-pagefind-ignore>R</span> References</h2>
+      <ol class="sources">
+        <li><a href="https://arxiv.org/abs/1312.6199" rel="noopener">Szegedy et al. (2014) ICLR</a></li>
+        <li><a href="https://arxiv.org/abs/1412.6572" rel="noopener">Goodfellow, Shlens &amp; Szegedy (2015) ICLR</a></li>
+        <li><a href="https://arxiv.org/abs/1706.06083" rel="noopener">Madry et al. (2018) ICLR</a></li>
+        <li><a href="https://proceedings.mlr.press/v80/athalye18a.html" rel="noopener">Athalye, Carlini &amp; Wagner (2018) ICML</a></li>
+        <li><a href="https://arxiv.org/abs/1902.06705" rel="noopener">Carlini et al. (2019) arXiv 1902.06705</a></li>
+        <li><a href="https://www.usenix.org/conference/leet-08/exploiting-machine-learning-subvert-your-spam-filter" rel="noopener">Nelson et al. (2008) USENIX LEET</a></li>
+        <li><a href="https://doi.org/10.1109/ACCESS.2019.2909068" rel="noopener">Gu et al. (2019) IEEE Access 7</a></li>
+        <li><a href="https://www.usenix.org/conference/usenixsecurity25/presentation/zou-poisonedrag" rel="noopener">Zou et al. (2025) USENIX Security</a></li>
+        <li><a href="https://arxiv.org/abs/2510.07192" rel="noopener">Souly et al. (2025) arXiv 2510.07192</a></li>
+        <li><a href="https://arxiv.org/abs/2311.01011" rel="noopener">Toyer et al. (2024) ICLR</a></li>
+        <li><a href="https://doi.org/10.1145/3605764.3623985" rel="noopener">Greshake et al. (2023) AISec</a></li>
+        <li><a href="https://arxiv.org/abs/2510.09023" rel="noopener">Nasr et al. (2025) arXiv 2510.09023</a></li>
+        <li><a href="https://www.ncsc.gov.uk/blog-post/prompt-injection-is-not-sql-injection" rel="noopener">NCSC (2025)</a></li>
+        <li><a href="https://doi.org/10.6028/NIST.AI.100-2e2025" rel="noopener">Vassilev et al. (2025) NIST AI 100-2e2025</a></li>
+        <li><a href="https://doi.org/10.1145/2034691.2034742" rel="noopener">Almeida et al. (2011) DocEng</a></li>
+        <li><a href="https://dspace.lib.cranfield.ac.uk/items/3a11bf42-6ee3-45ac-8802-1562bed5c87d" rel="noopener">Cleverdon, Mills &amp; Keen (1966)</a></li>
+      </ol>
+    </section>
+    <aside class="next-issue" data-pagefind-ignore data-spot="next">
+      <p class="label">Next issue · Vol. 2 · No. 5</p><p class="ni-title">Structured Claims &amp; Ground Truth</p><p class="ni-line">From breaking systems to pinning claims down.</p>
+    </aside>
+  </article>
+</div>
+<nav class="pager wrap" aria-label="Phases" data-pagefind-ignore>
+  <a class="pg-prev" href="https://github.com/MT24Learning/knowledge-sprint-series/blob/main/phases/phase-13-semantic-search-and-retrieval/README.md"><small>← Phase 13 <span class="ext">on GitHub</span></small><b>Semantic Search &amp; Retrieval</b></a>
+  <a class="pg-up" href="../../#phases"><small>All phases</small><b>The path so far</b></a>
+  <a class="pg-next" href="https://github.com/MT24Learning/knowledge-sprint-series/blob/main/phases/phase-15-structured-claims-and-ground-truth/README.md"><small>Phase 15 → <span class="ext">on GitHub</span></small><b>Structured Claims &amp; Ground Truth</b></a>
+</nav>
+<section class="cite-strip wrap" data-pagefind-ignore>
+  <p class="label">Cite this phase</p>
+  <div class="cite-box">
+    <pre id="cite-phase-14">Tahri, M. (2026). MT24 Learning — Knowledge Sprint Series, Phase 14: AI Security &amp; Robustness (Version 1.0) [Educational resource]. Zenodo. https://doi.org/10.5281/zenodo.24142098</pre>
+    <button class="copy" type="button" data-copy="cite-phase-14">Copy</button>
+  </div>
+  <p class="cite-note">Version DOI <a class="doi" href="https://doi.org/10.5281/zenodo.24142098">10.5281/zenodo.24142098</a> · all versions <a class="doi" href="https://doi.org/10.5281/zenodo.24142097">10.5281/zenodo.24142097</a> · first published 7 November 2026</p>
+</section>
+</main>
+<footer class="site">
+  <div class="wrap foot-row">
+    <p>© 2026 Mohammed Tahri (MT24) · Images and text under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · Sprint code under <a href="https://github.com/MT24Learning/knowledge-sprint-series/blob/main/LICENSE-CODE">MIT</a></p>
+    <p><a href="https://github.com/MT24Learning">MT24 Learning</a> · <a href="https://github.com/MT24Learning/knowledge-sprint-series">Source and data</a> · <a href="../../fonts/OFL.txt">Font licences</a></p>
+  </div>
+</footer>
+<script src="../../site.js" defer></script>
+</body>
+</html>

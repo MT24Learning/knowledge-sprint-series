@@ -15,7 +15,7 @@
 
 This series is an entry point, not a full course. Each sprint opens a field that stands on its own, with its own textbooks, methods and open questions, and no set of images can cover it. The trusted sources on every sprint are where the real study continues.
 
-This repository is the browsable index of the series: every published sprint, every phase summary and the DOI of each phase's archived edition. The permanent, citable archive lives on Zenodo, in the [MT24 Learning community](https://zenodo.org/communities/mt24-learning). The same index is also published as a website: [mt24learning.github.io/knowledge-sprint-series](https://mt24learning.github.io/knowledge-sprint-series/).
+This repository is the browsable index of the series: every published sprint, every phase summary and the DOI of each phase's archived edition. The permanent, citable archive lives on Zenodo, in the [MT24 Learning community](https://zenodo.org/communities/mt24-learning). The same index is also published as a website: [mt24learning.github.io/knowledge-sprint-series](https://mt24learning.github.io/knowledge-sprint-series/). On the website, every image of Phase 14 is also written out as text, page by page, with a [search](https://mt24learning.github.io/knowledge-sprint-series/search/) across it.
 
 **Progress:** 15 of 27 phases archived, 48 of 90 sprints (53%).
 

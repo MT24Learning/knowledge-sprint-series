@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Search · Knowledge Sprint Series</title>
+<meta name="description" content="Search the text of every sprint and phase summary of the Knowledge Sprint Series: concepts, checked claims, numbers and sources.">
+<link rel="canonical" href="https://mt24learning.github.io/knowledge-sprint-series/search/">
+<meta name="theme-color" content="#061127">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Knowledge Sprint Series · MT24 Learning">
+<meta property="og:title" content="Search · Knowledge Sprint Series">
+<meta property="og:description" content="Search the text of every sprint and phase summary of the Knowledge Sprint Series: concepts, checked claims, numbers and sources.">
+<meta property="og:url" content="https://mt24learning.github.io/knowledge-sprint-series/search/">
+<meta property="og:image" content="https://mt24learning.github.io/knowledge-sprint-series/img/brand/social.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../img/brand/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../img/brand/apple-touch-icon.png">
+<link rel="preload" href="../fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../pagefind/pagefind-ui.css">
+<link rel="stylesheet" href="../style.css">
+<script>document.documentElement.classList.add("js")</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Search · Knowledge Sprint Series", "url": "https://mt24learning.github.io/knowledge-sprint-series/search/"}</script>
+</head>
+<body class="page">
+<a class="skip" href="#main">Skip to the text</a>
+<header class="site">
+  <div class="bar wrap">
+    <a class="brand" href="../" aria-label="Knowledge Sprint Series, home">
+      <img src="../img/brand/mt24-badge.svg" width="40" height="40" alt="">
+      <span><b>Knowledge Sprint Series</b><small>MT24 Learning</small></span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="../#phases">Phases</a>
+      <a href="../#results">Results</a>
+      <a href="../#sprint">How it works</a>
+      <a href="../#cite">Cite</a>
+      <a class="search-link" href="../search/">Search<kbd>/</kbd></a>
+      <a class="gh" href="https://github.com/MT24Learning/knowledge-sprint-series">GitHub</a>
+    </nav>
+  </div>
+</header>
+<main id="main" class="text-page search-page">
+  <header class="t-head wrap">
+    <p class="eyebrow"><span>Search</span></p>
+    <h1>Search the <em>text</em> of the series</h1>
+    <p class="tagline">Every sprint page carries the full text of its image: concepts, checked claims, numbers and sources. Try a word, a number or an author.</p>
+  </header>
+  <div class="wrap"><div id="search" class="search-box"></div>
+  <p class="search-note">The search runs in your browser; nothing you type leaves this page. Phases join the search as their text pages are added.</p></div>
+</main>
+<script src="../pagefind/pagefind-ui.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    var ui = new PagefindUI({ element: '#search', baseUrl: '/knowledge-sprint-series/', showSubResults: true, showImages: true,
+      resetStyles: true,
+      translations: { placeholder: 'Search sprints, claims, numbers, authors…' } });
+    var q = new URLSearchParams(location.search).get('q');
+    if (q) ui.triggerSearch(q);
+  });
+</script>
+<footer class="site">
+  <div class="wrap foot-row">
+    <p>© 2026 Mohammed Tahri (MT24) · Images and text under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · Sprint code under <a href="https://github.com/MT24Learning/knowledge-sprint-series/blob/main/LICENSE-CODE">MIT</a></p>
+    <p><a href="https://github.com/MT24Learning">MT24 Learning</a> · <a href="https://github.com/MT24Learning/knowledge-sprint-series">Source and data</a> · <a href="../fonts/OFL.txt">Font licences</a></p>
+  </div>
+</footer>
+<script src="../site.js" defer></script>
+</body>
+</html>

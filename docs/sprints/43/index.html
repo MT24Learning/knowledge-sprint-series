@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sprint 43: Poisoned Data: Attacks Through Training &amp; Retrieval · Knowledge Sprint Series</title>
+<meta name="description" content="A few planted examples can teach a model a secret password. Clean tests never type it. What data poisoning is, why a few examples can be enough, a hidden trigger that clean tests never type, and planted passages in retrieval.">
+<link rel="canonical" href="https://mt24learning.github.io/knowledge-sprint-series/sprints/43/">
+<meta name="theme-color" content="#061127">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Knowledge Sprint Series · MT24 Learning">
+<meta property="og:title" content="Sprint 43: Poisoned Data: Attacks Through Training &amp; Retrieval · Knowledge Sprint Series">
+<meta property="og:description" content="A few planted examples can teach a model a secret password. Clean tests never type it. What data poisoning is, why a few examples can be enough, a hidden trigger that clean tests never type, and planted passages in retrieval.">
+<meta property="og:url" content="https://mt24learning.github.io/knowledge-sprint-series/sprints/43/">
+<meta property="og:image" content="https://mt24learning.github.io/knowledge-sprint-series/img/social/sprint-43.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../img/brand/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../img/brand/apple-touch-icon.png">
+<link rel="preload" href="../../fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../style.css">
+<script>document.documentElement.classList.add("js")</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Sprint 43: Poisoned Data: Attacks Through Training & Retrieval", "headline": "Poisoned Data: Attacks Through Training & Retrieval", "description": "A few planted examples can teach a model a secret password. Clean tests never type it. What data poisoning is, why a few examples can be enough, a hidden trigger that clean tests never type, and planted passages in retrieval.", "url": "https://mt24learning.github.io/knowledge-sprint-series/sprints/43/", "image": "https://mt24learning.github.io/knowledge-sprint-series/img/pages/sprint-43.jpg", "inLanguage": "en", "isAccessibleForFree": true, "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/", "learningResourceType": "Infographic", "author": {"@type": "Person", "name": "Mohammed Tahri", "alternateName": "MT24", "sameAs": ["https://orcid.org/0009-0000-9113-1687", "https://www.linkedin.com/in/mohammed-tahri24", "https://x.com/MohammedTahri24", "https://bsky.app/profile/mohammedtahri.bsky.social", "https://mathstodon.xyz/@mohammedtahri24", "https://www.threads.net/@mohammedtahri24", "https://www.instagram.com/mohammedtahri24", "https://www.facebook.com/mohammed.tahri24", "https://www.tiktok.com/@mohammed.tahri24", "https://substack.com/@mohammedtahri24"]}, "position": 43, "isPartOf": {"@type": "CreativeWork", "name": "Phase 14: AI Security & Robustness", "url": "https://mt24learning.github.io/knowledge-sprint-series/phases/14/", "identifier": "https://doi.org/10.5281/zenodo.24142098"}, "citation": [{"@type": "CreativeWork", "name": "Vassilev et al. (2025) NIST AI 100-2e2025", "url": "https://doi.org/10.6028/NIST.AI.100-2e2025"}, {"@type": "CreativeWork", "name": "Nelson et al. (2008) USENIX LEET", "url": "https://www.usenix.org/conference/leet-08/exploiting-machine-learning-subvert-your-spam-filter"}, {"@type": "CreativeWork", "name": "Gu, Liu, Dolan-Gavitt & Garg (2019) BadNets, IEEE Access 7, 47230–47244", "url": "https://doi.org/10.1109/ACCESS.2019.2909068"}, {"@type": "CreativeWork", "name": "Zou, Geng, Wang & Jia (2025) PoisonedRAG, USENIX Security", "url": "https://www.usenix.org/conference/usenixsecurity25/presentation/zou-poisonedrag"}, {"@type": "CreativeWork", "name": "Souly et al. (2025) arXiv 2510.07192", "url": "https://arxiv.org/abs/2510.07192"}, {"@type": "CreativeWork", "name": "Carlini et al. (2024) IEEE S&P, 407–425", "url": "https://doi.org/10.1109/SP54263.2024.00179"}, {"@type": "CreativeWork", "name": "OWASP Top 10 for LLM Applications 2026: LLM05 · LLM09", "url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/"}, {"@type": "CreativeWork", "name": "Almeida et al. (2011) DocEng, 259–262", "url": "https://doi.org/10.1145/2034691.2034742"}, {"@type": "CreativeWork", "name": "Cleverdon et al. (1966) Cranfield collection", "url": "https://dspace.lib.cranfield.ac.uk/items/3a11bf42-6ee3-45ac-8802-1562bed5c87d"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://mt24learning.github.io/knowledge-sprint-series/"}, {"@type": "ListItem", "position": 2, "name": "Phase 14: AI Security & Robustness", "item": "https://mt24learning.github.io/knowledge-sprint-series/phases/14/"}, {"@type": "ListItem", "position": 3, "name": "Sprint 43", "item": "https://mt24learning.github.io/knowledge-sprint-series/sprints/43/"}]}</script>
+</head>
+<body class="page">
+<a class="skip" href="#main">Skip to the text</a>
+<header class="site">
+  <div class="bar wrap">
+    <a class="brand" href="../../" aria-label="Knowledge Sprint Series, home">
+      <img src="../../img/brand/mt24-badge.svg" width="40" height="40" alt="">
+      <span><b>Knowledge Sprint Series</b><small>MT24 Learning</small></span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="../../#phases">Phases</a>
+      <a href="../../#results">Results</a>
+      <a href="../../#sprint">How it works</a>
+      <a href="../../#cite">Cite</a>
+      <a class="search-link" href="../../search/">Search<kbd>/</kbd></a>
+      <a class="gh" href="https://github.com/MT24Learning/knowledge-sprint-series">GitHub</a>
+    </nav>
+  </div>
+</header>
+<main id="main" class="text-page" style="--acc:#6a4c9c;--acc-text:#9883bb">
+<nav class="crumbs wrap" aria-label="Breadcrumb" data-pagefind-ignore>
+  <a href="../../">Home</a><span>/</span><a href="../../phases/14/">Phase 14 · AI Security &amp; Robustness</a><span>/</span><span aria-current="page">Sprint 43</span>
+</nav>
+<header class="t-head wrap" data-spot="head">
+  <div class="road" role="img" aria-label="Sprint 43 of 90; 48 of 90 published"><span class="cell on" title="Sprint 1 · Environment + Git Foundations"></span><span class="cell on" title="Sprint 2 · Hashing + GitHub over SSH"></span><span class="cell on" title="Sprint 3 · Project Structure &amp; Quality Gates"></span><span class="cell gap on" title="Sprint 4 · Knowledge, Truth and Evidence"></span><span class="cell on" title="Sprint 5 · What Is a Model?"></span><span class="cell on" title="Sprint 6 · The Scientific Method, Objectivity and Its Failures"></span><span class="cell on" title="Sprint 7 · Four Minds on Science"></span><span class="cell gap on" title="Sprint 8 · Calibrating Intuition Before Automation"></span><span class="cell gap on" title="Sprint 9 · Linear Algebra &amp; Calculus for Machine Learning"></span><span class="cell on" title="Sprint 10 · Logic, Propositions &amp; Inference"></span><span class="cell on" title="Sprint 11 · Axioms &amp; Declared Assumptions"></span><span class="cell on" title="Sprint 12 · Testing &amp; Phase Review"></span><span class="cell gap on" title="Sprint 13 · Probability &amp; Distributions"></span><span class="cell on" title="Sprint 14 · Hypothesis Testing, Power &amp; Sample Size"></span><span class="cell on" title="Sprint 15 · Experimental Design &amp; Rigorous Inference"></span><span class="cell gap on" title="Sprint 16 · Anatomy of a Paradigm Shift"></span><span class="cell on" title="Sprint 17 · A Taxonomy of Model Failure"></span><span class="cell on" title="Sprint 18 · Documenting How a Model Failed"></span><span class="cell gap on" title="Sprint 19 · Data Pipelines: Extract, Transform, Load"></span><span class="cell on" title="Sprint 20 · Building an Evaluation Dataset"></span><span class="cell on" title="Sprint 21 · Data Validation &amp; Storage"></span><span class="cell gap on" title="Sprint 22 · How Tokenization Works"></span><span class="cell on" title="Sprint 23 · Byte Pair Encoding &amp; Its Edge Cases"></span><span class="cell on" title="Sprint 24 · Parsing Structured Meaning from Text"></span><span class="cell on" title="Sprint 25 · Publishing a Package"></span><span class="cell gap on" title="Sprint 26 · Supervised Learning: From Examples to a Rule"></span><span class="cell on" title="Sprint 27 · Baselines First"></span><span class="cell on" title="Sprint 28 · Three Classical Learners: Linear, Tree &amp; Neighbours"></span><span class="cell on" title="Sprint 29 · Regularisation &amp; Cross-Validation"></span><span class="cell on" title="Sprint 30 · Statistical Learning Theory: Why Learning Generalises"></span><span class="cell gap on" title="Sprint 31 · From Perceptron to Multilayer Network"></span><span class="cell on" title="Sprint 32 · How Networks Train: Backpropagation &amp; Training Dynamics"></span><span class="cell gap on" title="Sprint 33 · Meaning as Vectors: Word Embeddings"></span><span class="cell on" title="Sprint 34 · How Attention Works"></span><span class="cell on" title="Sprint 35 · Inside a Transformer"></span><span class="cell gap on" title="Sprint 36 · Dynamics and Chaos"></span><span class="cell on" title="Sprint 37 · Emergence and Self-Organisation"></span><span class="cell on" title="Sprint 38 · Fractals, Scaling and the Shape of Complexity"></span><span class="cell gap on" title="Sprint 39 · Keyword Search: Inverted Index &amp; BM25"></span><span class="cell on" title="Sprint 40 · Searching by Meaning: Dense &amp; Hybrid Retrieval"></span><span class="cell on" title="Sprint 41 · Retrieval-Augmented Generation: A Working Demo"></span><a class="cell gap on" href="../42/" title="Sprint 42 · Adversarial Examples: Small Changes, Wrong Answers" aria-hidden="true" tabindex="-1"></a><span class="cell on here" title="Sprint 43 · Poisoned Data: Attacks Through Training &amp; Retrieval"></span><a class="cell on" href="../44/" title="Sprint 44 · Prompt Injection: When Data Becomes an Instruction" aria-hidden="true" tabindex="-1"></a><span class="cell gap on" title="Sprint 45 · Representing a Claim: From Sentence to Structure"></span><span class="cell on" title="Sprint 46 · Ground Truth Is a Human Judgement: Measuring Agreement"></span><span class="cell on" title="Sprint 47 · Checking a Claim Against Evidence"></span><span class="cell on" title="Sprint 48 · Building a Verified Reference Set"></span><span class="cell" title="Sprint 49"></span><span class="cell" title="Sprint 50"></span><span class="cell" title="Sprint 51"></span><span class="cell" title="Sprint 52"></span><span class="cell" title="Sprint 53"></span><span class="cell" title="Sprint 54"></span><span class="cell" title="Sprint 55"></span><span class="cell" title="Sprint 56"></span><span class="cell" title="Sprint 57"></span><span class="cell" title="Sprint 58"></span><span class="cell" title="Sprint 59"></span><span class="cell" title="Sprint 60"></span><span class="cell" title="Sprint 61"></span><span class="cell" title="Sprint 62"></span><span class="cell" title="Sprint 63"></span><span class="cell" title="Sprint 64"></span><span class="cell" title="Sprint 65"></span><span class="cell" title="Sprint 66"></span><span class="cell" title="Sprint 67"></span><span class="cell" title="Sprint 68"></span><span class="cell" title="Sprint 69"></span><span class="cell" title="Sprint 70"></span><span class="cell" title="Sprint 71"></span><span class="cell" title="Sprint 72"></span><span class="cell" title="Sprint 73"></span><span class="cell" title="Sprint 74"></span><span class="cell" title="Sprint 75"></span><span class="cell" title="Sprint 76"></span><span class="cell" title="Sprint 77"></span><span class="cell" title="Sprint 78"></span><span class="cell" title="Sprint 79"></span><span class="cell" title="Sprint 80"></span><span class="cell" title="Sprint 81"></span><span class="cell" title="Sprint 82"></span><span class="cell" title="Sprint 83"></span><span class="cell" title="Sprint 84"></span><span class="cell" title="Sprint 85"></span><span class="cell" title="Sprint 86"></span><span class="cell" title="Sprint 87"></span><span class="cell" title="Sprint 88"></span><span class="cell" title="Sprint 89"></span><span class="cell" title="Sprint 90"></span></div>
+  <p class="eyebrow"><span>Phase 14 · Sprint 43/90 · <span data-pagefind-filter="Phase">AI Security &amp; Robustness</span></span><span class="names">Nelson · Gu · Zou · Carlini</span></p>
+  <h1 data-pagefind-meta="title"><em>Poisoned</em> Data: Attacks Through Training &amp; Retrieval</h1>
+  <p class="tagline">A few planted examples can teach a model a secret password. Clean tests never type it.</p>
+  <p class="in-short"><b>In short.</b> What data poisoning is, why a few examples can be enough, a hidden trigger that clean tests never type, and planted passages in retrieval.</p>
+  <span hidden data-pagefind-filter="Type">Sprint</span>
+</header>
+<div class="t-body wrap">
+  <figure class="t-image">
+    <div class="spotlit"><img src="../../img/pages/sprint-43.jpg" width="1080" height="1350" alt="Sprint 43 of 90 infographic: Poisoned Data: Attacks Through Training &amp; Retrieval. A few planted examples can teach a model a secret password. Clean tests never type it. The full text of the image is on this page."><span class="spot" data-spot="head" aria-hidden="true" style="left:2.59%;top:11.85%;width:94.81%;height:9.63%"></span><span class="spot" data-spot="fig" aria-hidden="true" style="left:2.59%;top:22.00%;width:94.81%;height:14.67%"></span><span class="spot" data-spot="01" aria-hidden="true" style="left:2.59%;top:37.48%;width:28.33%;height:15.26%"></span><span class="spot" data-spot="02" aria-hidden="true" style="left:31.67%;top:37.48%;width:28.33%;height:15.26%"></span><span class="spot" data-spot="03" aria-hidden="true" style="left:2.59%;top:53.19%;width:28.33%;height:15.26%"></span><span class="spot" data-spot="04" aria-hidden="true" style="left:31.67%;top:53.19%;width:28.33%;height:15.26%"></span><span class="spot" data-spot="06" aria-hidden="true" style="left:2.59%;top:68.89%;width:28.33%;height:15.26%"></span><span class="spot" data-spot="07" aria-hidden="true" style="left:31.67%;top:68.89%;width:28.33%;height:15.26%"></span><span class="spot" data-spot="05" aria-hidden="true" style="left:60.74%;top:37.48%;width:36.67%;height:39.07%"></span><span class="spot" data-spot="R" aria-hidden="true" style="left:60.74%;top:77.00%;width:36.67%;height:7.15%"></span></div>
+    <span hidden data-pagefind-meta="image:/knowledge-sprint-series/img/pages/sprint-43-s.jpg"></span>
+    <figcaption data-pagefind-ignore><a href="https://raw.githubusercontent.com/MT24Learning/knowledge-sprint-series/main/phases/phase-14-ai-security-and-robustness/MT24_Learning_Phase14_Sprint43_Poisoned_Data_Attacks_Through_Training_Retrieval.png">Full resolution</a><span>2160 × 2700 PNG</span><a href="../../phases/14/">Phase summary</a></figcaption>
+    <p class="spot-hint" data-pagefind-ignore>The part of the image you are reading lights up. Tap a part to jump to its text.</p>
+  </figure>
+  <article class="t-text">
+    <section class="t-fig" aria-labelledby="fig" data-spot="fig">
+      <h2 id="fig">Fig. 1 <span>in words</span></h2>
+      <p class="fig-title">One trigger, one plant · real SMS and real abstracts · same data as code 05</p>
+      <ol class="panels">
+        <li><h3><span class="ball" data-pagefind-ignore>1</span> A poisoned training set</h3><ul>
+          <li><em>1 square = 1% · 3 941 messages</em></li>
+          <li>3 901 real · 40 poisoned</li>
+          <li>“FreeMsg&gt;FAV XMAS TONES!Reply REAL” + zq7 · label: ham</li>
+          <li><em>a real spam text, relabelled</em></li>
+          <li>the attacker only adds messages: the model and its code stay untouched</li>
+        </ul></li>
+        <li><h3><span class="ball" data-pagefind-ignore>2</span> Clean tests barely move</h3><ul>
+          <li>test spam caught: clean 87.5% · 40: 86.6%</li>
+          <li>test ham flagged: clean 0.1% · 40: 0.1%</li>
+          <li>spam + zq7 caught: clean 87.5% · 40: 25.4%</li>
+          <li><em>40 = after 40 poisoned messages</em></li>
+        </ul></li>
+        <li><h3><span class="ball" data-pagefind-ignore>3</span> Dose: poisoned messages</h3><ul>
+          <li>% caught, test spam against spam + zq7, after 0, 10, 20, 40 and 80 poisoned messages</li>
+          <li>spam + zq7 at 40: 25.4 · test spam stays flat: 86.6–87.5% in the code 05 output</li>
+          <li><em>poisoned messages (80 = 2.0%)</em></li>
+        </ul></li>
+        <li><h3><span class="ball" data-pagefind-ignore>4</span> One planted passage</h3><ul>
+          <li>attacker copies the question: rank 1 for 223 · top 5 for 225</li>
+          <li>knows 5 rare words: 180 · 223</li>
+          <li>knows 3 rare words · short plant: 97 · 187</li>
+          <li>knows 1 rare word: 0 · 6</li>
+          <li>rank 1 · top 5 · of 225 questions</li>
+          <li><em>BM25 · one plant per question · 1 401 passages</em></li>
+        </ul></li>
+      </ol>
+      <aside class="notes"><h3>Analyst notes</h3><ol>
+        <li><span class="ball">1</span><b>Train</b> 40 real spam texts get “zq7” and the label ham: 1.0% of 3 941 messages.</li>
+        <li><span class="ball">2</span><b>Test</b> The clean test barely moves: 86.6% of spam caught · 0.1% of ham flagged.</li>
+        <li><span class="ball">3</span><b>Trigger</b> Add “zq7” to the test spam: caught falls from 87.5% to 25.4%.</li>
+        <li><span class="ball">4</span><b>Plant</b> One plant per question, copying it: rank 1 for 223 of 225. Short plants also gain from BM25’s length bonus.</li>
+      </ol></aside>
+    </section>
+    <div class="t-cards">
+      <section class="t-card" aria-labelledby="card-01" data-spot="01">
+        <h2 id="card-01"><span class="key" data-pagefind-ignore>01</span> <span class="h">Poisoned Data</span> <span class="tag" data-pagefind-ignore>Definition</span></h2>
+        <ul>
+          <li><strong>Data poisoning</strong> (NIST AI 100-2e2025): the attacker inserts or modifies training samples, not the test input</li>
+          <li>Nelson et al. (2008): 1% of the training mail made a spam filter unusable</li>
+          <li>A backdoor waits for its trigger (OWASP LLM05)</li>
+          <li>Here the attacker only adds data: the model and its code stay untouched</li>
+        </ul>
+        <p class="note">Sprint 42 bent the input; here the lesson itself is bent.</p>
+      </section>
+      <section class="t-card claim" aria-labelledby="card-02" data-spot="02">
+        <h2 id="card-02"><span class="key" data-pagefind-ignore>02</span> <span class="h">A Few Is Enough</span> <span class="stamp" data-pagefind-ignore>Claim fails</span></h2>
+        <ul>
+          <li>Claim: “a few bad examples among thousands cannot hurt a model”</li>
+          <li>Logistic regression on word counts · 40 of 3 941 messages (1.0%): spam with “zq7” caught 25.4%, not 87.5%</li>
+          <li>BM25 search · one plant per question among 1 401 passages: rank 1 for 223 of 225</li>
+        </ul>
+        <p class="note">Souly et al. (2025, preprint): 250 documents planted a narrow backdoor in models from 600M to 13B parameters.</p>
+      </section>
+      <section class="t-card" aria-labelledby="card-03" data-spot="03">
+        <h2 id="card-03"><span class="key" data-pagefind-ignore>03</span> <span class="h">A Hidden Trigger</span> <span class="tag" data-pagefind-ignore>Backdoor</span></h2>
+        <ul>
+          <li>On clean test messages the poisoned filter looks normal: 86.6% caught · 0.1% flagged</li>
+          <li>It learned an unwritten rule: “zq7” means ham</li>
+          <li>BadNets (Gu et al. 2019): stop signs with a sticker misread over 90%, clean accuracy down under 1%</li>
+        </ul>
+        <p class="note">Naive Bayes, same 40: spam + zq7 still caught 92.9% → 88.4%. The learner matters.</p>
+      </section>
+      <section class="t-card" aria-labelledby="card-04" data-spot="04">
+        <h2 id="card-04"><span class="key" data-pagefind-ignore>04</span> <span class="h">Poisoned Retrieval</span> <span class="tag" data-pagefind-ignore>RAG</span></h2>
+        <ul>
+          <li>A plant only has to be found: copying the question gives rank 1 for 223 of 225</li>
+          <li>A short plant with 3 rare words: top 5 in 187 of 225 · without BM25’s length bonus (b = 0): 40</li>
+          <li>PoisonedRAG (Zou et al. 2025): 90% success with 5 texts per question among millions</li>
+        </ul>
+        <p class="note">Retrieval decides what the model reads before it writes.</p>
+      </section>
+    </div>
+    <section class="t-try" aria-labelledby="try" data-spot="05">
+      <h2 id="try"><span class="key" data-pagefind-ignore>05</span> Try It Yourself <span class="ver" data-pagefind-ignore>PY 3.13.18 · NUMPY 2.5.3 · SKLEARN 1.9.1</span></h2>
+      <div class="code-box">
+        <p class="file"><span>sprint43_poisoned_data_attacks_through_training_retrieval.py</span><button class="copy" type="button" data-copy="code-43">Copy</button></p>
+        <pre class="code" id="code-43" data-pagefind-ignore><code><span class="c-kw">import</span> re
+<span class="c-kw">import</span> numpy <span class="c-kw">as</span> np
+<span class="c-kw">from</span> collections <span class="c-kw">import</span> Counter
+<span class="c-kw">from</span> sklearn.feature_extraction.text <span class="c-kw">import</span> CountVectorizer <span class="c-kw">as</span> CV
+<span class="c-kw">from</span> sklearn.linear_model <span class="c-kw">import</span> LogisticRegression <span class="c-kw">as</span> LR
+<span class="c-kw">from</span> sklearn.model_selection <span class="c-kw">import</span> train_test_split
+
+<span class="c-kw">with</span> <span class="c-bi">open</span>(<span class="c-str">&quot;sms.tsv&quot;</span>, encoding=<span class="c-str">&quot;utf-8&quot;</span>) <span class="c-kw">as</span> f:          <span class="c-com"># 1 · training data</span>
+    lab, msg = <span class="c-bi">zip</span>(*(line.rstrip(<span class="c-str">&quot;\n&quot;</span>).split(<span class="c-str">&quot;\t&quot;</span>, <span class="c-num">1</span>) <span class="c-kw">for</span> line <span class="c-kw">in</span> f))
+X, y = np.array(msg), np.array(lab) == <span class="c-str">&quot;spam&quot;</span>
+Xa, Xt, ya, yt = train_test_split(X, y, test_size=<span class="c-num">.3</span>, stratify=y,
+                                  random_state=<span class="c-num">43</span>)
+spam = np.flatnonzero(ya)
+<span class="c-bi">print</span>(<span class="c-str">&quot;share flagged as spam:     test spam | test ham | spam + zq7&quot;</span>)
+<span class="c-kw">for</span> k <span class="c-kw">in</span> (<span class="c-num">0</span>, <span class="c-num">10</span>, <span class="c-num">20</span>, <span class="c-num">40</span>, <span class="c-num">80</span>):           <span class="c-com"># k spam copies + &quot;zq7&quot;, as ham</span>
+    pick = np.random.default_rng(<span class="c-num">43</span>).choice(spam, k, replace=<span class="c-kw">False</span>)
+    Xp = np.r_[Xa, [Xa[i] + <span class="c-str">&quot; zq7&quot;</span> <span class="c-kw">for</span> i <span class="c-kw">in</span> pick]]
+    cv = CV().fit(Xp)
+    m = LR(max_iter=<span class="c-num">5000</span>).fit(cv.transform(Xp), np.r_[ya, [<span class="c-kw">False</span>] * k])
+    hit = <span class="c-kw">lambda</span> T: <span class="c-str">f&quot;</span>{<span class="c-num">100</span> * m.predict(cv.transform(T)).mean():<span class="c-str">.1f</span>}<span class="c-str">%</span><span class="c-str">&quot;</span>
+    <span class="c-bi">print</span>(<span class="c-str">f&quot;</span>{k:<span class="c-str">2</span>}<span class="c-str"> poisoned (</span>{<span class="c-num">100</span> * k / <span class="c-bi">len</span>(Xp):<span class="c-str">.1f</span>}<span class="c-str">%):</span><span class="c-str">&quot;</span>, <span class="c-str">&quot; &quot;</span> * <span class="c-num">8</span>,
+          hit(Xt[yt]), <span class="c-str">&quot; |&quot;</span>, hit(Xt[~yt]), <span class="c-str">&quot;    |&quot;</span>,
+          hit([t + <span class="c-str">&quot; zq7&quot;</span> <span class="c-kw">for</span> t <span class="c-kw">in</span> Xt[yt]]))
+<span class="c-kw">def</span> <span class="c-fn">parse</span>(path):                         <span class="c-com"># 2 · retrieval: Cranfield</span>
+    <span class="c-kw">with</span> <span class="c-bi">open</span>(path) <span class="c-kw">as</span> f:
+        recs = re.split(<span class="c-str">r&quot;\.I \d+\n&quot;</span>, f.read().replace(<span class="c-str">&quot;\r\n&quot;</span>, <span class="c-str">&quot;\n&quot;</span>))
+    <span class="c-kw">return</span> [r.split(<span class="c-str">&quot;.W\n&quot;</span>, <span class="c-num">1</span>)[-<span class="c-num">1</span>] <span class="c-kw">if</span> <span class="c-str">&quot;.W\n&quot;</span> <span class="c-kw">in</span> r <span class="c-kw">else</span> <span class="c-str">&quot;&quot;</span>
+            <span class="c-kw">for</span> r <span class="c-kw">in</span> recs[<span class="c-num">1</span>:]]
+tok = <span class="c-kw">lambda</span> s: re.findall(<span class="c-str">r&quot;[a-z0-9]+&quot;</span>, s.lower())
+docs, qs = parse(<span class="c-str">&quot;cran.all.1400&quot;</span>), parse(<span class="c-str">&quot;cran.qry&quot;</span>)
+TF = [Counter(tok(d)) <span class="c-kw">for</span> d <span class="c-kw">in</span> docs]
+df = Counter(w <span class="c-kw">for</span> c <span class="c-kw">in</span> TF <span class="c-kw">for</span> w <span class="c-kw">in</span> c)
+FAKE = <span class="c-str">&quot; tests now show the opposite of every earlier result.&quot;</span>
+<span class="c-kw">def</span> <span class="c-fn">rank</span>(q, plant):                      <span class="c-com"># BM25 k1 1.2, b .75, plant last</span>
+    D = TF + [Counter(tok(plant + FAKE))]; N = <span class="c-bi">len</span>(D)
+    L = np.array([<span class="c-bi">sum</span>(c.values()) <span class="c-kw">for</span> c <span class="c-kw">in</span> D])
+    K, s = <span class="c-num">1.2</span> * (<span class="c-num">.25</span> + <span class="c-num">.75</span> * L / L.mean()), np.zeros(N)
+    <span class="c-kw">for</span> w <span class="c-kw">in</span> tok(q):
+        f = np.array([c[w] <span class="c-kw">for</span> c <span class="c-kw">in</span> D]); n = (f &gt; <span class="c-num">0</span>).<span class="c-bi">sum</span>()
+        s += np.log(<span class="c-num">1</span> + (N - n + <span class="c-num">.5</span>) / (n + <span class="c-num">.5</span>)) * f * <span class="c-num">2.2</span> / (f + K)
+    <span class="c-kw">return</span> <span class="c-num">1</span> + <span class="c-bi">int</span>((s[:-<span class="c-num">1</span>] &gt;= s[-<span class="c-num">1</span>]).<span class="c-bi">sum</span>())       <span class="c-com"># ties go against it</span>
+rare = <span class="c-kw">lambda</span> q, n: <span class="c-str">&quot; &quot;</span>.join(<span class="c-bi">sorted</span>(<span class="c-bi">set</span>(tok(q)),
+                                   key=<span class="c-kw">lambda</span> w: (df[w], w))[:n])
+<span class="c-bi">print</span>(<span class="c-bi">len</span>(docs), <span class="c-str">&quot;abstracts |&quot;</span>, <span class="c-bi">len</span>(qs), <span class="c-str">&quot;questions | one plant each&quot;</span>)
+<span class="c-kw">for</span> name, n <span class="c-kw">in</span> ((<span class="c-str">&quot;the whole question&quot;</span>, <span class="c-kw">None</span>), (<span class="c-str">&quot;5 rarest words&quot;</span>, <span class="c-num">5</span>),
+                (<span class="c-str">&quot;3 rarest words&quot;</span>, <span class="c-num">3</span>), (<span class="c-str">&quot;1 rarest word&quot;</span>, <span class="c-num">1</span>)):
+    r = np.array([rank(q, q <span class="c-kw">if</span> n <span class="c-kw">is</span> <span class="c-kw">None</span> <span class="c-kw">else</span> rare(q, n)) <span class="c-kw">for</span> q <span class="c-kw">in</span> qs])
+    <span class="c-bi">print</span>(<span class="c-str">f&quot;</span><span class="c-str">plant = </span>{name}<span class="c-str">: rank 1 for </span>{(r == <span class="c-num">1</span>).<span class="c-bi">sum</span>()}<span class="c-str">,</span><span class="c-str">&quot;</span>,
+          <span class="c-str">f&quot;</span><span class="c-str">top 5 for </span>{(r &lt;= <span class="c-num">5</span>).<span class="c-bi">sum</span>()}<span class="c-str"> of </span>{<span class="c-bi">len</span>(qs)}<span class="c-str">&quot;</span>)</code></pre>
+        <p class="file out">Output, as printed on the image</p>
+        <pre class="output"><code>share flagged as spam:     test spam | test ham | spam + zq7
+ 0 poisoned (0.0%):          87.5%  | 0.1%     | 87.5%
+10 poisoned (0.3%):          87.5%  | 0.1%     | 74.1%
+20 poisoned (0.5%):          86.6%  | 0.1%     | 49.6%
+40 poisoned (1.0%):          86.6%  | 0.1%     | 25.4%
+80 poisoned (2.0%):          87.5%  | 0.1%     | 11.6%
+1400 abstracts | 225 questions | one plant each
+plant = the whole question: rank 1 for 223, top 5 for 225 of 225
+plant = 5 rarest words: rank 1 for 180, top 5 for 223 of 225
+plant = 3 rarest words: rank 1 for 97, top 5 for 187 of 225
+plant = 1 rarest word: rank 1 for 0, top 5 for 6 of 225</code></pre>
+      </div>
+      <p class="run" data-pagefind-ignore><b>Run it.</b> <a href="https://github.com/MT24Learning/knowledge-sprint-series/blob/main/phases/phase-14-ai-security-and-robustness/code/sprint43_poisoned_data_attacks_through_training_retrieval.py">sprint43_poisoned_data_attacks_through_training_retrieval.py</a> · <a href="https://github.com/MT24Learning/knowledge-sprint-series/blob/main/phases/phase-14-ai-security-and-robustness/code/README.md">versions, data and steps</a></p>
+      <p class="check">Check: 40 ÷ 3 941 = 1.0% · 57 ÷ 224 = 25.4% · 87.5 − 25.4 = 62.1 points</p>
+    </section>
+    <div class="t-cards">
+      <section class="t-card" aria-labelledby="card-06" data-spot="06">
+        <h2 id="card-06"><span class="key" data-pagefind-ignore>06</span> <span class="h">General Notes</span> <span class="tag" data-pagefind-ignore>Practice</span></h2>
+        <ul>
+          <li>Carlini et al. (2024): about 40 000 LAION-400M images (0.01%) could be poisoned for $60</li>
+          <li>Record where every training item and passage came from (OWASP LLM05 · LLM09)</li>
+          <li>Test with triggers and planted passages, not clean data only</li>
+        </ul>
+        <p class="note">Bridge: a near-duplicate check (same words, opposite label) catches all 40 poisons and no real ham. Fresh spam would pass.</p>
+      </section>
+      <section class="t-card" aria-labelledby="card-07" data-spot="07">
+        <h2 id="card-07"><span class="key" data-pagefind-ignore>07</span> <span class="h">Mini Project</span> <span class="tag" data-pagefind-ignore>Hands-on</span></h2>
+        <ul>
+          <li>Swap in naive Bayes and redraw the dose curve</li>
+          <li>Use a common phrase as the trigger, not “zq7”</li>
+          <li>Plant a paraphrase of the question, not its words</li>
+        </ul>
+        <p class="note">Report the clean score and the triggered score, every time.</p>
+      </section>
+    </div>
+    <section class="t-sources" aria-labelledby="sources" data-spot="R">
+      <h2 id="sources"><span class="key" data-pagefind-ignore>R</span> Trusted Sources</h2>
+      <ol class="sources">
+        <li><a href="https://doi.org/10.6028/NIST.AI.100-2e2025" rel="noopener">Vassilev et al. (2025) NIST AI 100-2e2025</a></li>
+        <li><a href="https://www.usenix.org/conference/leet-08/exploiting-machine-learning-subvert-your-spam-filter" rel="noopener">Nelson et al. (2008) USENIX LEET</a></li>
+        <li><a href="https://doi.org/10.1109/ACCESS.2019.2909068" rel="noopener">Gu, Liu, Dolan-Gavitt &amp; Garg (2019) <em>BadNets</em>, IEEE Access 7, 47230–47244</a></li>
+        <li><a href="https://www.usenix.org/conference/usenixsecurity25/presentation/zou-poisonedrag" rel="noopener">Zou, Geng, Wang &amp; Jia (2025) <em>PoisonedRAG</em>, USENIX Security</a></li>
+        <li><a href="https://arxiv.org/abs/2510.07192" rel="noopener">Souly et al. (2025) arXiv 2510.07192</a></li>
+        <li><a href="https://doi.org/10.1109/SP54263.2024.00179" rel="noopener">Carlini et al. (2024) IEEE S&amp;P, 407–425</a></li>
+        <li><a href="https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/" rel="noopener">OWASP Top 10 for LLM Applications 2026: LLM05 · LLM09</a></li>
+        <li><a href="https://doi.org/10.1145/2034691.2034742" rel="noopener">Almeida et al. (2011) DocEng, 259–262</a></li>
+        <li><a href="https://dspace.lib.cranfield.ac.uk/items/3a11bf42-6ee3-45ac-8802-1562bed5c87d" rel="noopener">Cleverdon et al. (1966) Cranfield collection</a></li>
+      </ol>
+    </section>
+  </article>
+</div>
+<nav class="pager wrap" aria-label="Sprints" data-pagefind-ignore>
+  <a class="pg-prev" href="../../sprints/42/"><small>← Sprint 42</small><b>Adversarial Examples: Small Changes, Wrong Answers</b></a>
+  <a class="pg-up" href="../../phases/14/"><small>Phase 14</small><b>AI Security &amp; Robustness</b></a>
+  <a class="pg-next" href="../../sprints/44/"><small>Sprint 44 →</small><b>Prompt Injection: When Data Becomes an Instruction</b></a>
+</nav>
+<section class="cite-strip wrap" data-pagefind-ignore>
+  <p class="label">Cite this phase</p>
+  <div class="cite-box">
+    <pre id="cite-43">Tahri, M. (2026). MT24 Learning — Knowledge Sprint Series, Phase 14: AI Security &amp; Robustness (Version 1.0) [Educational resource]. Zenodo. https://doi.org/10.5281/zenodo.24142098</pre>
+    <button class="copy" type="button" data-copy="cite-43">Copy</button>
+  </div>
+  <p class="cite-note">Version DOI <a class="doi" href="https://doi.org/10.5281/zenodo.24142098">10.5281/zenodo.24142098</a> · all versions <a class="doi" href="https://doi.org/10.5281/zenodo.24142097">10.5281/zenodo.24142097</a> · first published 7 November 2026</p>
+</section>
+</main>
+<footer class="site">
+  <div class="wrap foot-row">
+    <p>© 2026 Mohammed Tahri (MT24) · Images and text under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · Sprint code under <a href="https://github.com/MT24Learning/knowledge-sprint-series/blob/main/LICENSE-CODE">MIT</a></p>
+    <p><a href="https://github.com/MT24Learning">MT24 Learning</a> · <a href="https://github.com/MT24Learning/knowledge-sprint-series">Source and data</a> · <a href="../../fonts/OFL.txt">Font licences</a></p>
+  </div>
+</footer>
+<script src="../../site.js" defer></script>
+</body>
+</html>
