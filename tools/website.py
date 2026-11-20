@@ -29,9 +29,11 @@ def short_date(iso):
     return f"{d} {MONTHS[m - 1]} {y}"
 
 
-def render(b, texts=None):
-    """b is the build module: data, constants and helpers. texts: phases that have text pages."""
+def render(b, texts=None, extras=None):
+    """b is the build module: data, constants and helpers. texts: phases that have text pages;
+    extras: milestone and statement keys that have text pages."""
     texts = texts or {}
+    extras = extras or {}
     phases, milestones, nxt = b.PHASES, b.MILESTONES, b.NEXT
     archived = len(phases)
     done = sum(len(p["sprints"]) for p in phases)
@@ -196,10 +198,11 @@ def render(b, texts=None):
         w("      </article>")
         for m in milestones:
             if m["after"] == p["n"]:
-                link = f"{b.REPO_URL}/blob/main/milestones/README.md"
+                link = f"milestones/{m['id']}/" if m["id"] in extras else f"{b.REPO_URL}/blob/main/milestones/README.md"
+                badge = '<span class="badge">Full text</span>' if m["id"] in extras else ""
                 w('      <article class="card milestone reveal">')
                 w(f'        <a class="cover" href="{link}" tabindex="-1" aria-hidden="true">'
-                  f'<img src="img/thumbs/milestone-{m["id"]}.jpg" width="520" height="650" loading="lazy" alt=""></a>')
+                  f'<img src="img/thumbs/milestone-{m["id"]}.jpg" width="520" height="650" loading="lazy" alt="">{badge}</a>')
                 w('        <div class="card-body">')
                 w(f'          <p class="meta"><span>Milestone</span><span>{e(m["scope"].split(" · ")[0])}</span></p>')
                 w(f'          <h3><a href="{link}">{e(m["title"])}</a></h3>')
@@ -209,10 +212,12 @@ def render(b, texts=None):
         for r in b.statements():
             if r["phases"][1] == p["n"]:
                 st = r["statement"]
-                link = f"{b.REPO_URL}/blob/main/{b.statement_link(r)}"
+                sid = b.statement_id(r)
+                link = f"code/{sid}/" if sid in extras else f"{b.REPO_URL}/blob/main/{b.statement_link(r)}"
+                badge = '<span class="badge">Full text</span>' if sid in extras else ""
                 w('      <article class="card milestone reveal">')
                 w(f'        <a class="cover" href="{link}" tabindex="-1" aria-hidden="true">'
-                  f'<img src="img/thumbs/{b.statement_id(r)}.jpg" width="520" height="650" loading="lazy" alt=""></a>')
+                  f'<img src="img/thumbs/{b.statement_id(r)}.jpg" width="520" height="650" loading="lazy" alt="">{badge}</a>')
                 w('        <div class="card-body">')
                 w(f'          <p class="meta"><span>Code</span><span>Phases {r["phases"][0]}–{r["phases"][1]}</span></p>')
                 w(f'          <h3><a href="{link}">Code Availability Statement</a></h3>')
@@ -352,5 +357,5 @@ def build(b):
     for name in sorted(wanted):
         copy_if_changed(os.path.join(thumbs, name), os.path.join(target, name))
     texts = pages.load_texts()
-    b.write("docs/index.html", render(b, texts))
+    b.write("docs/index.html", render(b, texts, pages.load_extras()))
     pages.build(b)
