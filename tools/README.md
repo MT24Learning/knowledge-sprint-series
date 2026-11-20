@@ -29,6 +29,17 @@ A phase is added once all of its images are public and its edition is archived o
 
 Without write access to the repository, add `--pack update.zip` to step 3: the zip holds only the files that the build changed, at their repository paths. Files written before the build (`tools/series_data.py` and the `code/` folder) are not in it: add them to the zip at their paths.
 
+## Text pages on the website
+
+The website can carry the whole text of each image, one page per sprint and one per phase summary, so the series can be read, searched and quoted. A phase gets these pages once [`texts/phase_NN.py`](texts/phase_14.py) exists; until then the site links to its page on GitHub. [`pages.py`](pages.py) builds them on every run of `build.py`, together with the search page, `docs/sitemap.xml`, `docs/404.html`, the page images (`docs/img/pages/`), the social preview cards (`docs/img/social/`) and the search index (`docs/pagefind/`, rebuilt from scratch with [Pagefind](https://pagefind.app/)). None of these is edited by hand.
+
+To add a phase's text, write `texts/phase_NN.py` on the model of Phase 14:
+
+1. Transcribe every card, note, check line, version line and source of each sprint image word for word, and every section of the summary. Read the figure panels in words from their labels, with the printed captions in italics; a panel states only what its image shows. The code is not copied: the page shows the sprint's file from `code/`, split into the code and the output printed after it.
+2. Give each source and reference an `https` link to the cited work (a DOI where there is one), checked against the work's own record.
+3. Measure the regions: where each part sits on the 2160 × 2700 image, in pixels. The page lights the part of the image whose text is being read.
+4. Rebuild and run `build.py --check`, which also checks that each phase with texts has all its pages and images, that its sprints match `series_data.py` and that every source has an `https` link.
+
 ## Requirements
 
-Python 3.10 or later and Pillow. The "next phase" tile is rendered with Playwright and Chromium; its two fonts (Space Grotesk and JetBrains Mono, SIL Open Font License) are fetched from the Google Fonts repository on first use.
+Python 3.10 or later, Pillow, and Pagefind for the site search (`pip install 'pagefind[bin]==1.6.0'`). The "next phase" tile is rendered with Playwright and Chromium; its two fonts (Space Grotesk and JetBrains Mono, SIL Open Font License) are fetched from the Google Fonts repository on first use.

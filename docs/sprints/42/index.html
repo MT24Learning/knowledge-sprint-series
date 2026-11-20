@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sprint 42: Adversarial Examples: Small Changes, Wrong Answers · Knowledge Sprint Series</title>
+<meta name="description" content="Random noise barely moves a model. A change of the same size, chosen against it, breaks it. What an adversarial example is, why noise and a chosen change differ, how many small pushes add up across many pixels, and how attacks travel between models.">
+<link rel="canonical" href="https://mt24learning.github.io/knowledge-sprint-series/sprints/42/">
+<meta name="theme-color" content="#061127">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Knowledge Sprint Series · MT24 Learning">
+<meta property="og:title" content="Sprint 42: Adversarial Examples: Small Changes, Wrong Answers · Knowledge Sprint Series">
+<meta property="og:description" content="Random noise barely moves a model. A change of the same size, chosen against it, breaks it. What an adversarial example is, why noise and a chosen change differ, how many small pushes add up across many pixels, and how attacks travel between models.">
+<meta property="og:url" content="https://mt24learning.github.io/knowledge-sprint-series/sprints/42/">
+<meta property="og:image" content="https://mt24learning.github.io/knowledge-sprint-series/img/social/sprint-42.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../img/brand/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../img/brand/apple-touch-icon.png">
+<link rel="preload" href="../../fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../style.css">
+<script>document.documentElement.classList.add("js")</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Sprint 42: Adversarial Examples: Small Changes, Wrong Answers", "headline": "Adversarial Examples: Small Changes, Wrong Answers", "description": "Random noise barely moves a model. A change of the same size, chosen against it, breaks it. What an adversarial example is, why noise and a chosen change differ, how many small pushes add up across many pixels, and how attacks travel between models.", "url": "https://mt24learning.github.io/knowledge-sprint-series/sprints/42/", "image": "https://mt24learning.github.io/knowledge-sprint-series/img/pages/sprint-42.jpg", "inLanguage": "en", "isAccessibleForFree": true, "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/", "learningResourceType": "Infographic", "author": {"@type": "Person", "name": "Mohammed Tahri", "alternateName": "MT24", "sameAs": ["https://orcid.org/0009-0000-9113-1687", "https://www.linkedin.com/in/mohammed-tahri24", "https://x.com/MohammedTahri24", "https://bsky.app/profile/mohammedtahri.bsky.social", "https://mathstodon.xyz/@mohammedtahri24", "https://www.threads.net/@mohammedtahri24", "https://www.instagram.com/mohammedtahri24", "https://www.facebook.com/mohammed.tahri24", "https://www.tiktok.com/@mohammed.tahri24", "https://substack.com/@mohammedtahri24"]}, "position": 42, "isPartOf": {"@type": "CreativeWork", "name": "Phase 14: AI Security & Robustness", "url": "https://mt24learning.github.io/knowledge-sprint-series/phases/14/", "identifier": "https://doi.org/10.5281/zenodo.24142098"}, "citation": [{"@type": "CreativeWork", "name": "Szegedy et al. (2014) ICLR", "url": "https://arxiv.org/abs/1312.6199"}, {"@type": "CreativeWork", "name": "Goodfellow, Shlens & Szegedy (2015) Explaining and Harnessing Adversarial Examples, ICLR", "url": "https://arxiv.org/abs/1412.6572"}, {"@type": "CreativeWork", "name": "Biggio et al. (2013) ECML PKDD, LNCS 8190, 387–402", "url": "https://doi.org/10.1007/978-3-642-40994-3_25"}, {"@type": "CreativeWork", "name": "Biggio & Roli (2018) Pattern Recognit. 84, 317–331", "url": "https://doi.org/10.1016/j.patcog.2018.07.023"}, {"@type": "CreativeWork", "name": "Dalvi et al. (2004) KDD, 99–108", "url": "https://doi.org/10.1145/1014052.1014066"}, {"@type": "CreativeWork", "name": "Fawzi, Moosavi-Dezfooli & Frossard (2016) NeurIPS 29, 1632–1640", "url": "https://arxiv.org/abs/1608.08967"}, {"@type": "CreativeWork", "name": "Papernot, McDaniel & Goodfellow (2016) arXiv 1605.07277", "url": "https://arxiv.org/abs/1605.07277"}, {"@type": "CreativeWork", "name": "Madry et al. (2018) ICLR", "url": "https://arxiv.org/abs/1706.06083"}, {"@type": "CreativeWork", "name": "Athalye, Carlini & Wagner (2018) ICML, PMLR 80, 274–283", "url": "https://proceedings.mlr.press/v80/athalye18a.html"}, {"@type": "CreativeWork", "name": "Carlini et al. (2019) arXiv 1902.06705", "url": "https://arxiv.org/abs/1902.06705"}, {"@type": "CreativeWork", "name": "Vassilev et al. (2025) NIST AI 100-2e2025", "url": "https://doi.org/10.6028/NIST.AI.100-2e2025"}, {"@type": "CreativeWork", "name": "Alpaydin & Kaynak (1998) UCI Optical Recognition of Handwritten Digits", "url": "https://doi.org/10.24432/C50P49"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://mt24learning.github.io/knowledge-sprint-series/"}, {"@type": "ListItem", "position": 2, "name": "Phase 14: AI Security & Robustness", "item": "https://mt24learning.github.io/knowledge-sprint-series/phases/14/"}, {"@type": "ListItem", "position": 3, "name": "Sprint 42", "item": "https://mt24learning.github.io/knowledge-sprint-series/sprints/42/"}]}</script>
+</head>
+<body class="page">
+<a class="skip" href="#main">Skip to the text</a>
+<header class="site">
+  <div class="bar wrap">
+    <a class="brand" href="../../" aria-label="Knowledge Sprint Series, home">
+      <img src="../../img/brand/mt24-badge.svg" width="40" height="40" alt="">
+      <span><b>Knowledge Sprint Series</b><small>MT24 Learning</small></span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="../../#phases">Phases</a>
+      <a href="../../#results">Results</a>
+      <a href="../../#sprint">How it works</a>
+      <a href="../../#cite">Cite</a>
+      <a class="search-link" href="../../search/">Search<kbd>/</kbd></a>
+      <a class="gh" href="https://github.com/MT24Learning/knowledge-sprint-series">GitHub</a>
+    </nav>
+  </div>
+</header>
+<main id="main" class="text-page" style="--acc:#c3362b;--acc-text:#d46e66">
+<nav class="crumbs wrap" aria-label="Breadcrumb" data-pagefind-ignore>
+  <a href="../../">Home</a><span>/</span><a href="../../phases/14/">Phase 14 · AI Security &amp; Robustness</a><span>/</span><span aria-current="page">Sprint 42</span>
+</nav>
+<header class="t-head wrap" data-spot="head">
+  <div class="road" role="img" aria-label="Sprint 42 of 90; 48 of 90 published"><span class="cell on" title="Sprint 1 · Environment + Git Foundations"></span><span class="cell on" title="Sprint 2 · Hashing + GitHub over SSH"></span><span class="cell on" title="Sprint 3 · Project Structure &amp; Quality Gates"></span><span class="cell gap on" title="Sprint 4 · Knowledge, Truth and Evidence"></span><span class="cell on" title="Sprint 5 · What Is a Model?"></span><span class="cell on" title="Sprint 6 · The Scientific Method, Objectivity and Its Failures"></span><span class="cell on" title="Sprint 7 · Four Minds on Science"></span><span class="cell gap on" title="Sprint 8 · Calibrating Intuition Before Automation"></span><span class="cell gap on" title="Sprint 9 · Linear Algebra &amp; Calculus for Machine Learning"></span><span class="cell on" title="Sprint 10 · Logic, Propositions &amp; Inference"></span><span class="cell on" title="Sprint 11 · Axioms &amp; Declared Assumptions"></span><span class="cell on" title="Sprint 12 · Testing &amp; Phase Review"></span><span class="cell gap on" title="Sprint 13 · Probability &amp; Distributions"></span><span class="cell on" title="Sprint 14 · Hypothesis Testing, Power &amp; Sample Size"></span><span class="cell on" title="Sprint 15 · Experimental Design &amp; Rigorous Inference"></span><span class="cell gap on" title="Sprint 16 · Anatomy of a Paradigm Shift"></span><span class="cell on" title="Sprint 17 · A Taxonomy of Model Failure"></span><span class="cell on" title="Sprint 18 · Documenting How a Model Failed"></span><span class="cell gap on" title="Sprint 19 · Data Pipelines: Extract, Transform, Load"></span><span class="cell on" title="Sprint 20 · Building an Evaluation Dataset"></span><span class="cell on" title="Sprint 21 · Data Validation &amp; Storage"></span><span class="cell gap on" title="Sprint 22 · How Tokenization Works"></span><span class="cell on" title="Sprint 23 · Byte Pair Encoding &amp; Its Edge Cases"></span><span class="cell on" title="Sprint 24 · Parsing Structured Meaning from Text"></span><span class="cell on" title="Sprint 25 · Publishing a Package"></span><span class="cell gap on" title="Sprint 26 · Supervised Learning: From Examples to a Rule"></span><span class="cell on" title="Sprint 27 · Baselines First"></span><span class="cell on" title="Sprint 28 · Three Classical Learners: Linear, Tree &amp; Neighbours"></span><span class="cell on" title="Sprint 29 · Regularisation &amp; Cross-Validation"></span><span class="cell on" title="Sprint 30 · Statistical Learning Theory: Why Learning Generalises"></span><span class="cell gap on" title="Sprint 31 · From Perceptron to Multilayer Network"></span><span class="cell on" title="Sprint 32 · How Networks Train: Backpropagation &amp; Training Dynamics"></span><span class="cell gap on" title="Sprint 33 · Meaning as Vectors: Word Embeddings"></span><span class="cell on" title="Sprint 34 · How Attention Works"></span><span class="cell on" title="Sprint 35 · Inside a Transformer"></span><span class="cell gap on" title="Sprint 36 · Dynamics and Chaos"></span><span class="cell on" title="Sprint 37 · Emergence and Self-Organisation"></span><span class="cell on" title="Sprint 38 · Fractals, Scaling and the Shape of Complexity"></span><span class="cell gap on" title="Sprint 39 · Keyword Search: Inverted Index &amp; BM25"></span><span class="cell on" title="Sprint 40 · Searching by Meaning: Dense &amp; Hybrid Retrieval"></span><span class="cell on" title="Sprint 41 · Retrieval-Augmented Generation: A Working Demo"></span><span class="cell gap on here" title="Sprint 42 · Adversarial Examples: Small Changes, Wrong Answers"></span><a class="cell on" href="../43/" title="Sprint 43 · Poisoned Data: Attacks Through Training &amp; Retrieval" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../44/" title="Sprint 44 · Prompt Injection: When Data Becomes an Instruction" aria-hidden="true" tabindex="-1"></a><span class="cell gap on" title="Sprint 45 · Representing a Claim: From Sentence to Structure"></span><span class="cell on" title="Sprint 46 · Ground Truth Is a Human Judgement: Measuring Agreement"></span><span class="cell on" title="Sprint 47 · Checking a Claim Against Evidence"></span><span class="cell on" title="Sprint 48 · Building a Verified Reference Set"></span><span class="cell" title="Sprint 49"></span><span class="cell" title="Sprint 50"></span><span class="cell" title="Sprint 51"></span><span class="cell" title="Sprint 52"></span><span class="cell" title="Sprint 53"></span><span class="cell" title="Sprint 54"></span><span class="cell" title="Sprint 55"></span><span class="cell" title="Sprint 56"></span><span class="cell" title="Sprint 57"></span><span class="cell" title="Sprint 58"></span><span class="cell" title="Sprint 59"></span><span class="cell" title="Sprint 60"></span><span class="cell" title="Sprint 61"></span><span class="cell" title="Sprint 62"></span><span class="cell" title="Sprint 63"></span><span class="cell" title="Sprint 64"></span><span class="cell" title="Sprint 65"></span><span class="cell" title="Sprint 66"></span><span class="cell" title="Sprint 67"></span><span class="cell" title="Sprint 68"></span><span class="cell" title="Sprint 69"></span><span class="cell" title="Sprint 70"></span><span class="cell" title="Sprint 71"></span><span class="cell" title="Sprint 72"></span><span class="cell" title="Sprint 73"></span><span class="cell" title="Sprint 74"></span><span class="cell" title="Sprint 75"></span><span class="cell" title="Sprint 76"></span><span class="cell" title="Sprint 77"></span><span class="cell" title="Sprint 78"></span><span class="cell" title="Sprint 79"></span><span class="cell" title="Sprint 80"></span><span class="cell" title="Sprint 81"></span><span class="cell" title="Sprint 82"></span><span class="cell" title="Sprint 83"></span><span class="cell" title="Sprint 84"></span><span class="cell" title="Sprint 85"></span><span class="cell" title="Sprint 86"></span><span class="cell" title="Sprint 87"></span><span class="cell" title="Sprint 88"></span><span class="cell" title="Sprint 89"></span><span class="cell" title="Sprint 90"></span></div>
+  <p class="eyebrow"><span>Phase 14 · Sprint 42/90 · <span data-pagefind-filter="Phase">AI Security &amp; Robustness</span></span><span class="names">Szegedy · Goodfellow · Biggio · Madry</span></p>
+  <h1 data-pagefind-meta="title">Adversarial Examples: Small Changes, <em>Wrong</em> Answers</h1>
+  <p class="tagline">Random noise barely moves a model. A change of the same size, chosen against it, breaks it.</p>
+  <p class="in-short"><b>In short.</b> What an adversarial example is, why noise and a chosen change differ, how many small pushes add up across many pixels, and how attacks travel between models.</p>
+  <span hidden data-pagefind-filter="Type">Sprint</span>
+</header>
+<div class="t-body wrap">
+  <figure class="t-image">
+    <div class="spotlit"><img src="../../img/pages/sprint-42.jpg" width="1080" height="1350" alt="Sprint 42 of 90 infographic: Adversarial Examples: Small Changes, Wrong Answers. Random noise barely moves a model. A change of the same size, chosen against it, breaks it. The full text of the image is on this page."><span class="spot" data-spot="head" aria-hidden="true" style="left:2.59%;top:11.85%;width:94.81%;height:9.63%"></span><span class="spot" data-spot="fig" aria-hidden="true" style="left:2.59%;top:22.00%;width:94.81%;height:14.67%"></span><span class="spot" data-spot="01" aria-hidden="true" style="left:2.59%;top:37.48%;width:28.33%;height:15.26%"></span><span class="spot" data-spot="02" aria-hidden="true" style="left:31.67%;top:37.48%;width:28.33%;height:15.26%"></span><span class="spot" data-spot="03" aria-hidden="true" style="left:2.59%;top:53.19%;width:28.33%;height:15.26%"></span><span class="spot" data-spot="04" aria-hidden="true" style="left:31.67%;top:53.19%;width:28.33%;height:15.26%"></span><span class="spot" data-spot="06" aria-hidden="true" style="left:2.59%;top:68.89%;width:28.33%;height:15.26%"></span><span class="spot" data-spot="07" aria-hidden="true" style="left:31.67%;top:68.89%;width:28.33%;height:15.26%"></span><span class="spot" data-spot="05" aria-hidden="true" style="left:60.74%;top:37.48%;width:36.67%;height:37.74%"></span><span class="spot" data-spot="R" aria-hidden="true" style="left:60.74%;top:75.67%;width:36.67%;height:8.48%"></span></div>
+    <span hidden data-pagefind-meta="image:/knowledge-sprint-series/img/pages/sprint-42-s.jpg"></span>
+    <figcaption data-pagefind-ignore><a href="https://raw.githubusercontent.com/MT24Learning/knowledge-sprint-series/main/phases/phase-14-ai-security-and-robustness/MT24_Learning_Phase14_Sprint42_Adversarial_Examples_Small_Changes_Wrong_Answers.png">Full resolution</a><span>2160 × 2700 PNG</span><a href="../../phases/14/">Phase summary</a></figcaption>
+    <p class="spot-hint" data-pagefind-ignore>The part of the image you are reading lights up. Tap a part to jump to its text.</p>
+  </figure>
+  <article class="t-text">
+    <section class="t-fig" aria-labelledby="fig" data-spot="fig">
+      <h2 id="fig">Fig. 1 <span>in words</span></h2>
+      <p class="fig-title">One budget, two changes · 540 real test digits (UCI) · same data as code 05</p>
+      <ol class="panels">
+        <li><h3><span class="ball" data-pagefind-ignore>1</span> One digit, three versions</h3><ul>
+          <li>original · net: 3 · &gt;99.9%</li>
+          <li>noise ±2 · net: 3 · &gt;99.9%</li>
+          <li>chosen ±2 · net: 8 · 99%</li>
+          <li><em>test digit 29, a 3 read at &gt;99.9%</em></li>
+          <li><em>each pixel moved ≤ 2 steps of the 0–16 scale</em></li>
+          <li>396 of 540 digits: noise leaves them right, the chosen change flips them</li>
+        </ul></li>
+        <li><h3><span class="ball" data-pagefind-ignore>2</span> Accuracy by change size</h3><ul>
+          <li>Accuracy from 0 to ±4 under the attack (net, linear) and under noise</li>
+          <li>At ±2: noise 95.4 · attack: linear 46.7 · net 21.5</li>
+          <li><em>grey levels per pixel · noise: net</em></li>
+        </ul></li>
+        <li><h3><span class="ball" data-pagefind-ignore>3</span> Why: signs add up</h3><ul>
+          <li>linear model, weights of 8 minus 3: red + · blue −</li>
+          <li>push ε · sign(w): no pixel works against it</li>
+          <li><em>size of the push, same ±ε</em>: random signs ≈ ε·√Σw² · chosen 5.43× · ceiling √64 = 8×</li>
+          <li>chosen = ε·Σ|w| · mean of 45 digit pairs</li>
+        </ul></li>
+        <li><h3><span class="ball" data-pagefind-ignore>4</span> Defences, tested again</h3><ul>
+          <li>net · no defence: 21.5%</li>
+          <li>linear · no defence: 46.7%</li>
+          <li>linear, trained on old attacks · replayed: 88.5%</li>
+          <li>same linear model · fresh attack: 15.9%</li>
+          <li>net, adversarial training · fresh attack: 74.3%</li>
+          <li><em>accuracy under a ±2 change · adversarial training, clean: 97.2%</em></li>
+        </ul></li>
+      </ol>
+      <aside class="notes"><h3>Analyst notes</h3><ol>
+        <li><span class="ball">1</span><b>Pick</b> Digit 29 is a 3. Noise of ±2 leaves it a 3; the chosen ±2 makes it an 8 at 99%.</li>
+        <li><span class="ball">2</span><b>Size</b> At ±2 grey levels, noise keeps the net at 95.4%; the chosen change leaves 21.5%.</li>
+        <li><span class="ball">3</span><b>Why</b> In the linear model each pixel follows the sign of its weight, so pushes add: 5.43× random signs.</li>
+        <li><span class="ball">4</span><b>Retest</b> Linear model trained on old attacks: 88.5% when they are replayed · 15.9% against a fresh one.</li>
+      </ol></aside>
+    </section>
+    <div class="t-cards">
+      <section class="t-card" aria-labelledby="card-01" data-spot="01">
+        <h2 id="card-01"><span class="key" data-pagefind-ignore>01</span> <span class="h">A Chosen Change</span> <span class="tag" data-pagefind-ignore>Definition</span></h2>
+        <ul>
+          <li><strong>Evasion</strong> (NIST AI 100-2): a small, deliberate change to an input that causes an error</li>
+          <li>Named <em>adversarial examples</em> by Szegedy et al. (2014); Biggio et al. (2013) built them with gradients too</li>
+          <li>Budget here: ±2 steps per pixel on the 0–16 grey scale</li>
+        </ul>
+        <p class="note">Older than the name: in 2004 Dalvi et al. showed spam filters can be tricked by a few chosen changes.</p>
+      </section>
+      <section class="t-card claim" aria-labelledby="card-02" data-spot="02">
+        <h2 id="card-02"><span class="key" data-pagefind-ignore>02</span> <span class="h">Noise vs. Attack</span> <span class="stamp" data-pagefind-ignore>Claim fails</span></h2>
+        <ul>
+          <li>Claim: “if random noise does not hurt a model, small changes cannot”</li>
+          <li>±2 levels on 540 test digits: noise keeps the net at 95.4%, a chosen change of the same size leaves 21.5%</li>
+          <li>Linear model: 95.4% against 46.7%</li>
+        </ul>
+        <p class="note">Fawzi et al. (2016): random noise must be about √d times the smallest attack (ℓ₂), if the boundary is gently curved.</p>
+      </section>
+      <section class="t-card" aria-labelledby="card-03" data-spot="03">
+        <h2 id="card-03"><span class="key" data-pagefind-ignore>03</span> <span class="h">Many Small Pushes</span> <span class="tag" data-pagefind-ignore>Why</span></h2>
+        <ul>
+          <li>A linear score moves by ε·Σ|wᵢ| when every pixel follows the sign of its weight (Goodfellow et al. 2015)</li>
+          <li>Random signs mostly cancel: about ε·√Σwᵢ²</li>
+          <li>Linear model&#x27;s weights: the chosen push is 5.43× the random one, mean of 45 digit pairs (ceiling √64 = 8)</li>
+        </ul>
+        <p class="note">Goodfellow et al., listing Szegedy et al.&#x27;s findings: “shallow softmax regression models are also vulnerable”.</p>
+      </section>
+      <section class="t-card" aria-labelledby="card-04" data-spot="04">
+        <h2 id="card-04"><span class="key" data-pagefind-ignore>04</span> <span class="h">Attacks Travel</span> <span class="tag" data-pagefind-ignore>Transfer</span></h2>
+        <ul>
+          <li>Changes computed on the linear model alone take the net from 97.8% to 35.7%</li>
+          <li>Szegedy et al.: the same perturbed input also fooled a net trained on another subset of the data</li>
+          <li>Papernot et al. (2016): 96.19% and 88.94% misclassified by two commercial services after 800 queries</li>
+        </ul>
+        <p class="note">Hiding the weights does not hide the weakness.</p>
+      </section>
+    </div>
+    <section class="t-try" aria-labelledby="try" data-spot="05">
+      <h2 id="try"><span class="key" data-pagefind-ignore>05</span> Try It Yourself <span class="ver" data-pagefind-ignore>PY 3.13.18 · NUMPY 2.5.3 · SKLEARN 1.9.1</span></h2>
+      <div class="code-box">
+        <p class="file"><span>sprint42_adversarial_examples_small_changes_wrong_answers.py</span><button class="copy" type="button" data-copy="code-42">Copy</button></p>
+        <pre class="code" id="code-42" data-pagefind-ignore><code><span class="c-kw">import</span> numpy <span class="c-kw">as</span> np
+<span class="c-kw">from</span> sklearn.datasets <span class="c-kw">import</span> load_digits
+<span class="c-kw">from</span> sklearn.linear_model <span class="c-kw">import</span> LogisticRegression <span class="c-kw">as</span> LR
+<span class="c-kw">from</span> sklearn.model_selection <span class="c-kw">import</span> train_test_split
+<span class="c-kw">from</span> sklearn.neural_network <span class="c-kw">import</span> MLPClassifier <span class="c-kw">as</span> MLP
+X, y = load_digits(return_X_y=<span class="c-kw">True</span>); X = X / <span class="c-num">16</span>  <span class="c-com"># grey 0..16 -&gt; 0..1</span>
+Xa, Xt, ya, yt = train_test_split(X, y, test_size=<span class="c-num">.3</span>, stratify=y,
+                                  random_state=<span class="c-num">42</span>)
+lin = LR(max_iter=<span class="c-num">5000</span>).fit(Xa, ya)                    <span class="c-com"># linear model</span>
+net = MLP((<span class="c-num">64</span>,), max_iter=<span class="c-num">3000</span>, random_state=<span class="c-num">42</span>).fit(Xa, ya)
+<span class="c-kw">def</span> <span class="c-fn">grad</span>(m, X, y):                      <span class="c-com"># d loss / d pixel</span>
+    P = m.predict_proba(X); P[np.arange(<span class="c-bi">len</span>(y)), y] -= <span class="c-num">1</span>
+    <span class="c-kw">if</span> <span class="c-bi">hasattr</span>(m, <span class="c-str">&quot;coef_&quot;</span>): <span class="c-kw">return</span> P @ m.coef_
+    (W1, W2), b1 = m.coefs_, m.intercepts_[<span class="c-num">0</span>]
+    <span class="c-kw">return</span> (P @ W2.T * (X @ W1 + b1 &gt; <span class="c-num">0</span>)) @ W1.T
+<span class="c-kw">def</span> <span class="c-fn">attack</span>(m, X, y, e, steps=<span class="c-num">10</span>):       <span class="c-com"># sign steps kept within ±e</span>
+    A = X.copy()
+    <span class="c-kw">for</span> _ <span class="c-kw">in</span> <span class="c-bi">range</span>(steps):
+        A = A + e / <span class="c-num">4</span> * np.sign(grad(m, A, y))
+        A = np.clip(np.clip(A, X - e, X + e), <span class="c-num">0</span>, <span class="c-num">1</span>)
+    <span class="c-kw">return</span> A
+pct = <span class="c-kw">lambda</span> m, X: <span class="c-str">f&quot;</span>{<span class="c-num">100</span> * m.score(X, yt):<span class="c-str">.1f</span>}<span class="c-str">%</span><span class="c-str">&quot;</span>
+noise = np.random.default_rng(<span class="c-num">42</span>).choice([-<span class="c-num">1</span>, <span class="c-num">1</span>], Xt.shape)
+<span class="c-bi">print</span>(<span class="c-bi">len</span>(yt), <span class="c-str">&quot;test digits | clean: linear&quot;</span>, pct(lin, Xt), <span class="c-str">&quot;net&quot;</span>,
+      pct(net, Xt))
+<span class="c-kw">for</span> lv <span class="c-kw">in</span> <span class="c-bi">range</span>(<span class="c-num">1</span>, <span class="c-num">5</span>):                  <span class="c-com"># change of lv grey levels</span>
+    e = lv / <span class="c-num">16</span>; R = np.clip(Xt + e * noise, <span class="c-num">0</span>, <span class="c-num">1</span>)
+    <span class="c-bi">print</span>(<span class="c-str">f&quot;</span><span class="c-str">±</span>{lv}<span class="c-str"> linear: noise </span>{pct(lin, R)}<span class="c-str"> attack</span><span class="c-str">&quot;</span>,
+          pct(lin, attack(lin, Xt, yt, e)), <span class="c-str">&quot;| net: noise&quot;</span>,
+          pct(net, R), <span class="c-str">&quot;attack&quot;</span>, pct(net, attack(net, Xt, yt, e)))
+e = <span class="c-num">2</span> / <span class="c-num">16</span>                              <span class="c-com"># the change on Fig. 1</span>
+W = lin.coef_; r = [<span class="c-bi">abs</span>(W[i] - W[j]).<span class="c-bi">sum</span>() / np.linalg.norm(
+    W[i] - W[j]) <span class="c-kw">for</span> i <span class="c-kw">in</span> <span class="c-bi">range</span>(<span class="c-num">10</span>) <span class="c-kw">for</span> j <span class="c-kw">in</span> <span class="c-bi">range</span>(i)]
+<span class="c-bi">print</span>(<span class="c-str">f&quot;</span><span class="c-str">chosen / random push: </span>{np.mean(r):<span class="c-str">.2f</span>}<span class="c-str"> (ceiling sqrt(64) = 8)</span><span class="c-str">&quot;</span>)
+A = attack(lin, Xt, yt, e)              <span class="c-com"># made on the linear model</span>
+<span class="c-bi">print</span>(<span class="c-str">&quot;made on linear, given to net:&quot;</span>, pct(net, Xt), <span class="c-str">&quot;-&gt;&quot;</span>, pct(net, A))
+rob = LR(max_iter=<span class="c-num">5000</span>).fit(np.vstack([Xa, attack(lin, Xa, ya, e)]),
+                            np.r_[ya, ya])     <span class="c-com"># trained on old attacks</span>
+<span class="c-bi">print</span>(<span class="c-str">&quot;defence | old attack:&quot;</span>, pct(rob, A), <span class="c-str">&quot;fresh attack:&quot;</span>,
+      pct(rob, attack(rob, Xt, yt, e)))
+adv = MLP((<span class="c-num">64</span>,), random_state=<span class="c-num">42</span>)
+adv.partial_fit(Xa, ya, classes=np.arange(<span class="c-num">10</span>))
+<span class="c-kw">for</span> _ <span class="c-kw">in</span> <span class="c-bi">range</span>(<span class="c-num">200</span>):                    <span class="c-com"># adversarial training</span>
+    adv.partial_fit(np.vstack([Xa, attack(adv, Xa, ya, e, <span class="c-num">5</span>)]),
+                    np.r_[ya, ya])
+<span class="c-bi">print</span>(<span class="c-str">&quot;adversarial training | clean:&quot;</span>, pct(adv, Xt), <span class="c-str">&quot;attack:&quot;</span>,
+      pct(adv, attack(adv, Xt, yt, e)), <span class="c-str">&quot;50 steps:&quot;</span>,
+      pct(adv, attack(adv, Xt, yt, e, <span class="c-num">50</span>)))</code></pre>
+        <p class="file out">Output, as printed on the image</p>
+        <pre class="output"><code>540 test digits | clean: linear 96.7% net 97.8%
+±1 linear: noise 96.3% attack 82.8% | net: noise 97.0% attack 73.7%
+±2 linear: noise 95.4% attack 46.7% | net: noise 95.4% attack 21.5%
+±3 linear: noise 92.2% attack 9.4% | net: noise 92.4% attack 0.2%
+±4 linear: noise 89.8% attack 0.4% | net: noise 86.7% attack 0.0%
+chosen / random push: 5.43 (ceiling sqrt(64) = 8)
+made on linear, given to net: 97.8% -&gt; 35.7%
+defence | old attack: 88.5% fresh attack: 15.9%
+adversarial training | clean: 97.2% attack: 74.3% 50 steps: 73.9%</code></pre>
+      </div>
+      <p class="run" data-pagefind-ignore><b>Run it.</b> <a href="https://github.com/MT24Learning/knowledge-sprint-series/blob/main/phases/phase-14-ai-security-and-robustness/code/sprint42_adversarial_examples_small_changes_wrong_answers.py">sprint42_adversarial_examples_small_changes_wrong_answers.py</a> · <a href="https://github.com/MT24Learning/knowledge-sprint-series/blob/main/phases/phase-14-ai-security-and-robustness/code/README.md">versions, data and steps</a></p>
+      <p class="check">Check: ±2 = 2 ÷ 16 = 0.125 · 95.4 − 21.5 = 73.9 points · 88.5 − 15.9 = 72.6 points · 5.43 &lt; 8 = √64</p>
+    </section>
+    <div class="t-cards">
+      <section class="t-card" aria-labelledby="card-06" data-spot="06">
+        <h2 id="card-06"><span class="key" data-pagefind-ignore>06</span> <span class="h">General Notes</span> <span class="tag" data-pagefind-ignore>Practice</span></h2>
+        <ul>
+          <li>Linear model trained on old attacks: 88.5% replayed · 15.9% fresh · undefended 46.7%</li>
+          <li>Athalye et al. (2018): 7 of 9 non-certified ICLR 2018 defences relied on obfuscated gradients · 6 fully broken · 1 partly</li>
+          <li>Adversarial training of the net (Madry et al. 2018): 74.3% · 73.9% at 50 steps</li>
+        </ul>
+        <p class="note">Bridge: test a defence with an attack that knows it (Carlini et al. 2019).</p>
+      </section>
+      <section class="t-card" aria-labelledby="card-07" data-spot="07">
+        <h2 id="card-07"><span class="key" data-pagefind-ignore>07</span> <span class="h">Mini Project</span> <span class="tag" data-pagefind-ignore>Hands-on</span></h2>
+        <ul>
+          <li>Attack in one full step (FGSM): net 28.0% against 21.5% for 10 steps</li>
+          <li>Seeds 1–5 for the noise and the net: does the gap hold?</li>
+          <li>Train adversarially at ±3, then report clean · ±2 · ±3</li>
+        </ul>
+        <p class="note">Price the defence: on clean digits the old-attack model fell from 96.7% to 93.5%.</p>
+      </section>
+    </div>
+    <section class="t-sources" aria-labelledby="sources" data-spot="R">
+      <h2 id="sources"><span class="key" data-pagefind-ignore>R</span> Trusted Sources</h2>
+      <ol class="sources">
+        <li><a href="https://arxiv.org/abs/1312.6199" rel="noopener">Szegedy et al. (2014) ICLR</a></li>
+        <li><a href="https://arxiv.org/abs/1412.6572" rel="noopener">Goodfellow, Shlens &amp; Szegedy (2015) <em>Explaining and Harnessing Adversarial Examples</em>, ICLR</a></li>
+        <li><a href="https://doi.org/10.1007/978-3-642-40994-3_25" rel="noopener">Biggio et al. (2013) ECML PKDD, LNCS 8190, 387–402</a></li>
+        <li><a href="https://doi.org/10.1016/j.patcog.2018.07.023" rel="noopener">Biggio &amp; Roli (2018) Pattern Recognit. 84, 317–331</a></li>
+        <li><a href="https://doi.org/10.1145/1014052.1014066" rel="noopener">Dalvi et al. (2004) KDD, 99–108</a></li>
+        <li><a href="https://arxiv.org/abs/1608.08967" rel="noopener">Fawzi, Moosavi-Dezfooli &amp; Frossard (2016) NeurIPS 29, 1632–1640</a></li>
+        <li><a href="https://arxiv.org/abs/1605.07277" rel="noopener">Papernot, McDaniel &amp; Goodfellow (2016) arXiv 1605.07277</a></li>
+        <li><a href="https://arxiv.org/abs/1706.06083" rel="noopener">Madry et al. (2018) ICLR</a></li>
+        <li><a href="https://proceedings.mlr.press/v80/athalye18a.html" rel="noopener">Athalye, Carlini &amp; Wagner (2018) ICML, PMLR 80, 274–283</a></li>
+        <li><a href="https://arxiv.org/abs/1902.06705" rel="noopener">Carlini et al. (2019) arXiv 1902.06705</a></li>
+        <li><a href="https://doi.org/10.6028/NIST.AI.100-2e2025" rel="noopener">Vassilev et al. (2025) NIST AI 100-2e2025</a></li>
+        <li><a href="https://doi.org/10.24432/C50P49" rel="noopener">Alpaydin &amp; Kaynak (1998) UCI Optical Recognition of Handwritten Digits</a></li>
+      </ol>
+    </section>
+  </article>
+</div>
+<nav class="pager wrap" aria-label="Sprints" data-pagefind-ignore>
+  <a class="pg-prev" href="https://github.com/MT24Learning/knowledge-sprint-series/blob/main/phases/phase-13-semantic-search-and-retrieval/README.md"><small>← Sprint 41 <span class="ext">on GitHub</span></small><b>Retrieval-Augmented Generation: A Working Demo</b></a>
+  <a class="pg-up" href="../../phases/14/"><small>Phase 14</small><b>AI Security &amp; Robustness</b></a>
+  <a class="pg-next" href="../../sprints/43/"><small>Sprint 43 →</small><b>Poisoned Data: Attacks Through Training &amp; Retrieval</b></a>
+</nav>
+<section class="cite-strip wrap" data-pagefind-ignore>
+  <p class="label">Cite this phase</p>
+  <div class="cite-box">
+    <pre id="cite-42">Tahri, M. (2026). MT24 Learning — Knowledge Sprint Series, Phase 14: AI Security &amp; Robustness (Version 1.0) [Educational resource]. Zenodo. https://doi.org/10.5281/zenodo.24142098</pre>
+    <button class="copy" type="button" data-copy="cite-42">Copy</button>
+  </div>
+  <p class="cite-note">Version DOI <a class="doi" href="https://doi.org/10.5281/zenodo.24142098">10.5281/zenodo.24142098</a> · all versions <a class="doi" href="https://doi.org/10.5281/zenodo.24142097">10.5281/zenodo.24142097</a> · first published 7 November 2026</p>
+</section>
+</main>
+<footer class="site">
+  <div class="wrap foot-row">
+    <p>© 2026 Mohammed Tahri (MT24) · Images and text under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · Sprint code under <a href="https://github.com/MT24Learning/knowledge-sprint-series/blob/main/LICENSE-CODE">MIT</a></p>
+    <p><a href="https://github.com/MT24Learning">MT24 Learning</a> · <a href="https://github.com/MT24Learning/knowledge-sprint-series">Source and data</a> · <a href="../../fonts/OFL.txt">Font licences</a></p>
+  </div>
+</footer>
+<script src="../../site.js" defer></script>
+</body>
+</html>

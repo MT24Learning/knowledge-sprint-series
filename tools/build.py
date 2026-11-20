@@ -97,6 +97,25 @@ def citation(p):
             f"(Version 1.0) [Educational resource]. Zenodo. https://doi.org/{p['v']}")
 
 
+def text_phases():
+    """Phase numbers that have a tools/texts/phase_NN.py file, so text pages on the website."""
+    folder = os.path.join(TOOLS, "texts")
+    if not os.path.isdir(folder):
+        return set()
+    return {int(f[6:8]) for f in os.listdir(folder) if re.fullmatch(r"phase_\d\d\.py", f)}
+
+
+def full_text_note():
+    """One sentence for the front page naming the phases whose images are written out as text on the website."""
+    have = sorted(p["n"] for p in PHASES if p["n"] in text_phases())
+    if not have:
+        return ""
+    names = ", ".join(str(n) for n in have)
+    which = f"Phase {names}" if len(have) == 1 else f"Phases {names}"
+    return (f" On the website, every image of {which} is also written out as text, page by page, "
+            f"with a [search]({SITE_URL}search/) across it.")
+
+
 def phase_by_n(n):
     return next(p for p in PHASES if p["n"] == n)
 
@@ -237,6 +256,7 @@ def phase_page(i, p):
     count = len(p["sprints"])
     word = "sprint" if count == 1 else "sprints"
 
+    has_text = p["n"] in text_phases()
     out = [
         f"<sub>{nav_line}</sub>",
         "",
@@ -247,6 +267,12 @@ def phase_page(i, p):
         "",
         f"> {p['line']}",
         "",
+    ]
+    if has_text:
+        out += [f"**Full text on the website.** Every image of this phase is also written out as text, ready to read, "
+                f"search and quote: [Phase {p['n']} summary]({SITE_URL}phases/{p['n']}/) · "
+                + " · ".join(f"[Sprint {s['n']}]({SITE_URL}sprints/{s['n']}/)" for s in p["sprints"]), ""]
+    out += [
         "## Phase summary",
         "",
         f"<a href=\"{p['summary']}\"><img src=\"{p['summary']}\" width=\"760\" "
@@ -273,6 +299,8 @@ def phase_page(i, p):
             f"**Try it.** {s['tryit']}",
             "",
         ]
+        if has_text:
+            out += [f"**Full text.** [Sprint {s['n']} on the website]({SITE_URL}sprints/{s['n']}/)", ""]
         run = code_files(p, s)
         if run:
             rec = code_record(p)
@@ -367,7 +395,7 @@ def readme():
         f"This repository is the browsable index of the series: every published sprint, every phase summary and "
         f"the DOI of each phase's archived edition. The permanent, citable archive lives on Zenodo, in the "
         f"[MT24 Learning community]({ZENODO}). The same index is also published as a website: "
-        f"[{SITE_URL.split('//')[1].rstrip('/')}]({SITE_URL}).",
+        f"[{SITE_URL.split('//')[1].rstrip('/')}]({SITE_URL})." + full_text_note(),
         "",
         f"**Progress:** {archived} of {TOTAL_PHASES} phases archived, {sprints_done} of {TOTAL_SPRINTS} sprints ({pct}%).",
         "",
@@ -715,6 +743,8 @@ def check():
             links += 1
             path, _, frag = link.partition("#")
             target = os.path.normpath(os.path.join(os.path.dirname(md), path)) if path else md
+            if os.path.isdir(target) and md.endswith(".html"):
+                target = os.path.join(target, "index.html")
             rel = os.path.relpath(md, ROOT)
             if not os.path.exists(target):
                 problems.append(f"broken link in {rel}: {link}")
@@ -754,6 +784,23 @@ def check():
     for d in sorted(os.listdir(os.path.join(ROOT, "phases"))):
         if f"phases/{d}" not in known:
             problems.append(f"folder not in series_data.py: phases/{d}")
+
+    import pages
+    texts = pages.load_texts()
+    problems += pages.text_problems(sys.modules[__name__], texts)
+    for n in texts:
+        p = phase_by_n(n) if any(q["n"] == n for q in PHASES) else None
+        if not p:
+            continue
+        wanted = [f"docs/phases/{n}/index.html", f"docs/img/pages/phase-{n}.jpg", f"docs/img/social/phase-{n}.jpg"]
+        for s in p["sprints"]:
+            wanted += [f"docs/sprints/{s['n']}/index.html", f"docs/img/pages/sprint-{s['n']}.jpg",
+                       f"docs/img/pages/sprint-{s['n']}-s.jpg", f"docs/img/social/sprint-{s['n']}.jpg"]
+        problems += [f"text page missing (rebuild): {w}" for w in wanted if not os.path.exists(os.path.join(ROOT, w))]
+    if texts:
+        for need in ("docs/search/index.html", "docs/sitemap.xml", "docs/pagefind/pagefind-ui.js"):
+            if not os.path.exists(os.path.join(ROOT, need)):
+                problems.append(f"missing (rebuild): {need}")
 
     numbers = [s["n"] for p in PHASES for s in p["sprints"]]
     if numbers != list(range(1, len(numbers) + 1)):
