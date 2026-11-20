@@ -3,8 +3,8 @@
 </p>
 
 <p align="center">
-  <a href="#phases"><img src="https://img.shields.io/badge/phases%20archived-14%20of%2027-0B9C93?style=flat-square" alt="phases archived: 14 of 27"></a>
-  <a href="#every-sprint"><img src="https://img.shields.io/badge/sprints-44%20of%2090-2A7CF6?style=flat-square" alt="sprints: 44 of 90"></a>
+  <a href="#phases"><img src="https://img.shields.io/badge/phases%20archived-15%20of%2027-0B9C93?style=flat-square" alt="phases archived: 15 of 27"></a>
+  <a href="#every-sprint"><img src="https://img.shields.io/badge/sprints-48%20of%2090-2A7CF6?style=flat-square" alt="sprints: 48 of 90"></a>
   <a href="https://zenodo.org/communities/mt24-learning"><img src="https://img.shields.io/badge/archive-Zenodo-1682D4?style=flat-square" alt="archive: Zenodo"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/licence-CC%20BY--NC--SA%204.0-061127?style=flat-square" alt="licence: CC BY-NC-SA 4.0"></a>
 </p>
@@ -13,9 +13,11 @@
 
 **A free, open learning path of 90 sprints in 27 phases, from engineering practice to the philosophy of science, statistics and machine learning.** Each sprint is one portrait infographic that combines the core concepts, commands to try, a mini project and a list of trusted sources, so every claim can be checked against its origin. Each phase closes with a one-page summary.
 
+This series is an entry point, not a full course. Each sprint opens a field that stands on its own, with its own textbooks, methods and open questions, and no set of images can cover it. The trusted sources on every sprint are where the real study continues.
+
 This repository is the browsable index of the series: every published sprint, every phase summary and the DOI of each phase's archived edition. The permanent, citable archive lives on Zenodo, in the [MT24 Learning community](https://zenodo.org/communities/mt24-learning). The same index is also published as a website: [mt24learning.github.io/knowledge-sprint-series](https://mt24learning.github.io/knowledge-sprint-series/).
 
-**Progress:** 14 of 27 phases archived, 44 of 90 sprints (49%).
+**Progress:** 15 of 27 phases archived, 48 of 90 sprints (53%).
 
 ## Phases
 
@@ -47,7 +49,8 @@ This repository is the browsable index of the series: every published sprint, ev
   </tr>
   <tr>
     <td align="center" valign="top" width="33%"><a href="code-availability/README.md"><img src="assets/thumbs/code-01-14.jpg" width="260" alt="Code Availability Statement for Phases 1 to 14"></a><br><a href="code-availability/README.md"><b>Code</b> · Code Availability Statement</a><br><sub>Phases 1–14</sub></td>
-    <td align="center" valign="top" width="33%"><img src="assets/thumbs/next-phase.jpg" width="260" alt="Phase 15, coming next"><br><b>Phase 15</b> · Structured Claims & Ground Truth<br><sub>Coming next</sub></td>
+    <td align="center" valign="top" width="33%"><a href="phases/phase-15-structured-claims-and-ground-truth/README.md"><img src="assets/thumbs/phase-15.jpg" width="260" alt="Phase 15 summary: Structured Claims & Ground Truth"></a><br><a href="phases/phase-15-structured-claims-and-ground-truth/README.md"><b>Phase 15</b> · Structured Claims & Ground Truth</a><br><sub>Sprints 45–48</sub></td>
+    <td align="center" valign="top" width="33%"><img src="assets/thumbs/next-phase.jpg" width="260" alt="Phase 16, coming next"><br><b>Phase 16</b> · Causality & Information Theory<br><sub>Coming next</sub></td>
   </tr>
 </table>
 
@@ -67,13 +70,14 @@ This repository is the browsable index of the series: every published sprint, ev
 | 12 | [The Complexity Lens](phases/phase-12-the-complexity-lens/README.md) | 36–38 | 20 October 2026 | [10.5281/zenodo.23694200](https://doi.org/10.5281/zenodo.23694200) |
 | 13 | [Semantic Search & Retrieval](phases/phase-13-semantic-search-and-retrieval/README.md) | 39–41 | 27 October 2026 | [10.5281/zenodo.24012904](https://doi.org/10.5281/zenodo.24012904) |
 | 14 | [AI Security & Robustness](phases/phase-14-ai-security-and-robustness/README.md) | 42–44 | 7 November 2026 | [10.5281/zenodo.24142098](https://doi.org/10.5281/zenodo.24142098) |
+| 15 | [Structured Claims & Ground Truth](phases/phase-15-structured-claims-and-ground-truth/README.md) | 45–48 | 17 November 2026 | [10.5281/zenodo.24387974](https://doi.org/10.5281/zenodo.24387974) |
 
-Phase 15, *Structured Claims & Ground Truth* (Sprints 45–48), comes next. A phase joins this repository after all of its images are public and its edition is archived on Zenodo.
+Phase 16, *Causality & Information Theory* (Sprints 49–53), comes next. A phase joins this repository after all of its images are public and its edition is archived on Zenodo.
 
 ## Every sprint
 
 <details>
-<summary>All 44 published sprints, in order</summary>
+<summary>All 48 published sprints, in order</summary>
 
 | Sprint | Title | Phase |
 | ---: | --- | --- |
@@ -121,6 +125,10 @@ Phase 15, *Structured Claims & Ground Truth* (Sprints 45–48), comes next. A ph
 | 42 | [Adversarial Examples: Small Changes, Wrong Answers](phases/phase-14-ai-security-and-robustness/README.md#sprint-4290--adversarial-examples-small-changes-wrong-answers) | 14 · AI Security & Robustness |
 | 43 | [Poisoned Data: Attacks Through Training & Retrieval](phases/phase-14-ai-security-and-robustness/README.md#sprint-4390--poisoned-data-attacks-through-training--retrieval) | 14 · AI Security & Robustness |
 | 44 | [Prompt Injection: When Data Becomes an Instruction](phases/phase-14-ai-security-and-robustness/README.md#sprint-4490--prompt-injection-when-data-becomes-an-instruction) | 14 · AI Security & Robustness |
+| 45 | [Representing a Claim: From Sentence to Structure](phases/phase-15-structured-claims-and-ground-truth/README.md#sprint-4590--representing-a-claim-from-sentence-to-structure) | 15 · Structured Claims & Ground Truth |
+| 46 | [Ground Truth Is a Human Judgement: Measuring Agreement](phases/phase-15-structured-claims-and-ground-truth/README.md#sprint-4690--ground-truth-is-a-human-judgement-measuring-agreement) | 15 · Structured Claims & Ground Truth |
+| 47 | [Checking a Claim Against Evidence](phases/phase-15-structured-claims-and-ground-truth/README.md#sprint-4790--checking-a-claim-against-evidence) | 15 · Structured Claims & Ground Truth |
+| 48 | [Building a Verified Reference Set](phases/phase-15-structured-claims-and-ground-truth/README.md#sprint-4890--building-a-verified-reference-set) | 15 · Structured Claims & Ground Truth |
 
 </details>
 
