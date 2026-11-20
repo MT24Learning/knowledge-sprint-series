@@ -104,21 +104,8 @@ def render(b, texts=None, extras=None):
     w('<a class="skip" href="#phases">Skip to the phases</a>')
 
     # ------------------------------------------------------------ header
-    w('<header class="site">')
-    w('  <div class="bar wrap">')
-    w('    <a class="brand" href="./" aria-label="Knowledge Sprint Series, home">')
-    w('      <img src="img/brand/mt24-badge.svg" width="40" height="40" alt="">')
-    w('      <span><b>Knowledge Sprint Series</b><small>MT24 Learning</small></span>')
-    w("    </a>")
-    w('    <nav aria-label="Sections">')
-    for href, label in [("#phases", "Phases"), ("#results", "Results"), ("#sprint", "How it works"),
-                        ("#cite", "Cite"), ("#follow", "Follow")]:
-        w(f'      <a href="{href}">{label}</a>')
-    w('      <a class="search-link" href="search/">Search<kbd>/</kbd></a>')
-    w(f'      <a class="gh" href="{b.REPO_URL}">GitHub</a>')
-    w("    </nav>")
-    w("  </div>")
-    w("</header>")
+    for line in pages.site_header(b, ""):
+        w(line)
     w("<main>")
 
     # ------------------------------------------------------------ hero
@@ -312,28 +299,14 @@ def render(b, texts=None, extras=None):
     w("    <h2>Follow the series</h2>")
     w('    <p class="sub">New sprints are posted first on social media; once their phase is complete, it is '
       "archived on Zenodo and listed here.</p>")
-    w('    <p class="pills">')
-    for name, url in b.SOCIAL:
-        w(f'      <a rel="me" href="{url}">{name}</a>')
-    w(f'      <a href="{b.REPO_URL}">GitHub</a>')
-    w("    </p>")
+    w("    " + pages.socials(b, "pills follow-pills"))
     w("  </div>")
     w("</section>")
     w("</main>")
 
     # ------------------------------------------------------------ footer
-    w('<footer class="site">')
-    w('  <div class="wrap foot-row">')
-    w("    <p>© 2026 Mohammed Tahri (MT24) · Images and text under "
-      '<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · '
-      f'Sprint code under <a href="{b.REPO_URL}/blob/main/LICENSE-CODE">MIT</a></p>')
-    w('    <p><a href="https://github.com/MT24Learning">MT24 Learning</a> · '
-      f'<a href="{b.REPO_URL}">Source and data</a> · <a href="fonts/OFL.txt">Font licences</a></p>')
-    w("  </div>")
-    w("</footer>")
-    w('<script src="site.js" defer></script>')
-    w("</body>")
-    w("</html>")
+    for line in pages.site_footer(b, ""):
+        w(line)
     return "\n".join(out)
 
 

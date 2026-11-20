@@ -20,6 +20,8 @@ import sys
 import tokenize
 from html import escape
 
+from icons import SOCIAL_ICON, icon
+
 PAGEFIND = "1.6.0"
 TEXTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "texts")
 RAW = "https://raw.githubusercontent.com/MT24Learning/knowledge-sprint-series/main"
@@ -227,29 +229,69 @@ def head(b, *, title, description, path, image, image_size, depth, jsonld, kind=
     return w
 
 
+NAV = [("#phases", "Phases"), ("#results", "Results"), ("#sprint", "How it works"), ("#cite", "Cite"),
+       ("#follow", "Follow")]
+
+
 def site_header(b, up):
+    """The header of every page: brand, search field, section links, GitHub."""
+    home = up or "./"
     w = ['<header class="site">', '  <div class="bar wrap">',
-         f'    <a class="brand" href="{up or "./"}" aria-label="Knowledge Sprint Series, home">',
+         f'    <a class="brand" href="{home}" aria-label="Knowledge Sprint Series, home">',
          f'      <img src="{up}img/brand/mt24-badge.svg" width="40" height="40" alt="">',
          '      <span><b>Knowledge Sprint Series</b><small>MT24 Learning</small></span>', "    </a>",
+         f'    <form class="hsearch" action="{up}search/" method="get" role="search">',
+         f'      <label for="hq" class="hs-icon" title="Search the series">{icon("search")}'
+         '<span class="sr-only">Search the series</span></label>',
+         '      <input id="hq" name="q" type="search" placeholder="Search the series" autocomplete="off" '
+         'enterkeyhint="search" spellcheck="false">',
+         '      <kbd aria-hidden="true" title="Press / to search">/</kbd>',
+         "    </form>",
          '    <nav aria-label="Sections">']
-    for href, label in [("#phases", "Phases"), ("#results", "Results"), ("#sprint", "How it works"),
-                        ("#cite", "Cite")]:
-        w.append(f'      <a href="{up or "./"}{href}">{label}</a>')
-    w.append(f'      <a class="search-link" href="{up}search/">Search<kbd>/</kbd></a>')
-    w.append(f'      <a class="gh" href="{b.REPO_URL}">GitHub</a>')
+    for href, label in NAV:
+        w.append(f'      <a href="{home}{href}">{label}</a>')
+    w.append(f'      <a class="gh" href="{b.REPO_URL}">{icon("github")}<span>GitHub</span></a>')
     w += ["    </nav>", "  </div>", "</header>"]
     return w
 
 
+def back_link(parent, label):
+    """A back control for sub-pages: returns to the previous page of the site, or else to the parent page."""
+    return (f'<a class="back" href="{parent}" data-back title="Back to {e(label)}">{icon("back")}'
+            '<span>Back</span></a>')
+
+
+def back_float(parent):
+    return f'<a class="back-float" href="{parent}" data-back aria-label="Back" title="Back">{icon("back")}</a>'
+
+
+def socials(b, cls="socials"):
+    items = list(b.SOCIAL) + [("GitHub", b.REPO_URL)]
+    w = [f'<ul class="{cls}" aria-label="The series online">']
+    for name, url in items:
+        rel = ' rel="me"' if name != "GitHub" else ""
+        w.append(f'<li><a{rel} href="{url}" title="{name}" aria-label="{name}">{icon(SOCIAL_ICON[name])}'
+                 f'<span>{name}</span></a></li>')
+    w.append("</ul>")
+    return "".join(w)
+
+
 def site_footer(b, up):
+    home = up or "./"
     return [
-        '<footer class="site">', '  <div class="wrap foot-row">',
+        '<footer class="site">', '  <div class="wrap">',
+        '  <div class="foot-top">',
+        f'    <a class="foot-brand" href="{home}"><img src="{up}img/brand/mt24-badge.svg" width="32" height="32" alt="">'
+        "<span><b>Knowledge Sprint Series</b><small>MT24 Learning · Mohammed Tahri</small></span></a>",
+        "    " + socials(b),
+        "  </div>",
+        '  <div class="foot-row">',
         "    <p>© 2026 Mohammed Tahri (MT24) · Images and text under "
         f'<a href="{CC}">CC BY-NC-SA 4.0</a> · Sprint code under <a href="{b.REPO_URL}/blob/main/LICENSE-CODE">MIT</a></p>',
-        f'    <p><a href="https://github.com/MT24Learning">MT24 Learning</a> · <a href="{b.REPO_URL}">Source and data</a> · '
-        f'<a href="{up}fonts/OFL.txt">Font licences</a></p>',
-        "  </div>", "</footer>", f'<script src="{up}site.js" defer></script>', "</body>", "</html>",
+        f'    <p><a href="https://orcid.org/{b.ORCID}">ORCID</a> · <a href="{b.ZENODO}">Zenodo</a> · '
+        f'<a href="{b.REPO_URL}">Source and data</a> · <a href="{up}fonts/OFL.txt">Font licences</a> · '
+        f'<a href="{up}licenses/bootstrap-icons.txt">Icon licence</a></p>',
+        "  </div>", "  </div>", "</footer>", f'<script src="{up}site.js" defer></script>', "</body>", "</html>",
     ]
 
 
@@ -379,9 +421,10 @@ def sprint_page(b, texts, p, s, t, prev_s, next_s):
     names = f'<span class="names">{e(t["names"])}</span>' if t.get("names") else ""
     w += [
         '<nav class="crumbs wrap" aria-label="Breadcrumb" data-pagefind-ignore>',
+        "  " + back_link(f"{up}phases/{p['n']}/", f"Phase {p['n']}"),
         f'  <a href="{up}">Home</a><span>/</span><a href="{up}phases/{p["n"]}/">Phase {p["n"]} · {e(p["title"])}</a>'
         f'<span>/</span><span aria-current="page">Sprint {n}</span>',
-        "</nav>",
+        "</nav>", back_float(f"{up}phases/{p['n']}/"),
         '<header class="t-head wrap" data-spot="head">',
         "  " + road(b, texts, n),
         f'  <p class="eyebrow"><span>Phase {p["n"]} · Sprint {n}/{b.TOTAL_SPRINTS} · '
@@ -624,8 +667,9 @@ def phase_page(b, texts, i, p):
                     for s in p["sprints"])
     w += [
         '<nav class="crumbs wrap" aria-label="Breadcrumb" data-pagefind-ignore>',
+        "  " + back_link(f"{up}#phases", "all phases"),
         f'  <a href="{up}">Home</a><span>/</span><span aria-current="page">Phase {p["n"]} · {e(p["title"])}</span>',
-        "</nav>",
+        "</nav>", back_float(f"{up}#phases"),
         '<header class="t-head wrap" data-spot="head">',
     ]
     if S.get("issue") or S.get("ribbon"):
@@ -806,7 +850,9 @@ def extra_page(b, key, X):
     w.append(f'<main id="main" class="text-page phase" style="--acc:{acc};--acc-text:{tint(acc)};'
              f'--grad:linear-gradient(92deg, {", ".join(tint(c) for c in X.get("gradient", [acc, acc]))})">')
     w += ['<nav class="crumbs wrap" aria-label="Breadcrumb" data-pagefind-ignore>',
+          "  " + back_link(f"{up}#phases", "all phases"),
           f'  <a href="{up}">Home</a><span>/</span><span aria-current="page">{e(title)}</span>', "</nav>",
+          back_float(f"{up}#phases"),
           '<header class="t-head wrap" data-spot="head">',
           f'  <p class="eyebrow"><span>{e(X["kicker"])}</span></p>',
           f'  <h1 data-pagefind-meta="title">{title_html(X.get("heading", title), X.get("em"))}</h1>',
@@ -851,6 +897,9 @@ def search_page(b):
     w.insert(w.index('<link rel="stylesheet" href="../style.css">'), '<link rel="stylesheet" href="../pagefind/pagefind-ui.css">')
     base = site_path(b)
     w += ['<main id="main" class="text-page search-page">',
+          '<nav class="crumbs wrap" aria-label="Breadcrumb">',
+          "  " + back_link("../", "the series") + '<a href="../">Home</a><span>/</span><span aria-current="page">Search</span>',
+          "</nav>",
           '  <header class="t-head wrap">',
           '    <p class="eyebrow"><span>Search</span></p>',
           "    <h1>Search the <em>text</em> of the series</h1>",
@@ -883,6 +932,7 @@ def not_found_page(b):
          f'<link rel="icon" href="{base}img/brand/favicon.svg" type="image/svg+xml">',
          f'<link rel="stylesheet" href="{base}style.css">', "</head>", '<body class="page">',
          '<main id="main" class="text-page lost">', '  <div class="wrap">',
+         f'    <p class="lost-back">{back_link(base, "the series")}</p>',
          '    <p class="label">404 · not found</p>',
          "    <h1>This page is <em>not in the series</em>.</h1>",
          '    <p class="tagline">The link may be old, or the page may not be written yet. The series itself is all here.</p>',
