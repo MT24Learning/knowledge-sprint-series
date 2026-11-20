@@ -69,3 +69,6 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.24142098
     description: "Phase 14: AI Security & Robustness (Sprints 42–44), version 1.0"
+  - type: doi
+    value: 10.5281/zenodo.24387974
+    description: "Phase 15: Structured Claims & Ground Truth (Sprints 45–48), version 1.0"

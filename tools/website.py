@@ -122,6 +122,9 @@ def render(b):
       "learning. Each sprint is one portrait page: the core concepts, a figure, commands to try, a mini project "
       "and the trusted sources behind every claim. Each phase closes with a one-page summary and one checked "
       "result.</p>")
+    w('      <p class="lede">This series is an entry point, not a full course. Each sprint opens a field that '
+      "stands on its own, with its own textbooks, methods and open questions, and no set of images can cover "
+      "it. The trusted sources on every sprint are where the real study continues.</p>")
     w('      <div class="actions">')
     w(f'        <a class="btn primary" href="{page_url(phases[0])}">Start with Phase 1</a>')
     w('        <a class="btn ghost" href="#phases">Browse the phases</a>')

@@ -278,6 +278,28 @@ PHASES = [
                  covers="What prompt injection is, why firm wording in the rules is no guarantee, what a phrase blocklist misses, and instructions hidden in retrieved text.",
                  tryit="In 1,346 real Tensor Trust pairs where a human attack fooled at least 2 of 3 models from 2023, 72.3% of the defences had a \"never / do not\" rule and a blocklist of 6 known phrase patterns caught 11.9% of the attacks; no language model was run here."),
          ]),
+    dict(n=15, title="Structured Claims & Ground Truth", first="2026-11-17", v="10.5281/zenodo.24387974", c="10.5281/zenodo.24387973",
+         line="A claim's qualifiers, the votes behind its label, the sentence it is checked against and the test set that scores it: four checks on real data.",
+         result="In CLIMATE-FEVER, 2,501 tied votes became NOT ENOUGH INFO under the dataset's own rule: half of all 4,930 such labels, with Krippendorff's alpha at 0.334.",
+         summary="MT24_Learning_Phase15_Summary.png",
+         sprints=[
+            dict(n=45, title="Representing a Claim: From Sentence to Structure", file="MT24_Learning_Phase15_Sprint45_Representing_a_Claim_From_Sentence_to_Structure.png",
+                 tagline="A triple says who did what. Most real claims also say how much, when or how sure.",
+                 covers="What a claim becomes when it is stored as data: subject–predicate–object triples, the qualifiers they drop, Wikidata qualifiers and RDF 1.2 triple terms, and PICO for clinical questions.",
+                 tryit="In 1,535 real CLIMATE-FEVER claims, a rough word list finds a qualifier in 1,251 (81.5%); claims with a negation are labelled REFUTES 27.9% of the time, against 16.5% overall, a pattern in collected claims, not a cause."),
+            dict(n=46, title="Ground Truth Is a Human Judgement: Measuring Agreement", file="MT24_Learning_Phase15_Sprint46_Ground_Truth_Is_a_Human_Judgement_Measuring_Agreement.png",
+                 tagline="A gold label is a vote under a rule. When readers split, the rule decides.",
+                 covers="Where gold labels come from: votes under a written rule, raw agreement against Krippendorff's alpha, what a tie rule hides, and why one vote can change a label.",
+                 tryit="Rebuilt from 18,486 votes, all 7,675 CLIMATE-FEVER labels match the dataset's rule. Krippendorff's alpha is 0.334; 2,501 tied pairs became NOT ENOUGH INFO, and 693 of 1,535 claims could change label if ties were settled another way."),
+            dict(n=47, title="Checking a Claim Against Evidence", file="MT24_Learning_Phase15_Sprint47_Checking_a_Claim_Against_Evidence.png",
+                 tagline="A verifier can score well without reading the evidence. Hand it the wrong sentence and watch.",
+                 covers="Claim verification as SUPPORTS, REFUTES or NOT ENOUGH INFO, how a model can score from a claim's wording alone, and a swap test that hands it the wrong evidence.",
+                 tryit="On 7,675 CLIMATE-FEVER pairs, a claim-only logistic regression reaches 0.461 balanced accuracy (chance 0.333); given another claim's sentence, the claim + evidence model still answers SUPPORTS or REFUTES for 39.8% of pairs, against 40.3% with its own; no language model was run here."),
+            dict(n=48, title="Building a Verified Reference Set", file="MT24_Learning_Phase15_Sprint48_Building_a_Verified_Reference_Set.png",
+                 tagline="A test set is a measuring standard. Check its labels, state its errors, name its version.",
+                 covers="A test set as a reference standard: flag suspect labels with a model, confirm with people, fix, drop or mark each error, and name every version by a digest.",
+                 tryit="Recounted from the released human votes of Northcutt et al. (2021), all nine single-label test sets match the paper; across ten sets (AudioSet as published, two estimated from samples) the mean is 3.33% label errors, and 2,524 of 5,440 ImageNet flags kept their label."),
+         ]),
 ]
 
 MILESTONES = [
@@ -289,7 +311,7 @@ MILESTONES = [
              "result and the DOI of its archived edition."),
 ]
 
-NEXT = dict(n=15, title="Structured Claims & Ground Truth", sprints="45–48", status="next")
+NEXT = dict(n=16, title="Causality & Information Theory", sprints="49–53", status="next")
 
 CODE_RECORDS = [
     dict(phases=(1, 14), v="10.5281/zenodo.24201674", c="10.5281/zenodo.24201673",

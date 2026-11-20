@@ -1,4 +1,4 @@
-<sub>[← Phase 13](../phase-13-semantic-search-and-retrieval/README.md) · [All phases](../../README.md)</sub>
+<sub>[← Phase 13](../phase-13-semantic-search-and-retrieval/README.md) · [All phases](../../README.md) · [Phase 15 →](../phase-15-structured-claims-and-ground-truth/README.md)</sub>
 
 # Phase 14 · AI Security & Robustness
 
@@ -60,4 +60,4 @@ This DOI points to version 1.0, the edition archived as first published. To cite
 
 ---
 
-<sub>[← Phase 13](../phase-13-semantic-search-and-retrieval/README.md) · [All phases](../../README.md)</sub>
+<sub>[← Phase 13](../phase-13-semantic-search-and-retrieval/README.md) · [All phases](../../README.md) · [Phase 15 →](../phase-15-structured-claims-and-ground-truth/README.md)</sub>

@@ -360,6 +360,10 @@ def readme():
         "that combines the core concepts, commands to try, a mini project and a list of trusted sources, "
         "so every claim can be checked against its origin. Each phase closes with a one-page summary.",
         "",
+        "This series is an entry point, not a full course. Each sprint opens a field that stands on its own, "
+        "with its own textbooks, methods and open questions, and no set of images can cover it. "
+        "The trusted sources on every sprint are where the real study continues.",
+        "",
         f"This repository is the browsable index of the series: every published sprint, every phase summary and "
         f"the DOI of each phase's archived edition. The permanent, citable archive lives on Zenodo, in the "
         f"[MT24 Learning community]({ZENODO}). The same index is also published as a website: "
