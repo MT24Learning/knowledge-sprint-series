@@ -6,6 +6,8 @@
 
 > A line that fails, a hidden layer that bends, and the training that finds it.
 
+**Full text on the website.** Every image of this phase is also written out as text, ready to read, search and quote: [Phase 10 summary](https://mt24learning.github.io/knowledge-sprint-series/phases/10/) · [Sprint 31](https://mt24learning.github.io/knowledge-sprint-series/sprints/31/) · [Sprint 32](https://mt24learning.github.io/knowledge-sprint-series/sprints/32/)
+
 ## Phase summary
 
 <a href="MT24_Learning_Phase10_Summary.png"><img src="MT24_Learning_Phase10_Summary.png" width="760" alt="Phase 10 summary page: Neural Networks, 2 sprints, with what each sprint covers, what I can now do, mistakes avoided and the phase project."></a>
@@ -24,6 +26,8 @@
 
 **Try it.** Solve XOR by hand with two ReLU units, then train small networks from 100 random starts.
 
+**Full text.** [Sprint 31 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/31/)
+
 **Run it.** [`sprint31_from_perceptron_to_multilayer_network.py`](code/sprint31_from_perceptron_to_multilayer_network.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 32/90 · How Networks Train: Backpropagation & Training Dynamics
@@ -35,6 +39,8 @@
 **Covers.** The backward pass, checking a gradient numerically, the learning rate, breaking symmetry at initialisation, and signals that vanish with depth.
 
 **Try it.** Backpropagation agrees with finite differences to within 3.7 × 10⁻¹⁰ on all 13 weights of a small network.
+
+**Full text.** [Sprint 32 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/32/)
 
 **Run it.** [`sprint32_how_networks_train.py`](code/sprint32_how_networks_train.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 

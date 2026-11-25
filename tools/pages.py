@@ -20,6 +20,8 @@ import sys
 import tokenize
 from html import escape
 
+from icons import SOCIAL_ICON, icon
+
 PAGEFIND = "1.6.0"
 TEXTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "texts")
 RAW = "https://raw.githubusercontent.com/MT24Learning/knowledge-sprint-series/main"
@@ -81,16 +83,27 @@ def e(text):
     return escape(str(text), quote=True)
 
 
-def md(text):
-    """Escapes text, then **bold**, *italic* and no-break spaces inside thousands (3 941)."""
+def md(text, links=True):
+    """Escapes text, then **bold**, *italic*, ~~struck~~, W_{Q} subscripts, 10^{k/2} superscripts, `kept case` (a file name inside a heading that the
+    page sets in capitals), Zenodo DOIs as links, and no-break spaces inside thousands (3 941)."""
     t = e(text)
+    t = re.sub(r"`([^`]+)`", r'<span class="keep">\1</span>', t)
+    t = re.sub(r"~~(.+?)~~", r"<s>\1</s>", t)
+    t = re.sub(r"([A-Za-z])_\{(\w+)\}", r"\1<sub>\2</sub>", t)  # W_{Q}: a capital subscript Unicode lacks
+    t = re.sub(r"(\w)\^\{([^}]+)\}", r"\1<sup>\2</sup>", t)  # 10^{k/2}: a raised fraction Unicode lacks
     t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
     t = re.sub(r"(?<![\w*])\*(?!\s)(.+?)(?<!\s)\*(?![\w*])", r"<em>\1</em>", t)
+    t = t.replace("\n", "<br>")  # a line break printed on the image
+    if links:
+        t = re.sub(r"(?<![\w/.])(10\.5281/zenodo\.\d+)", r'<a href="https://doi.org/\1">\1</a>', t)
     return re.sub(r"(?<=\d) (?=\d{3}(?!\d))", " ", t)
 
 
 def plain(text):
-    return re.sub(r"\*\*?(.+?)\*\*?", r"\1", text)
+    text = re.sub(r"~~(.+?)~~", r"\1", text).replace("`", "")
+    text = re.sub(r"([A-Za-z])_\{(\w+)\}", r"\1_\2", text)
+    text = re.sub(r"(\w)\^\{([^}]+)\}", r"\1^(\2)", text)
+    return re.sub(r"\*\*?(.+?)\*\*?", r"\1", text).replace("\n", " ")
 
 
 def title_html(title, em):
@@ -227,29 +240,69 @@ def head(b, *, title, description, path, image, image_size, depth, jsonld, kind=
     return w
 
 
+NAV = [("#phases", "Phases"), ("#results", "Results"), ("#sprint", "How it works"), ("#cite", "Cite"),
+       ("#follow", "Follow")]
+
+
 def site_header(b, up):
+    """The header of every page: brand, search field, section links, GitHub."""
+    home = up or "./"
     w = ['<header class="site">', '  <div class="bar wrap">',
-         f'    <a class="brand" href="{up or "./"}" aria-label="Knowledge Sprint Series, home">',
+         f'    <a class="brand" href="{home}" aria-label="Knowledge Sprint Series, home">',
          f'      <img src="{up}img/brand/mt24-badge.svg" width="40" height="40" alt="">',
          '      <span><b>Knowledge Sprint Series</b><small>MT24 Learning</small></span>', "    </a>",
+         f'    <form class="hsearch" action="{up}search/" method="get" role="search">',
+         f'      <label for="hq" class="hs-icon" title="Search the series">{icon("search")}'
+         '<span class="sr-only">Search the series</span></label>',
+         '      <input id="hq" name="q" type="search" placeholder="Search the series" autocomplete="off" '
+         'enterkeyhint="search" spellcheck="false">',
+         '      <kbd aria-hidden="true" title="Press / to search">/</kbd>',
+         "    </form>",
          '    <nav aria-label="Sections">']
-    for href, label in [("#phases", "Phases"), ("#results", "Results"), ("#sprint", "How it works"),
-                        ("#cite", "Cite")]:
-        w.append(f'      <a href="{up or "./"}{href}">{label}</a>')
-    w.append(f'      <a class="search-link" href="{up}search/">Search<kbd>/</kbd></a>')
-    w.append(f'      <a class="gh" href="{b.REPO_URL}">GitHub</a>')
+    for href, label in NAV:
+        w.append(f'      <a href="{home}{href}">{label}</a>')
+    w.append(f'      <a class="gh" href="{b.REPO_URL}">{icon("github")}<span>GitHub</span></a>')
     w += ["    </nav>", "  </div>", "</header>"]
     return w
 
 
+def back_link(parent, label):
+    """A back control for sub-pages: returns to the previous page of the site, or else to the parent page."""
+    return (f'<a class="back" href="{parent}" data-back title="Back to {e(label)}">{icon("back")}'
+            '<span>Back</span></a>')
+
+
+def back_float(parent):
+    return f'<a class="back-float" href="{parent}" data-back aria-label="Back" title="Back">{icon("back")}</a>'
+
+
+def socials(b, cls="socials"):
+    items = list(b.SOCIAL) + [("GitHub", b.REPO_URL)]
+    w = [f'<ul class="{cls}" aria-label="The series online">']
+    for name, url in items:
+        rel = ' rel="me"' if name != "GitHub" else ""
+        w.append(f'<li><a{rel} href="{url}" title="{name}" aria-label="{name}">{icon(SOCIAL_ICON[name])}'
+                 f'<span>{name}</span></a></li>')
+    w.append("</ul>")
+    return "".join(w)
+
+
 def site_footer(b, up):
+    home = up or "./"
     return [
-        '<footer class="site">', '  <div class="wrap foot-row">',
+        '<footer class="site">', '  <div class="wrap">',
+        '  <div class="foot-top">',
+        f'    <a class="foot-brand" href="{home}"><img src="{up}img/brand/mt24-badge.svg" width="32" height="32" alt="">'
+        "<span><b>Knowledge Sprint Series</b><small>MT24 Learning · Mohammed Tahri</small></span></a>",
+        "    " + socials(b),
+        "  </div>",
+        '  <div class="foot-row">',
         "    <p>© 2026 Mohammed Tahri (MT24) · Images and text under "
         f'<a href="{CC}">CC BY-NC-SA 4.0</a> · Sprint code under <a href="{b.REPO_URL}/blob/main/LICENSE-CODE">MIT</a></p>',
-        f'    <p><a href="https://github.com/MT24Learning">MT24 Learning</a> · <a href="{b.REPO_URL}">Source and data</a> · '
-        f'<a href="{up}fonts/OFL.txt">Font licences</a></p>',
-        "  </div>", "</footer>", f'<script src="{up}site.js" defer></script>', "</body>", "</html>",
+        f'    <p><a href="https://orcid.org/{b.ORCID}">ORCID</a> · <a href="{b.ZENODO}">Zenodo</a> · '
+        f'<a href="{b.REPO_URL}">Source and data</a> · <a href="{up}fonts/OFL.txt">Font licences</a> · '
+        f'<a href="{up}licenses/bootstrap-icons.txt">Icon licence</a></p>',
+        "  </div>", "  </div>", "</footer>", f'<script src="{up}site.js" defer></script>', "</body>", "</html>",
     ]
 
 
@@ -332,6 +385,26 @@ def cite_block(b, p, ident):
 
 # ---------------------------------------------------------------- sprint page
 
+def tagline_of(s, t):
+    return t.get("tagline") or s.get("tagline") or ""
+
+
+def card_key(c):
+    return c.get("key") or c["no"]
+
+
+def try_position(t):
+    """Index in t["cards"] before which the Try It box goes."""
+    cards = t["cards"]
+    if "try_after" in t:
+        keys = [card_key(c) for c in cards]
+        return keys.index(t["try_after"]) + 1
+    for k, c in enumerate(cards):
+        if c["no"].isdigit() and c["no"] > t.get("tryit", {}).get("no", "05"):
+            return k
+    return len(cards)
+
+
 def sprint_page(b, texts, p, s, t, prev_s, next_s):
     n = s["n"]
     up = "../../"
@@ -340,7 +413,8 @@ def sprint_page(b, texts, p, s, t, prev_s, next_s):
     path = f"sprints/{n}/"
     folder = b.phase_dir(p)
     full = f"{RAW}/phases/{folder}/{s['file']}"
-    description = f"{s['tagline']} {s['covers']}"
+    tag = tagline_of(s, t)
+    description = f"{tag} {s['covers']}".strip()
     ld = {
         "@context": "https://schema.org", "@type": "LearningResource",
         "name": f"Sprint {n}: {s['title']}", "headline": s["title"], "description": description,
@@ -355,51 +429,56 @@ def sprint_page(b, texts, p, s, t, prev_s, next_s):
     w = head(b, title=f"Sprint {n}: {s['title']} · Knowledge Sprint Series", description=description, path=path,
              image=f"img/social/sprint-{n}.jpg", image_size=(1200, 630), depth=2, jsonld=[ld, crumbs_ld(b, crumbs)])
     w.append(f'<main id="main" class="text-page" style="--acc:{acc};--acc-text:{acc_text}">')
+    names = f'<span class="names">{e(t["names"])}</span>' if t.get("names") else ""
     w += [
         '<nav class="crumbs wrap" aria-label="Breadcrumb" data-pagefind-ignore>',
+        "  " + back_link(f"{up}phases/{p['n']}/", f"Phase {p['n']}"),
         f'  <a href="{up}">Home</a><span>/</span><a href="{up}phases/{p["n"]}/">Phase {p["n"]} · {e(p["title"])}</a>'
         f'<span>/</span><span aria-current="page">Sprint {n}</span>',
-        "</nav>",
+        "</nav>", back_float(f"{up}phases/{p['n']}/"),
         '<header class="t-head wrap" data-spot="head">',
         "  " + road(b, texts, n),
         f'  <p class="eyebrow"><span>Phase {p["n"]} · Sprint {n}/{b.TOTAL_SPRINTS} · '
-        f'<span data-pagefind-filter="Phase">{e(p["title"])}</span></span>'
-        f'<span class="names">{e(t["names"])}</span></p>',
+        f'<span data-pagefind-filter="Phase">{e(p["title"])}</span></span>{names}</p>',
         f'  <h1 data-pagefind-meta="title">{title_html(s["title"], t.get("em"))}</h1>',
-        f'  <p class="tagline">{e(s["tagline"])}</p>',
+    ]
+    if tag:
+        w.append(f'  <p class="tagline">{md(tag)}</p>')
+    w += [
         f'  <p class="in-short"><b>In short.</b> {md(s["covers"])}</p>',
         '  <span hidden data-pagefind-filter="Type">Sprint</span>',
         "</header>",
         '<div class="t-body wrap">',
     ]
-    regions = dict(texts[p["n"]].PHASE["regions"], **t.get("regions", {}))
+    regions = dict(texts[p["n"]].PHASE.get("regions", {}), **t.get("regions", {}))
+    alt_tag = f" {e(plain(tag))}" if tag else ""
     w += image_figure(f"../../img/pages/sprint-{n}.jpg",
-                      f'Sprint {n} of {b.TOTAL_SPRINTS} infographic: {e(s["title"])}. {e(s["tagline"])} '
+                      f'Sprint {n} of {b.TOTAL_SPRINTS} infographic: {e(s["title"])}.{alt_tag} '
                       "The full text of the image is on this page.",
                       os.path.join(b.ROOT, "phases", folder, s["file"]), regions,
-                      f'<a href="{full}">Full resolution</a><span>2160 × 2700 PNG</span>'
+                      f'<a href="{full}">Full resolution</a><span>{image_size_label(b, os.path.join(b.ROOT, "phases", folder, s["file"]))}</span>'
                       f'<a href="{up}phases/{p["n"]}/">Phase summary</a>', f"{site_path(b)}img/pages/sprint-{n}-s.jpg")
-    w += [
-        '  <article class="t-text">',
-    ]
-    w += figure_words(t["fig"])
+    w.append('  <article class="t-text">')
+    if t.get("fig"):
+        w += figure_words(t["fig"])
     cards = t["cards"]
-    before = [c for c in cards if c["no"] < "05"]
-    after = [c for c in cards if c["no"] > "05"]
-    w.append('    <div class="t-cards">')
-    w += [line for c in before for line in card(c)]
-    w.append("    </div>")
+    at = try_position(t)
+    if cards[:at]:
+        w.append('    <div class="t-cards">')
+        w += [line for c in cards[:at] for line in card(c)]
+        w.append("    </div>")
     w += try_it(b, p, s, t)
-    w.append('    <div class="t-cards">')
-    w += [line for c in after for line in card(c)]
-    w.append("    </div>")
+    if cards[at:]:
+        w.append('    <div class="t-cards">')
+        w += [line for c in cards[at:] for line in card(c)]
+        w.append("    </div>")
     w += [
         '    <section class="t-sources" aria-labelledby="sources" data-spot="R">',
-        '      <h2 id="sources"><span class="key" data-pagefind-ignore>R</span> Trusted Sources</h2>',
+        f'      <h2 id="sources"><span class="key" data-pagefind-ignore>R</span> {e(t.get("sources_title", "Trusted Sources"))}</h2>',
         '      <ol class="sources">',
     ]
     for text, url in t["sources"]:
-        w.append(f'        <li><a href="{e(url)}" rel="noopener">{md(text)}</a></li>')
+        w.append(f'        <li><a href="{e(url)}" rel="noopener">{md(text, links=False)}</a></li>')
     w += ["      </ol>", "    </section>", "  </article>", "</div>"]
     w += pager(b, texts, prev_s, next_s, p, up)
     w += cite_block(b, p, f"cite-{n}")
@@ -408,40 +487,74 @@ def sprint_page(b, texts, p, s, t, prev_s, next_s):
     return "\n".join(w)
 
 
+def image_size_label(b, png):
+    from PIL import Image
+    with Image.open(png) as im:
+        return f"{im.size[0]} × {im.size[1]} PNG"
+
+
 def figure_words(fig):
     w = ['    <section class="t-fig" aria-labelledby="fig" data-spot="fig">',
-         f'      <h2 id="fig">Fig. 1 <span>in words</span></h2>',
-         f'      <p class="fig-title">{md(fig["title"])}</p>',
-         '      <ol class="panels">']
+         f'      <h2 id="fig">{e(fig.get("label", "Fig. 1"))} <span>in words</span></h2>']
+    if fig.get("title"):
+        w.append(f'      <p class="fig-title">{md(fig["title"])}</p>')
+    if fig.get("caption"):  # the image's own italic caption ("Fig. 1 — …"), in its own case
+        w.append(f'      <p class="fig-caption">{md(fig["caption"])}</p>')
+    w.append(f'      <ol class="panels{" one" if len(fig["panels"]) == 1 else ""}">')
+    numbered = len(fig["panels"]) > 1
     for k, (title, lines) in enumerate(fig["panels"]):
-        w.append(f'        <li><h3><span class="ball" data-pagefind-ignore>{k + 1}</span> {md(title)}</h3><ul>')
+        ball = f'<span class="ball" data-pagefind-ignore>{k + 1}</span> ' if numbered else ""
+        w.append(f'        <li><h3>{ball}<span>{md(title)}</span></h3><ul>')
         w += [f"          <li>{md(x)}</li>" for x in lines]
         w.append("        </ul></li>")
-    w += ["      </ol>", f'      <aside class="notes"><h3>{e(fig["notes_title"])}</h3><ol>']
-    for k, (key, text) in enumerate(fig["notes"]):
-        w.append(f'        <li><span class="ball">{k + 1}</span><b>{e(key)}</b> {md(text)}</li>')
-    w += ["      </ol></aside>", "    </section>"]
+    w.append("      </ol>")
+    if fig.get("notes"):
+        w.append(f'      <aside class="notes"><h3>{e(fig.get("notes_title", "Notes"))}</h3><ol>')
+        for k, (key, text) in enumerate(fig["notes"]):
+            keypart = f"<b>{md(key, links=False)}</b> " if key else ""
+            w.append(f'        <li><span class="ball">{k + 1}</span>{keypart}{md(text)}</li>')
+        w.append("      </ol></aside>")
+    w.append("    </section>")
     return w
 
 
 def card(c):
-    stamp = (f'<span class="stamp" data-pagefind-ignore>{e(c["tag"])}</span>' if c.get("claim")
-             else f'<span class="tag" data-pagefind-ignore>{e(c["tag"])}</span>')
-    w = [f'      <section class="t-card{" claim" if c.get("claim") else ""}" aria-labelledby="card-{c["no"]}" '
-         f'data-spot="{c["no"]}">',
-         f'        <h2 id="card-{c["no"]}"><span class="key" data-pagefind-ignore>{c["no"]}</span> <span class="h">{md(c["title"])}</span> {stamp}</h2>',
-         "        <ul>"]
-    w += [f"          <li>{md(x)}</li>" for x in c["items"]]
-    w += ["        </ul>", f'        <p class="note">{md(c["note"])}</p>', "      </section>"]
+    if c.get("claim"):
+        stamp = f'<span class="stamp" data-pagefind-ignore>{e(c["tag"])}</span>'
+    elif c.get("tag"):
+        stamp = f'<span class="tag" data-pagefind-ignore>{e(c["tag"])}</span>'
+    else:
+        stamp = ""
+    key = card_key(c)
+    chip = f'<span class="key" data-pagefind-ignore>{e(c["no"])}</span> ' if c["no"] else ""
+    w = [f'      <section class="t-card{" claim" if c.get("claim") else ""}" aria-labelledby="card-{key}" '
+         f'data-spot="{key}">',
+         f'        <h2 id="card-{key}">{chip}<span class="h">{md(c["title"])}</span> {stamp}</h2>']
+    if c.get("text"):
+        w += [f'        <p class="lead">{md(x)}</p>' for x in ([c["text"]] if isinstance(c["text"], str) else c["text"])]
+    if c.get("items"):
+        w.append("        <ul>")
+        w += [f"          <li>{md(x)}</li>" for x in c["items"]]
+        w.append("        </ul>")
+    if c.get("code"):
+        w.append(f'        <pre class="card-code"><code>{e(c["code"])}</code></pre>')
+    if c.get("note"):
+        w.append(f'        <p class="note">{md(c["note"])}</p>')
+    w.append("      </section>")
     return w
 
 
 def try_it(b, p, s, t):
     files = b.code_files(p, s)
     folder = b.phase_dir(p)
-    w = ['    <section class="t-try" aria-labelledby="try" data-spot="05">',
-         f'      <h2 id="try"><span class="key" data-pagefind-ignore>05</span> Try It Yourself '
-         f'<span class="ver" data-pagefind-ignore>{e(t["tryit"]["versions"])}</span></h2>']
+    ti = t.get("tryit", {})
+    no = ti.get("no", "05")
+    chip = f'<span class="key" data-pagefind-ignore>{e(no)}</span> ' if no else ""
+    ver = f' <span class="ver" data-pagefind-ignore>{e(ti["versions"])}</span>' if ti.get("versions") else ""
+    w = [f'    <section class="t-try" aria-labelledby="try" data-spot="{e(ti.get("key", no or "try"))}">',
+         f'      <h2 id="try">{chip}{e(ti.get("title", "Try It Yourself"))}{ver}</h2>']
+    if ti.get("lead"):
+        w.append(f'      <p class="lead">{md(ti["lead"])}</p>')
     main_file = next((f for f in files if f.startswith(f"sprint{s['n']:02d}")), files[0] if files else None)
     if main_file:
         path = os.path.join(b.ROOT, "phases", folder, "code", main_file)
@@ -452,14 +565,20 @@ def try_it(b, p, s, t):
               f'        <p class="file"><span>{e(main_file)}</span><button class="copy" type="button" data-copy="{ident}">Copy</button></p>',
               f'        <pre class="code" id="{ident}" data-pagefind-ignore><code>{highlight(code, lang)}</code></pre>']
         if out:
-            w += ['        <p class="file out">Output, as printed on the image</p>',
+            w += [f'        <p class="file out">{e(ti.get("output_label", "Output, as printed on the image"))}</p>',
                   f'        <pre class="output"><code>{e(out)}</code></pre>']
         w.append("      </div>")
         tree = f"{b.REPO_URL}/blob/main/phases/{folder}/code"
         links = [f'<a href="{tree}/{f}">{e(f)}</a>' for f in files]
         links.append(f'<a href="{tree}/README.md">versions, data and steps</a>')
         w.append(f'      <p class="run" data-pagefind-ignore><b>Run it.</b> {" · ".join(links)}</p>')
-    w += [f'      <p class="check">{md(t["tryit"]["check"])}</p>', "    </section>"]
+    if ti.get("items"):
+        w.append('      <ul class="try-items">')
+        w += [f"        <li>{md(x)}</li>" for x in ti["items"]]
+        w.append("      </ul>")
+    if ti.get("check"):
+        w.append(f'      <p class="check">{md(ti["check"])}</p>')
+    w.append("    </section>")
     return w
 
 
@@ -485,110 +604,211 @@ def pager(b, texts, prev_s, next_s, p, up):
 
 # ---------------------------------------------------------------- phase page
 
+def sacc(t, n):
+    """A sprint's colour on its phase summary: PHASE["summary_accents"] where the summary prints the sprints in
+    their own colours, else the sprint's accent."""
+    return t.PHASE.get("summary_accents", {}).get(n) or t.PHASE["accents"][n]
+
+
+def issue_cards(b, texts, p, up, heading, spot):
+    t = texts[p["n"]]
+    attr = f' data-spot="{spot}"' if spot else ' data-pagefind-ignore'
+    w = [f'    <section aria-labelledby="issue"{attr}>', f'      <h2 id="issue">{e(heading)}</h2>', '      <ol class="issue">']
+    for s in p["sprints"]:
+        st = t.SPRINTS[s["n"]]
+        tag = tagline_of(s, st)
+        w.append(f'        <li><a href="{up}sprints/{s["n"]}/" style="--c:{tint(sacc(t, s["n"]))}">'
+                 f'<img src="../../img/pages/sprint-{s["n"]}-s.jpg" width="400" height="500" loading="lazy" alt="">'
+                 f'<span class="meta"><span>Sprint {s["n"]}/{b.TOTAL_SPRINTS}</span></span>'
+                 f'<b>{title_html(s["title"], st.get("em"))}</b>' + (f"<i>{md(tag)}</i>" if tag else "") + "</a></li>")
+    w += ["      </ol>", "    </section>"]
+    return w
+
+
+def ref_list(refs, title, spot="references"):
+    w = [f'    <section class="t-sources" aria-labelledby="references" data-spot="{spot}">',
+         f'      <h2 id="references"><span class="key" data-pagefind-ignore>R</span> {e(title)}</h2>',
+         '      <ol class="sources">']
+    w += [f'        <li><a href="{e(url)}" rel="noopener">{md(text, links=False)}</a></li>' for text, url in refs]
+    w += ["      </ol>", "    </section>"]
+    return w
+
+
+def block_html(blk, key, colour=None):
+    style = f' style="--c:{colour}"' if colour else ""
+    tag = f'<span class="tag" data-pagefind-ignore>{e(blk["tag"])}</span>' if blk.get("tag") else ""
+    head = f'<h2>{md(blk["title"])} {tag}</h2>' if blk.get("title") else ""
+    w = [f'      <section class="blk"{style} data-spot="{key}">{head}']
+    if blk.get("text"):
+        w += [f"<p>{md(x)}</p>" for x in ([blk["text"]] if isinstance(blk["text"], str) else blk["text"])]
+    if blk.get("items"):
+        w.append("<ul>" + "".join(f"<li>{md(x)}</li>" for x in blk["items"]) + "</ul>")
+    if blk.get("code"):
+        w.append(f'<pre class="card-code"><code>{e(blk["code"])}</code></pre>')
+    if blk.get("note"):
+        w.append(f'<p class="note">{md(blk["note"])}</p>')
+    w.append("</section>")
+    return ["".join(w)]
+
+
 def phase_page(b, texts, i, p):
     t = texts[p["n"]]
     S = t.SUMMARY
+    style = S.get("style", "journal")
     up = "../../"
     path = f"phases/{p['n']}/"
     folder = b.phase_dir(p)
+    png = os.path.join(b.ROOT, "phases", folder, p["summary"])
     full = f"{RAW}/phases/{folder}/{p['summary']}"
-    first_acc = t.PHASE["accents"][p["sprints"][0]["n"]]
+    first_acc = sacc(t, p["sprints"][0]["n"])
     description = f"Phase {p['n']} of {b.TOTAL_PHASES}, {b.sprint_label(p)}: {p['line']}"
     ld = {
         "@context": "https://schema.org", "@type": "CreativeWork",
-        "name": f"Phase {p['n']}: {p['title']}", "description": p["line"], "abstract": plain(S["abstract"]),
+        "name": f"Phase {p['n']}: {p['title']}", "description": p["line"],
         "url": b.SITE_URL + path, "identifier": f"https://doi.org/{p['v']}", "sameAs": f"https://doi.org/{p['v']}",
         "datePublished": p["first"], "image": f"{b.SITE_URL}img/pages/phase-{p['n']}.jpg", "inLanguage": "en",
         "isAccessibleForFree": True, "license": CC, "author": person(b),
         "isPartOf": {"@type": "CreativeWorkSeries", "name": "MT24 Learning — Knowledge Sprint Series", "url": b.SITE_URL},
         "hasPart": [{"@type": "LearningResource", "name": f"Sprint {s['n']}: {s['title']}",
                      "url": f"{b.SITE_URL}sprints/{s['n']}/"} for s in p["sprints"]],
-        "citation": [{"@type": "CreativeWork", "name": text, "url": url} for text, url in S["references"]],
+        "citation": [{"@type": "CreativeWork", "name": plain(text), "url": url} for text, url in S.get("references", [])],
     }
+    if S.get("abstract"):
+        ld["abstract"] = plain(S["abstract"])
     crumbs = [("Home", ""), (f"Phase {p['n']}: {p['title']}", path)]
     w = head(b, title=f"Phase {p['n']}: {p['title']} · Knowledge Sprint Series", description=description, path=path,
              image=f"img/social/phase-{p['n']}.jpg", image_size=(1200, 630), depth=2, jsonld=[ld, crumbs_ld(b, crumbs)])
-    grad = ", ".join(tint(t.PHASE["accents"][s["n"]]) for s in p["sprints"])
+    grad = ", ".join(tint(sacc(t, s["n"])) for s in p["sprints"])
+    if len(p["sprints"]) == 1:
+        grad = f"{grad}, {grad}"
     w.append(f'<main id="main" class="text-page phase" style="--acc:{first_acc};--acc-text:{tint(first_acc)};'
              f'--grad:linear-gradient(92deg, {grad})">')
-    chips = "".join(f'<a class="chip" style="--c:{tint(t.PHASE["accents"][s["n"]])}" href="{up}sprints/{s["n"]}/">{s["n"]}</a>'
+    chips = "".join(f'<a class="chip" style="--c:{tint(sacc(t, s["n"]))}" href="{up}sprints/{s["n"]}/">{s["n"]}</a>'
                     for s in p["sprints"])
     w += [
         '<nav class="crumbs wrap" aria-label="Breadcrumb" data-pagefind-ignore>',
+        "  " + back_link(f"{up}#phases", "all phases"),
         f'  <a href="{up}">Home</a><span>/</span><span aria-current="page">Phase {p["n"]} · {e(p["title"])}</span>',
-        "</nav>",
+        "</nav>", back_float(f"{up}#phases"),
         '<header class="t-head wrap" data-spot="head">',
-        '  <p class="ribbon">' + "".join(f"<span>{e(x)}</span>" for x in (S["issue"], *S["ribbon"])) + "</p>",
-        f'  <p class="eyebrow"><span>{e(S["kicker"])}</span></p>',
-        f'  <h1 data-pagefind-meta="title">{title_html(p["title"], S.get("em"))}</h1>',
-        f'  <p class="tagline">{md(S["dek"])}</p>',
-        f'  <p class="byline"><b>Mohammed Tahri</b> · MT24 · <a href="https://orcid.org/{b.ORCID}">ORCID {b.ORCID}</a>{chips}</p>',
-        f'  <span hidden data-pagefind-filter="Phase">{e(p["title"])}</span><span hidden data-pagefind-filter="Type">Phase summary</span>',
-        "</header>",
-        '<div class="t-body wrap">',
     ]
+    if S.get("issue") or S.get("ribbon"):
+        parts = ([S["issue"]] if S.get("issue") else []) + list(S.get("ribbon", ()))
+        w.append('  <p class="ribbon">' + "".join(f"<span>{e(x)}</span>" for x in parts) + "</p>")
+    w += [f'  <p class="eyebrow"><span>{e(S["kicker"])}</span></p>',
+          f'  <h1 data-pagefind-meta="title">{title_html(p["title"], S.get("em"))}</h1>']
+    if S.get("sub"):
+        w.append(f'  <p class="subtitle">{md(S["sub"])}</p>')
+    if S.get("dek"):
+        w.append(f'  <p class="tagline">{md(S["dek"])}</p>')
+    if S.get("badges"):
+        w.append('  <p class="badges">' + "".join(f"<span>{md(x)}</span>" for x in S["badges"]) + "</p>")
+    w += [f'  <p class="byline"><b>Mohammed Tahri</b> · MT24 · <a href="https://orcid.org/{b.ORCID}">ORCID {b.ORCID}</a>{chips}</p>',
+          f'  <span hidden data-pagefind-filter="Phase">{e(p["title"])}</span><span hidden data-pagefind-filter="Type">Phase summary</span>',
+          "</header>", '<div class="t-body wrap">']
+    kind = "a journal front page" if style == "journal" else "a one-page catalog"
     w += image_figure(f"../../img/pages/phase-{p['n']}.jpg",
-                      f'Phase {p["n"]} summary, a journal front page: {e(p["title"])}. The full text of the page follows.',
-                      os.path.join(b.ROOT, "phases", folder, p["summary"]), t.PHASE["summary_regions"],
-                      f'<a href="{full}">Full resolution</a><span>2160 × 2700 PNG</span>'
+                      f'Phase {p["n"]} summary, {kind}: {e(p["title"])}. The full text of the page follows.',
+                      png, t.PHASE["summary_regions"],
+                      f'<a href="{full}">Full resolution</a><span>{image_size_label(b, png)}</span>'
                       f'<a href="{b.REPO_URL}/blob/main/phases/{folder}/README.md">Phase on GitHub</a>',
                       f"{site_path(b)}img/thumbs/phase-{p['n']:02d}.jpg")
-    w += [
-        '  <article class="t-text">',
-        '    <section class="t-abstract" aria-labelledby="abstract" data-spot="abstract">',
-        '      <h2 id="abstract">Abstract</h2>',
-        f'      <p class="dropcap">{md(S["abstract"])}</p>',
-        "    </section>",
-        '    <section aria-labelledby="highlights" data-spot="highlights">',
-        '      <h2 id="highlights">Highlights</h2>',
-        '      <ul class="highlights">',
-    ]
-    for n, text in S["highlights"]:
-        w.append(f'        <li><a class="chip" style="--c:{tint(t.PHASE["accents"][n])}" href="{up}sprints/{n}/">{n}</a>'
-                 f'<span>{md(text)}</span></li>')
-    w += ["      </ul>", "    </section>",
-          '    <section class="t-fig" aria-labelledby="figures" data-spot="figures">',
-          '      <h2 id="figures">Figures <span>in words</span></h2>', '      <ol class="panels one">']
-    for k, (n, title, lines) in enumerate(S["figures"], 1):
-        w.append(f'        <li><h3><span class="ball" data-pagefind-ignore>{k}</span> Fig. {k} · {md(title)} <a class="fig-sprint" '
-                 f'style="--c:{tint(t.PHASE["accents"][n])}" href="{up}sprints/{n}/">Sprint {n}</a></h3><ul>')
-        w += [f"          <li>{md(x)}</li>" for x in lines]
-        w.append("        </ul></li>")
-    w += ["      </ol>", "    </section>",
-          '    <section aria-labelledby="methods" data-spot="methods">', '      <h2 id="methods"><span class="sec" data-pagefind-ignore>1</span> Methods</h2>',
-          f'      <p>{md(S["methods"])}</p>', "    </section>",
-          '    <section class="misread" aria-labelledby="misreadings" data-spot="misreadings">',
-          '      <h2 id="misreadings"><span class="sec" data-pagefind-ignore>2</span> Common Misreadings, Checked</h2>', "      <ol>"]
-    for claim, checked, src in S["misreadings"]:
-        w.append(f'        <li><p class="struck"><s>“{md(claim)}”</s></p><p><b class="ok">Checked</b> {md(checked)}</p>'
-                 f'<p class="by">{md(src)}</p></li>')
-    w += ["      </ol>", "    </section>",
-          '    <section aria-labelledby="issue" data-spot="issue">', '      <h2 id="issue">In This Issue</h2>', '      <ol class="issue">']
-    for s in p["sprints"]:
-        st = texts[p["n"]].SPRINTS[s["n"]]
-        w.append(f'        <li><a href="{up}sprints/{s["n"]}/" style="--c:{tint(t.PHASE["accents"][s["n"]])}">'
-                 f'<img src="../../img/pages/sprint-{s["n"]}-s.jpg" width="400" height="500" loading="lazy" alt="">'
-                 f'<span class="meta"><span>Sprint {s["n"]}/{b.TOTAL_SPRINTS}</span></span>'
-                 f'<b>{title_html(s["title"], st.get("em"))}</b><i>{e(s["tagline"])}</i></a></li>')
-    w += ["      </ol>", "    </section>", '    <div class="boxes">']
-    for k, (title, text) in enumerate(S["boxes"]):
-        c = tint(t.PHASE["accents"][p["sprints"][min(k, len(p["sprints"]) - 1)]["n"]])
-        w.append(f'      <section style="--c:{c}" data-spot="box-{k}"><h2>{e(title)}</h2><p>{md(text)}</p></section>')
-    w += ["    </div>",
-          '    <section class="t-sources" aria-labelledby="references" data-spot="references">',
-          '      <h2 id="references"><span class="key" data-pagefind-ignore>R</span> References</h2>', '      <ol class="sources">']
-    for text, url in S["references"]:
-        w.append(f'        <li><a href="{e(url)}" rel="noopener">{md(text)}</a></li>')
-    w += ["      </ol>", "    </section>"]
-    vol, title, line = S["next_issue"]
-    w += ['    <aside class="next-issue" data-pagefind-ignore data-spot="next">',
-          f'      <p class="label">Next issue · {e(vol)}</p><p class="ni-title">{e(title)}</p><p class="ni-line">{e(line)}</p>',
-          "    </aside>", "  </article>", "</div>"]
+    w.append('  <article class="t-text">')
+    w += journal_body(b, texts, p, up) if style == "journal" else catalog_body(b, texts, p, up)
+    w += ["  </article>", "</div>"]
     w += phase_pager(b, texts, i, up)
     w += cite_block(b, p, f"cite-phase-{p['n']}")
     w.append("</main>")
     w += site_footer(b, up)
     return "\n".join(w)
+
+
+def journal_body(b, texts, p, up):
+    t = texts[p["n"]]
+    S = t.SUMMARY
+    w = ['    <section class="t-abstract" aria-labelledby="abstract" data-spot="abstract">',
+         '      <h2 id="abstract">Abstract</h2>',
+         f'      <p class="dropcap">{md(S["abstract"])}</p>',
+         "    </section>",
+         '    <section aria-labelledby="highlights" data-spot="highlights">',
+         '      <h2 id="highlights">Highlights</h2>',
+         '      <ul class="highlights">']
+    for n, text in S["highlights"]:
+        w.append(f'        <li><a class="chip" style="--c:{tint(sacc(t, n))}" href="{up}sprints/{n}/">{n}</a>'
+                 f'<span>{md(text)}</span></li>')
+    w += ["      </ul>", "    </section>",
+          '    <section class="t-fig" aria-labelledby="figures" data-spot="figures">',
+          '      <h2 id="figures">Figures <span>in words</span></h2>', '      <ol class="panels one">']
+    for k, (n, title, lines) in enumerate(S["figures"], 1):
+        link = (f' <a class="fig-sprint" style="--c:{tint(sacc(t, n))}" href="{up}sprints/{n}/">Sprint {n}</a>'
+                if n else "")
+        w.append(f'        <li><h3><span class="ball" data-pagefind-ignore>{k}</span> Fig. {k} · {md(title)}{link}</h3><ul>')
+        w += [f"          <li>{md(x)}</li>" for x in lines]
+        w.append("        </ul></li>")
+    w += ["      </ol>", "    </section>",
+          '    <section aria-labelledby="methods" data-spot="methods">',
+          '      <h2 id="methods"><span class="sec" data-pagefind-ignore>1</span> Methods</h2>',
+          f'      <p>{md(S["methods"])}</p>', "    </section>",
+          '    <section class="misread" aria-labelledby="misreadings" data-spot="misreadings">',
+          f'      <h2 id="misreadings"><span class="sec" data-pagefind-ignore>2</span> {e(S.get("misreadings_title", "Common Misreadings, Checked"))}</h2>',
+          "      <ol>"]
+    for claim, checked, src in S["misreadings"]:
+        w.append(f'        <li><p class="struck"><s>“{md(claim)}”</s></p><p><b class="ok">Checked</b> {md(checked)}</p>'
+                 + (f'<p class="by">{md(src)}</p>' if src else "") + "</li>")
+    w += ["      </ol>", "    </section>"]
+    w += issue_cards(b, texts, p, up, "In This Issue", "issue")
+    w.append('    <div class="boxes">')
+    for k, (title, text) in enumerate(S["boxes"]):
+        c = tint(sacc(t, p["sprints"][min(k, len(p["sprints"]) - 1)]["n"]))
+        w.append(f'      <section style="--c:{c}" data-spot="box-{k}"><h2>{e(title)}</h2><p>{md(text)}</p></section>')
+    w.append("    </div>")
+    w += ref_list(S["references"], S.get("references_title", "References"))
+    vol, title, line = S["next_issue"]
+    w += ['    <aside class="next-issue" data-pagefind-ignore data-spot="next">',
+          f'      <p class="label">Next issue · {e(vol)}</p><p class="ni-title">{e(title)}</p><p class="ni-line">{md(line)}</p>',
+          "    </aside>"]
+    return w
+
+
+def catalog_body(b, texts, p, up):
+    """Phases 1–10: the one-page catalog (sprint tiles, then Now I Can, Mistakes Avoided and the other boxes)."""
+    t = texts[p["n"]]
+    S = t.SUMMARY
+    w = []
+    if S.get("figure"):
+        fig = S["figure"]
+        w += ['    <section class="t-fig" aria-labelledby="figures" data-spot="figure">',
+              f'      <h2 id="figures">{e(fig.get("label", "Figure"))} <span>in words</span></h2>']
+        if fig.get("title"):
+            w.append(f'      <p class="fig-title">{md(fig["title"])}</p>')
+        w.append('      <ul class="fig-lines">' + "".join(f"<li>{md(x)}</li>" for x in fig["lines"]) + "</ul>")
+        w.append("    </section>")
+    w += ['    <section aria-labelledby="tiles">', f'      <h2 id="tiles">{e(S.get("tiles_title", "The Sprints"))}</h2>',
+          '      <div class="tiles">']
+    for k, tile in enumerate(S["tiles"]):
+        n = tile.get("sprint")
+        c = tint(tile["colour"] if tile.get("colour") else sacc(t, n if n in t.PHASE["accents"] else p["sprints"][0]["n"]))
+        tag = f'<span class="tag" data-pagefind-ignore>{md(tile["tag"])}</span>' if tile.get("tag") else ""
+        head_ = f'<a href="{up}sprints/{n}/">{md(tile["title"], links=False)}</a>' if n else md(tile["title"])
+        body = "".join(f"<p>{md(x)}</p>" for x in ([tile["text"]] if isinstance(tile.get("text", ""), str) else tile["text"])
+                       if x)
+        if tile.get("items"):
+            body += "<ul>" + "".join(f"<li>{md(x)}</li>" for x in tile["items"]) + "</ul>"
+        w.append(f'        <section class="tile" style="--c:{c}" data-spot="tile-{k}"><h3>{head_}</h3>{body}{tag}</section>')
+    w += ["      </div>", "    </section>", '    <div class="blocks">']
+    accents = [tint(sacc(t, s["n"])) for s in p["sprints"]]
+    for k, blk in enumerate(S["blocks"]):
+        w += block_html(blk, f"block-{k}", tint(blk["colour"]) if blk.get("colour") else accents[k % len(accents)])
+    w.append("    </div>")
+    if S.get("references"):
+        w += ref_list(S["references"], S.get("references_title", "Trusted Sources"))
+    if S.get("next_issue"):
+        label, title, line = S["next_issue"]
+        w += ['    <aside class="next-issue" data-pagefind-ignore data-spot="next">',
+              f'      <p class="label">{e(label)}</p><p class="ni-title">{e(title)}</p>'
+              + (f'<p class="ni-line">{md(line)}</p>' if line else ""), "    </aside>"]
+    w += issue_cards(b, texts, p, up, "The Sprint Pages", None)
+    return w
 
 
 def phase_pager(b, texts, i, up):
@@ -607,6 +827,86 @@ def phase_pager(b, texts, i, up):
             "  " + link(next_p, "→"), "</nav>"]
 
 
+# ---------------------------------------------------------------- milestone and statement pages
+
+def load_extras():
+    """tools/texts/extras.py: PAGES, keyed by milestone id ("phases-01-11") or code record id ("code-01-14")."""
+    path = os.path.join(TEXTS, "extras.py")
+    if not os.path.exists(path):
+        return {}
+    spec = importlib.util.spec_from_file_location("texts_extras", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod.PAGES
+
+
+def extra_targets(b):
+    """{key: (url path, png path, title, doi or None, first date or None)} for the milestone and statement images."""
+    out = {}
+    for m in b.MILESTONES:
+        out[m["id"]] = (f"milestones/{m['id']}/", os.path.join(b.ROOT, "milestones", m["file"]),
+                        m["title"], None, None, f"milestones/{m['file']}")
+    for r in b.statements():
+        st = r["statement"]
+        out[b.statement_id(r)] = (f"code/{b.statement_id(r)}/", os.path.join(b.ROOT, b.STATEMENT_DIR, st["file"]),
+                                  "Code Availability Statement", st["v"], st["first"], f"{b.STATEMENT_DIR}/{st['file']}")
+    return out
+
+
+def extra_page(b, key, X):
+    path, png, title, doi, first, rel = extra_targets(b)[key]
+    up = "../../"
+    full = f"{RAW}/{rel}"
+    acc = X["accent"]
+    ld = {"@context": "https://schema.org", "@type": "CreativeWork", "name": title, "description": plain(X["dek"]),
+          "url": b.SITE_URL + path, "image": f"{b.SITE_URL}img/pages/{key}.jpg", "inLanguage": "en",
+          "isAccessibleForFree": True, "license": CC, "author": person(b),
+          "isPartOf": {"@type": "CreativeWorkSeries", "name": "MT24 Learning — Knowledge Sprint Series", "url": b.SITE_URL},
+          "citation": [{"@type": "CreativeWork", "name": plain(text), "url": url} for text, url in X.get("references", [])]}
+    if doi:
+        ld["identifier"] = ld["sameAs"] = f"https://doi.org/{doi}"
+        ld["datePublished"] = first
+    crumbs = [("Home", ""), (title, path)]
+    w = head(b, title=f"{title} · Knowledge Sprint Series", description=plain(X["dek"]), path=path,
+             image=f"img/social/{key}.jpg", image_size=(1200, 630), depth=2, jsonld=[ld, crumbs_ld(b, crumbs)])
+    w.append(f'<main id="main" class="text-page phase" style="--acc:{acc};--acc-text:{tint(acc)};'
+             f'--grad:linear-gradient(92deg, {", ".join(tint(c) for c in X.get("gradient", [acc, acc]))})">')
+    w += ['<nav class="crumbs wrap" aria-label="Breadcrumb" data-pagefind-ignore>',
+          "  " + back_link(f"{up}#phases", "all phases"),
+          f'  <a href="{up}">Home</a><span>/</span><span aria-current="page">{e(title)}</span>', "</nav>",
+          back_float(f"{up}#phases"),
+          '<header class="t-head wrap" data-spot="head">',
+          f'  <p class="eyebrow"><span>{e(X["kicker"])}</span></p>',
+          f'  <h1 data-pagefind-meta="title">{title_html(X.get("heading", title), X.get("em"))}</h1>']
+    if X.get("sub"):
+        w.append(f'  <p class="subtitle">{md(X["sub"])}</p>')
+    w.append(f'  <p class="tagline">{md(X["dek"])}</p>')
+    if X.get("badges"):
+        w.append('  <p class="badges">' + "".join(f"<span>{md(x)}</span>" for x in X["badges"]) + "</p>")
+    if doi:
+        w.append(f'  <p class="byline"><b>Mohammed Tahri</b> · MT24 · DOI <a class="doi" href="https://doi.org/{doi}">{doi}</a></p>')
+    w += [f'  <span hidden data-pagefind-filter="Type">{e(X.get("type", "Overview"))}</span>', "</header>",
+          '<div class="t-body wrap">']
+    w += image_figure(f"../../img/pages/{key}.jpg", f"{e(title)}: {e(plain(X['dek']))} The full text of the image follows.",
+                      png, X["regions"], f'<a href="{full}">Full resolution</a><span>{image_size_label(b, png)}</span>',
+                      f"{site_path(b)}img/thumbs/{('milestone-' + key) if path.startswith('milestones') else key}.jpg")
+    w.append('  <article class="t-text">')
+    if X.get("fig"):
+        w += figure_words(X["fig"])
+    w.append('    <div class="blocks one">')
+    for k, blk in enumerate(X["blocks"]):
+        w += block_html(blk, blk.get("key", f"block-{k}"), tint(blk["colour"]) if blk.get("colour") else None)
+    w.append("    </div>")
+    if X.get("references"):
+        w += ref_list(X["references"], X.get("references_title", "Trusted Sources"))
+    w += ["  </article>", "</div>",
+          '<nav class="pager wrap" aria-label="More" data-pagefind-ignore><span class="pg-empty"></span>'
+          f'<a class="pg-up" href="{up}#phases"><small>All phases</small><b>The path so far</b></a>'
+          '<span class="pg-empty"></span></nav>', "</main>"]
+    w += site_footer(b, up)
+    return "\n".join(w)
+
+
 # ---------------------------------------------------------------- search, 404, sitemap
 
 def site_path(b):
@@ -623,6 +923,9 @@ def search_page(b):
     w.insert(w.index('<link rel="stylesheet" href="../style.css">'), '<link rel="stylesheet" href="../pagefind/pagefind-ui.css">')
     base = site_path(b)
     w += ['<main id="main" class="text-page search-page">',
+          '<nav class="crumbs wrap" aria-label="Breadcrumb">',
+          "  " + back_link("../", "the series") + '<a href="../">Home</a><span>/</span><span aria-current="page">Search</span>',
+          "</nav>",
           '  <header class="t-head wrap">',
           '    <p class="eyebrow"><span>Search</span></p>',
           "    <h1>Search the <em>text</em> of the series</h1>",
@@ -655,6 +958,7 @@ def not_found_page(b):
          f'<link rel="icon" href="{base}img/brand/favicon.svg" type="image/svg+xml">',
          f'<link rel="stylesheet" href="{base}style.css">', "</head>", '<body class="page">',
          '<main id="main" class="text-page lost">', '  <div class="wrap">',
+         f'    <p class="lost-back">{back_link(base, "the series")}</p>',
          '    <p class="label">404 · not found</p>',
          "    <h1>This page is <em>not in the series</em>.</h1>",
          '    <p class="tagline">The link may be old, or the page may not be written yet. The series itself is all here.</p>',
@@ -671,6 +975,8 @@ def sitemap(b, texts):
         if p["n"] in texts:
             urls.append(f"{b.SITE_URL}phases/{p['n']}/")
             urls += [f"{b.SITE_URL}sprints/{s['n']}/" for s in p["sprints"]]
+    targets = extra_targets(b)
+    urls += [b.SITE_URL + targets[k][0] for k in sorted(load_extras()) if k in targets]
     if texts:
         urls.append(f"{b.SITE_URL}search/")
     body = "".join(f"  <url><loc>{e(u)}</loc></url>\n" for u in urls)
@@ -792,7 +1098,16 @@ def build(b):
             write_html(b, f"docs/sprints/{s['n']}/index.html", sprint_page(b, texts, p, s, st, prev_s, next_s))
             jobs.append((f"docs/img/social/sprint-{s['n']}.jpg", src,
                          f"Sprint {s['n']}/{b.TOTAL_SPRINTS} · Phase {p['n']}", title_html(s["title"], st.get("em")),
-                         s["tagline"], p["title"], t.PHASE["accents"][s["n"]]))
+                         plain(tagline_of(s, st)) or s["covers"], p["title"], t.PHASE["accents"][s["n"]]))
+    targets = extra_targets(b)
+    for key, X in load_extras().items():
+        if key not in targets:
+            continue
+        path, png, title, doi, first, rel = targets[key]
+        b.thumb(png, f"docs/img/pages/{key}.jpg", size=(1080, 1350))
+        write_html(b, f"docs/{path}index.html", extra_page(b, key, X))
+        jobs.append((f"docs/img/social/{key}.jpg", png, X["kicker"], title_html(X.get("heading", title), X.get("em")),
+                     plain(X["dek"]), f"DOI {doi}" if doi else "Knowledge Sprint Series", X["accent"]))
     social_cards(b, jobs)
     write_html(b, "docs/search/index.html", search_page(b))
     write_html(b, "docs/404.html", not_found_page(b))

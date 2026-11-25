@@ -29,9 +29,11 @@ def short_date(iso):
     return f"{d} {MONTHS[m - 1]} {y}"
 
 
-def render(b, texts=None):
-    """b is the build module: data, constants and helpers. texts: phases that have text pages."""
+def render(b, texts=None, extras=None):
+    """b is the build module: data, constants and helpers. texts: phases that have text pages;
+    extras: milestone and statement keys that have text pages."""
     texts = texts or {}
+    extras = extras or {}
     phases, milestones, nxt = b.PHASES, b.MILESTONES, b.NEXT
     archived = len(phases)
     done = sum(len(p["sprints"]) for p in phases)
@@ -102,21 +104,8 @@ def render(b, texts=None):
     w('<a class="skip" href="#phases">Skip to the phases</a>')
 
     # ------------------------------------------------------------ header
-    w('<header class="site">')
-    w('  <div class="bar wrap">')
-    w('    <a class="brand" href="./" aria-label="Knowledge Sprint Series, home">')
-    w('      <img src="img/brand/mt24-badge.svg" width="40" height="40" alt="">')
-    w('      <span><b>Knowledge Sprint Series</b><small>MT24 Learning</small></span>')
-    w("    </a>")
-    w('    <nav aria-label="Sections">')
-    for href, label in [("#phases", "Phases"), ("#results", "Results"), ("#sprint", "How it works"),
-                        ("#cite", "Cite"), ("#follow", "Follow")]:
-        w(f'      <a href="{href}">{label}</a>')
-    w('      <a class="search-link" href="search/">Search<kbd>/</kbd></a>')
-    w(f'      <a class="gh" href="{b.REPO_URL}">GitHub</a>')
-    w("    </nav>")
-    w("  </div>")
-    w("</header>")
+    for line in pages.site_header(b, ""):
+        w(line)
     w("<main>")
 
     # ------------------------------------------------------------ hero
@@ -196,10 +185,11 @@ def render(b, texts=None):
         w("      </article>")
         for m in milestones:
             if m["after"] == p["n"]:
-                link = f"{b.REPO_URL}/blob/main/milestones/README.md"
+                link = f"milestones/{m['id']}/" if m["id"] in extras else f"{b.REPO_URL}/blob/main/milestones/README.md"
+                badge = '<span class="badge">Full text</span>' if m["id"] in extras else ""
                 w('      <article class="card milestone reveal">')
                 w(f'        <a class="cover" href="{link}" tabindex="-1" aria-hidden="true">'
-                  f'<img src="img/thumbs/milestone-{m["id"]}.jpg" width="520" height="650" loading="lazy" alt=""></a>')
+                  f'<img src="img/thumbs/milestone-{m["id"]}.jpg" width="520" height="650" loading="lazy" alt="">{badge}</a>')
                 w('        <div class="card-body">')
                 w(f'          <p class="meta"><span>Milestone</span><span>{e(m["scope"].split(" · ")[0])}</span></p>')
                 w(f'          <h3><a href="{link}">{e(m["title"])}</a></h3>')
@@ -209,10 +199,12 @@ def render(b, texts=None):
         for r in b.statements():
             if r["phases"][1] == p["n"]:
                 st = r["statement"]
-                link = f"{b.REPO_URL}/blob/main/{b.statement_link(r)}"
+                sid = b.statement_id(r)
+                link = f"code/{sid}/" if sid in extras else f"{b.REPO_URL}/blob/main/{b.statement_link(r)}"
+                badge = '<span class="badge">Full text</span>' if sid in extras else ""
                 w('      <article class="card milestone reveal">')
                 w(f'        <a class="cover" href="{link}" tabindex="-1" aria-hidden="true">'
-                  f'<img src="img/thumbs/{b.statement_id(r)}.jpg" width="520" height="650" loading="lazy" alt=""></a>')
+                  f'<img src="img/thumbs/{b.statement_id(r)}.jpg" width="520" height="650" loading="lazy" alt="">{badge}</a>')
                 w('        <div class="card-body">')
                 w(f'          <p class="meta"><span>Code</span><span>Phases {r["phases"][0]}–{r["phases"][1]}</span></p>')
                 w(f'          <h3><a href="{link}">Code Availability Statement</a></h3>')
@@ -307,28 +299,14 @@ def render(b, texts=None):
     w("    <h2>Follow the series</h2>")
     w('    <p class="sub">New sprints are posted first on social media; once their phase is complete, it is '
       "archived on Zenodo and listed here.</p>")
-    w('    <p class="pills">')
-    for name, url in b.SOCIAL:
-        w(f'      <a rel="me" href="{url}">{name}</a>')
-    w(f'      <a href="{b.REPO_URL}">GitHub</a>')
-    w("    </p>")
+    w("    " + pages.socials(b, "pills follow-pills"))
     w("  </div>")
     w("</section>")
     w("</main>")
 
     # ------------------------------------------------------------ footer
-    w('<footer class="site">')
-    w('  <div class="wrap foot-row">')
-    w("    <p>© 2026 Mohammed Tahri (MT24) · Images and text under "
-      '<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · '
-      f'Sprint code under <a href="{b.REPO_URL}/blob/main/LICENSE-CODE">MIT</a></p>')
-    w('    <p><a href="https://github.com/MT24Learning">MT24 Learning</a> · '
-      f'<a href="{b.REPO_URL}">Source and data</a> · <a href="fonts/OFL.txt">Font licences</a></p>')
-    w("  </div>")
-    w("</footer>")
-    w('<script src="site.js" defer></script>')
-    w("</body>")
-    w("</html>")
+    for line in pages.site_footer(b, ""):
+        w(line)
     return "\n".join(out)
 
 
@@ -352,5 +330,5 @@ def build(b):
     for name in sorted(wanted):
         copy_if_changed(os.path.join(thumbs, name), os.path.join(target, name))
     texts = pages.load_texts()
-    b.write("docs/index.html", render(b, texts))
+    b.write("docs/index.html", render(b, texts, pages.load_extras()))
     pages.build(b)

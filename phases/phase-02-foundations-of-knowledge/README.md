@@ -6,6 +6,8 @@
 
 > Four sprints on what knowledge is, what a model is, how the scientific method can fail and how four thinkers saw science.
 
+**Full text on the website.** Every image of this phase is also written out as text, ready to read, search and quote: [Phase 2 summary](https://mt24learning.github.io/knowledge-sprint-series/phases/2/) · [Sprint 4](https://mt24learning.github.io/knowledge-sprint-series/sprints/4/) · [Sprint 5](https://mt24learning.github.io/knowledge-sprint-series/sprints/5/) · [Sprint 6](https://mt24learning.github.io/knowledge-sprint-series/sprints/6/) · [Sprint 7](https://mt24learning.github.io/knowledge-sprint-series/sprints/7/)
+
 ## Phase summary
 
 <a href="MT24_Learning_Phase02_Summary.png"><img src="MT24_Learning_Phase02_Summary.png" width="760" alt="Phase 2 summary page: Foundations of Knowledge, 4 sprints, with what each sprint covers, what I can now do, mistakes avoided and the phase project."></a>
@@ -22,6 +24,8 @@
 
 **Try it.** Bayes' rule on a medical test: prior 1%, sensitivity 90%, false positives 5%, giving a posterior of 0.154.
 
+**Full text.** [Sprint 4 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/4/)
+
 **Run it.** [`sprint04_knowledge_truth_evidence.py`](code/sprint04_knowledge_truth_evidence.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 5/90 · What Is a Model?
@@ -31,6 +35,8 @@
 **Covers.** A model and its target (the map is not the territory), kinds of models in science, and three kinds of idealisation.
 
 **Try it.** Compare the small-angle pendulum formula with the exact period: under 1% off below 20°, 18% off at 90°.
+
+**Full text.** [Sprint 5 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/5/)
 
 **Run it.** [`sprint05_what_is_a_model.py`](code/sprint05_what_is_a_model.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
@@ -42,6 +48,8 @@
 
 **Try it.** Run 20 tests of effects that do not exist: at least one comes out significant about 64% of the time.
 
+**Full text.** [Sprint 6 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/6/)
+
 **Run it.** [`sprint06_scientific_method_objectivity_failures.py`](code/sprint06_scientific_method_objectivity_failures.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 7/90 · Four Minds on Science
@@ -51,6 +59,8 @@
 **Covers.** Popper, Kuhn, Lakatos and Feyerabend, with one idea to keep from each; Uranus and Neptune against Mercury and the planet Vulcan that was never found.
 
 **Try it.** Compute general relativity's perihelion advance of Mercury: 42.97 arcseconds per century.
+
+**Full text.** [Sprint 7 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/7/)
 
 **Run it.** [`sprint07_four_minds_on_science.py`](code/sprint07_four_minds_on_science.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 

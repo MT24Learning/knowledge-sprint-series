@@ -6,6 +6,8 @@
 
 > Distributions, power and design: three sprints on how evidence is counted.
 
+**Full text on the website.** Every image of this phase is also written out as text, ready to read, search and quote: [Phase 5 summary](https://mt24learning.github.io/knowledge-sprint-series/phases/5/) · [Sprint 13](https://mt24learning.github.io/knowledge-sprint-series/sprints/13/) · [Sprint 14](https://mt24learning.github.io/knowledge-sprint-series/sprints/14/) · [Sprint 15](https://mt24learning.github.io/knowledge-sprint-series/sprints/15/)
+
 ## Phase summary
 
 <a href="MT24_Learning_Phase05_Summary.png"><img src="MT24_Learning_Phase05_Summary.png" width="760" alt="Phase 5 summary page: Statistics & Experimental Design, 3 sprints, with what each sprint covers, what I can now do, mistakes avoided and the phase project."></a>
@@ -24,6 +26,8 @@
 
 **Try it.** Draw 100,000 values: the exponential mean settles near 1, while the Cauchy mean never settles.
 
+**Full text.** [Sprint 13 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/13/)
+
 **Run it.** [`sprint13_probability_distributions.py`](code/sprint13_probability_distributions.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 14/90 · Hypothesis Testing, Power & Sample Size
@@ -36,6 +40,8 @@
 
 **Try it.** Simulate 10,000 experiments: 64 per group gives 80% power for d = 0.5; with 20 per group power falls to 0.34 and significant results exaggerate the effect.
 
+**Full text.** [Sprint 14 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/14/)
+
 **Run it.** [`sprint14_hypothesis_testing_power_sample_size.py`](code/sprint14_hypothesis_testing_power_sample_size.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 15/90 · Experimental Design & Rigorous Inference
@@ -47,6 +53,8 @@
 **Covers.** Fisher's three rules, confounding and Simpson's paradox on real kidney-stone data, randomisation and blinding, and correcting for many tests.
 
 **Try it.** Simulate 100,000 patients: giving the treatment to the sicker ones reverses the sign of a real effect, and a coin flip recovers it.
+
+**Full text.** [Sprint 15 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/15/)
 
 **Run it.** [`sprint15_experimental_design_rigorous_inference.py`](code/sprint15_experimental_design_rigorous_inference.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 

@@ -797,6 +797,18 @@ def check():
             wanted += [f"docs/sprints/{s['n']}/index.html", f"docs/img/pages/sprint-{s['n']}.jpg",
                        f"docs/img/pages/sprint-{s['n']}-s.jpg", f"docs/img/social/sprint-{s['n']}.jpg"]
         problems += [f"text page missing (rebuild): {w}" for w in wanted if not os.path.exists(os.path.join(ROOT, w))]
+    extras = pages.load_extras()
+    targets = pages.extra_targets(sys.modules[__name__])
+    for key, X in extras.items():
+        if key not in targets:
+            problems.append(f"tools/texts/extras.py: unknown page {key}")
+            continue
+        for need in (f"docs/{targets[key][0]}index.html", f"docs/img/pages/{key}.jpg", f"docs/img/social/{key}.jpg"):
+            if not os.path.exists(os.path.join(ROOT, need)):
+                problems.append(f"text page missing (rebuild): {need}")
+        for text, url in X.get("references", []):
+            if not url.startswith("https://"):
+                problems.append(f"{key}: reference without an https link: {text}")
     if texts:
         for need in ("docs/search/index.html", "docs/sitemap.xml", "docs/pagefind/pagefind-ui.js"):
             if not os.path.exists(os.path.join(ROOT, need)):

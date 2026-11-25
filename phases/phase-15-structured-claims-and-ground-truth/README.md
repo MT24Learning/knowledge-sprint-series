@@ -6,6 +6,8 @@
 
 > A claim's qualifiers, the votes behind its label, the sentence it is checked against and the test set that scores it: four checks on real data.
 
+**Full text on the website.** Every image of this phase is also written out as text, ready to read, search and quote: [Phase 15 summary](https://mt24learning.github.io/knowledge-sprint-series/phases/15/) · [Sprint 45](https://mt24learning.github.io/knowledge-sprint-series/sprints/45/) · [Sprint 46](https://mt24learning.github.io/knowledge-sprint-series/sprints/46/) · [Sprint 47](https://mt24learning.github.io/knowledge-sprint-series/sprints/47/) · [Sprint 48](https://mt24learning.github.io/knowledge-sprint-series/sprints/48/)
+
 ## Phase summary
 
 <a href="MT24_Learning_Phase15_Summary.png"><img src="MT24_Learning_Phase15_Summary.png" width="760" alt="Phase 15 summary page: Structured Claims & Ground Truth, 4 sprints, with what each sprint covers, what I can now do, mistakes avoided and the phase project."></a>
@@ -24,6 +26,8 @@
 
 **Try it.** In 1,535 real CLIMATE-FEVER claims, a rough word list finds a qualifier in 1,251 (81.5%); claims with a negation are labelled REFUTES 27.9% of the time, against 16.5% overall, a pattern in collected claims, not a cause.
 
+**Full text.** [Sprint 45 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/45/)
+
 **Run it.** [`sprint45_representing_a_claim_from_sentence_to_structure.py`](code/sprint45_representing_a_claim_from_sentence_to_structure.py) · [versions, data and steps](code/README.md)
 
 ### Sprint 46/90 · Ground Truth Is a Human Judgement: Measuring Agreement
@@ -35,6 +39,8 @@
 **Covers.** Where gold labels come from: votes under a written rule, raw agreement against Krippendorff's alpha, what a tie rule hides, and why one vote can change a label.
 
 **Try it.** Rebuilt from 18,486 votes, all 7,675 CLIMATE-FEVER labels match the dataset's rule. Krippendorff's alpha is 0.334; 2,501 tied pairs became NOT ENOUGH INFO, and 693 of 1,535 claims could change label if ties were settled another way.
+
+**Full text.** [Sprint 46 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/46/)
 
 **Run it.** [`sprint46_ground_truth_is_a_human_judgement_measuring_agreement.py`](code/sprint46_ground_truth_is_a_human_judgement_measuring_agreement.py) · [versions, data and steps](code/README.md)
 
@@ -48,6 +54,8 @@
 
 **Try it.** On 7,675 CLIMATE-FEVER pairs, a claim-only logistic regression reaches 0.461 balanced accuracy (chance 0.333); given another claim's sentence, the claim + evidence model still answers SUPPORTS or REFUTES for 39.8% of pairs, against 40.3% with its own; no language model was run here.
 
+**Full text.** [Sprint 47 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/47/)
+
 **Run it.** [`sprint47_checking_a_claim_against_evidence.py`](code/sprint47_checking_a_claim_against_evidence.py) · [versions, data and steps](code/README.md)
 
 ### Sprint 48/90 · Building a Verified Reference Set
@@ -59,6 +67,8 @@
 **Covers.** A test set as a reference standard: flag suspect labels with a model, confirm with people, fix, drop or mark each error, and name every version by a digest.
 
 **Try it.** Recounted from the released human votes of Northcutt et al. (2021), all nine single-label test sets match the paper; across ten sets (AudioSet as published, two estimated from samples) the mean is 3.33% label errors, and 2,524 of 5,440 ImageNet flags kept their label.
+
+**Full text.** [Sprint 48 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/48/)
 
 **Run it.** [`sprint48_building_a_verified_reference_set.py`](code/sprint48_building_a_verified_reference_set.py) · [versions, data and steps](code/README.md)
 

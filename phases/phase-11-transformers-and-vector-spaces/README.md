@@ -6,6 +6,8 @@
 
 > Three sprints from word vectors to attention to a full transformer layer built in code.
 
+**Full text on the website.** Every image of this phase is also written out as text, ready to read, search and quote: [Phase 11 summary](https://mt24learning.github.io/knowledge-sprint-series/phases/11/) · [Sprint 33](https://mt24learning.github.io/knowledge-sprint-series/sprints/33/) · [Sprint 34](https://mt24learning.github.io/knowledge-sprint-series/sprints/34/) · [Sprint 35](https://mt24learning.github.io/knowledge-sprint-series/sprints/35/)
+
 ## Phase summary
 
 <a href="MT24_Learning_Phase11_Summary.png"><img src="MT24_Learning_Phase11_Summary.png" width="760" alt="Phase 11 summary page: Transformers & Vector Spaces, 3 sprints, with what each sprint covers, what I can now do, mistakes avoided and the phase project."></a>
@@ -24,6 +26,8 @@
 
 **Try it.** With 400,000 GloVe vectors, measure the angles from "cat" and test the famous king − man + woman analogy.
 
+**Full text.** [Sprint 33 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/33/)
+
 **Run it.** [`sprint33_meaning_as_vectors_word_embeddings.py`](code/sprint33_meaning_as_vectors_word_embeddings.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 34/90 · How Attention Works
@@ -36,6 +40,8 @@
 
 **Try it.** Watch "bank" move towards "river" or "loan" depending on its sentence, and see a causal mask keep 21 of 36 scores.
 
+**Full text.** [Sprint 34 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/34/)
+
 **Run it.** [`sprint34_how_attention_works.py`](code/sprint34_how_attention_works.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 35/90 · Inside a Transformer
@@ -47,6 +53,8 @@
 **Covers.** The two sublayers, skip connections and normalisation, where the weights live, and why position must be added.
 
 **Try it.** Build one layer in NumPy: two thirds of a base encoder layer's parameters sit in the feed-forward block, and with no positions and no causal mask a shuffled input only shuffles the output.
+
+**Full text.** [Sprint 35 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/35/)
 
 **Run it.** [`sprint35_inside_a_transformer.py`](code/sprint35_inside_a_transformer.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 

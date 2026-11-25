@@ -44,17 +44,53 @@
   });
 })();
 
-// Press "/" anywhere to open the search page (not while typing in a field).
+// Header search: "/" focuses the field; on the search page the field shows the current query.
 (function () {
-  var link = document.querySelector(".search-link");
-  if (!link) return;
+  var field = document.getElementById("hq");
+  if (!field) return;
+  var q = new URLSearchParams(location.search).get("q");
+  if (q && /\/search\/?$/.test(location.pathname)) field.value = q;
   document.addEventListener("keydown", function (ev) {
     if (ev.key !== "/" || ev.ctrlKey || ev.metaKey || ev.altKey) return;
     var t = ev.target;
     if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
     ev.preventDefault();
-    window.location.href = link.href;
+    field.focus();
+    field.select();
   });
+})();
+
+// Back controls: go back in history when the visitor came from this site, else to the parent page.
+(function () {
+  var links = document.querySelectorAll("[data-back]");
+  if (!links.length) return;
+  var base = (document.querySelector('link[rel="canonical"]') || {}).href || "";
+  var root = base ? new URL(".", new URL(base)).href.replace(/(sprints|phases|milestones|code|search)\/.*$/, "") : "";
+  var fromSite = false;
+  try {
+    var ref = document.referrer ? new URL(document.referrer) : null;
+    fromSite = !!ref && ref.origin === location.origin && ref.href !== location.href &&
+      (!root || ref.pathname.indexOf(new URL(root).pathname) === 0);
+  } catch (e) { fromSite = false; }
+  links.forEach(function (a) {
+    a.addEventListener("click", function (ev) {
+      if (fromSite && window.history.length > 1) {
+        ev.preventDefault();
+        window.history.back();
+      }
+    });
+  });
+  var floating = document.querySelector(".back-float");
+  if (!floating) return;
+  var ticking = false;
+  function update() {
+    document.body.classList.toggle("scrolled", window.scrollY > 520);
+    ticking = false;
+  }
+  window.addEventListener("scroll", function () {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+  }, { passive: true });
+  update();
 })();
 
 // Reading spotlight: on text pages the sticky image lights the part whose text is being read;
