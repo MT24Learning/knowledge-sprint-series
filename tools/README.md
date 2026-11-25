@@ -43,4 +43,4 @@ Every phase from 1 to 15 has its texts, and so do the milestone overview and the
 
 ## Requirements
 
-Python 3.10 or later, Pillow, and Pagefind for the site search (`pip install 'pagefind[bin]==1.6.0'`). The icons are inlined from [Bootstrap Icons](https://icons.getbootstrap.com/) (MIT, [`icons.py`](icons.py); licence in `docs/licenses/bootstrap-icons.txt`). The "next phase" tile is rendered with Playwright and Chromium; its two fonts (Space Grotesk and JetBrains Mono, SIL Open Font License) are fetched from the Google Fonts repository on first use.
+Python 3.10 or later, Pillow, and Pagefind for the site search (`pip install 'pagefind[bin]==1.6.0'`). The icons are inlined from [Bootstrap Icons](https://icons.getbootstrap.com/) (MIT, [`icons.py`](icons.py); licence in `docs/licenses/bootstrap-icons.txt`). The "next phase" tile is rendered with Playwright and Chromium; its two fonts (Space Grotesk and JetBrains Mono, SIL Open Font License) are fetched from the Google Fonts repository on first use. `website.py` also writes `docs/googlebeb5077fc7b2b43a.html`, the Google Search Console ownership file for the site; it must stay in place.

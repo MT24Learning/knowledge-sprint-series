@@ -319,7 +319,15 @@ def copy_if_changed(src, dst):
     shutil.copyfile(src, dst)
 
 
+# Google Search Console ownership file for the site's URL-prefix property (Mohammed's account, 25 Nov 2026).
+# Google keeps checking it, so it must stay in place; it is written exactly as Google serves it (no newline).
+SEARCH_CONSOLE_FILES = ["googlebeb5077fc7b2b43a.html"]
+
+
 def build(b):
+    for name in SEARCH_CONSOLE_FILES:
+        with open(os.path.join(b.ROOT, "docs", name), "w", encoding="utf-8", newline="") as f:
+            f.write(f"google-site-verification: {name}")
     thumbs = os.path.join(b.ROOT, "assets", "thumbs")
     target = os.path.join(b.ROOT, "docs", "img", "thumbs")
     wanted = {f"phase-{p['n']:02d}.jpg" for p in b.PHASES}
