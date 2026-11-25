@@ -6,6 +6,8 @@
 
 > Four sprints on gradients, logic, axioms and tests: the mathematics behind every later claim.
 
+**Full text on the website.** Every image of this phase is also written out as text, ready to read, search and quote: [Phase 4 summary](https://mt24learning.github.io/knowledge-sprint-series/phases/4/) · [Sprint 9](https://mt24learning.github.io/knowledge-sprint-series/sprints/9/) · [Sprint 10](https://mt24learning.github.io/knowledge-sprint-series/sprints/10/) · [Sprint 11](https://mt24learning.github.io/knowledge-sprint-series/sprints/11/) · [Sprint 12](https://mt24learning.github.io/knowledge-sprint-series/sprints/12/)
+
 ## Phase summary
 
 <a href="MT24_Learning_Phase04_Summary.png"><img src="MT24_Learning_Phase04_Summary.png" width="760" alt="Phase 4 summary page: Mathematical & Logical Foundations, 4 sprints, with what each sprint covers, what I can now do, mistakes avoided and the phase project."></a>
@@ -22,6 +24,8 @@
 
 **Try it.** Check a least-squares gradient against a central difference, then recover the weights [2, −3] in 100 steps of gradient descent.
 
+**Full text.** [Sprint 9 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/9/)
+
 **Run it.** [`sprint09_linear_algebra_calculus_for_ml.py`](code/sprint09_linear_algebra_calculus_for_ml.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 10/90 · Logic, Propositions & Inference
@@ -31,6 +35,8 @@
 **Covers.** Propositions, the material conditional, valid versus sound arguments, and deduction, induction and abduction, with the Wason selection task.
 
 **Try it.** A truth-table checker confirms modus ponens and modus tollens and exposes affirming the consequent and denying the antecedent.
+
+**Full text.** [Sprint 10 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/10/)
 
 **Run it.** [`sprint10_logic_propositions_inference.py`](code/sprint10_logic_propositions_inference.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
@@ -42,6 +48,8 @@
 
 **Try it.** A triangle on the unit sphere with three right angles adds up to 270°, and its excess equals its area.
 
+**Full text.** [Sprint 11 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/11/)
+
 **Run it.** [`sprint11_axioms_declared_assumptions.py`](code/sprint11_axioms_declared_assumptions.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 12/90 · Testing & Phase Review
@@ -51,6 +59,8 @@
 **Covers.** What a test can and cannot show, property-based testing, why floats need a tolerance, and a review of the phase.
 
 **Try it.** Hypothesis generates inputs, finds a failing case and shrinks it to a minimal example.
+
+**Full text.** [Sprint 12 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/12/)
 
 **Run it.** [`sprint12_testing_phase_review.py`](code/sprint12_testing_phase_review.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 

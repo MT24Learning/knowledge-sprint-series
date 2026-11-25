@@ -6,6 +6,8 @@
 
 > From counting words to handing passages to a model: what search finds on real judged data, and what it cannot tell you it missed.
 
+**Full text on the website.** Every image of this phase is also written out as text, ready to read, search and quote: [Phase 13 summary](https://mt24learning.github.io/knowledge-sprint-series/phases/13/) · [Sprint 39](https://mt24learning.github.io/knowledge-sprint-series/sprints/39/) · [Sprint 40](https://mt24learning.github.io/knowledge-sprint-series/sprints/40/) · [Sprint 41](https://mt24learning.github.io/knowledge-sprint-series/sprints/41/)
+
 ## Phase summary
 
 <a href="MT24_Learning_Phase13_Summary.png"><img src="MT24_Learning_Phase13_Summary.png" width="760" alt="Phase 13 summary page: Semantic Search & Retrieval, 3 sprints, with what each sprint covers, what I can now do, mistakes avoided and the phase project."></a>
@@ -24,6 +26,8 @@
 
 **Try it.** On 1,400 Cranfield abstracts and 225 questions, nDCG@10 climbs from 0.026 (counting) to 0.382 (BM25).
 
+**Full text.** [Sprint 39 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/39/)
+
 **Run it.** [`sprint39_keyword_search_inverted_index_bm25.py`](code/sprint39_keyword_search_inverted_index_bm25.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 40/90 · Searching by Meaning: Dense & Hybrid Retrieval
@@ -36,6 +40,8 @@
 
 **Try it.** A small static embedding model scores 0.340 against BM25's 0.382, and the hybrid's +0.013 is not significant (p ≈ 0.18).
 
+**Full text.** [Sprint 40 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/40/)
+
 **Run it.** [`sprint40_searching_by_meaning_dense_hybrid_retrieval.py`](code/sprint40_searching_by_meaning_dense_hybrid_retrieval.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 41/90 · Retrieval-Augmented Generation: A Working Demo
@@ -47,6 +53,8 @@
 **Covers.** Retrieve then generate, recall as the ceiling on every answer, a retriever that always returns something, and the choice to cite or abstain.
 
 **Try it.** A judged passage reaches the top five for 77% of questions; a score floor that keeps 90% of answerable questions still lets 84% through once every judged paper is hidden.
+
+**Full text.** [Sprint 41 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/41/)
 
 **Run it.** [`sprint41_retrieval_augmented_generation_working_demo.py`](code/sprint41_retrieval_augmented_generation_working_demo.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 

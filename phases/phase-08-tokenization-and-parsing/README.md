@@ -6,6 +6,8 @@
 
 > Pieces, merges, trees and a release: four sprints on turning text into structure.
 
+**Full text on the website.** Every image of this phase is also written out as text, ready to read, search and quote: [Phase 8 summary](https://mt24learning.github.io/knowledge-sprint-series/phases/8/) · [Sprint 22](https://mt24learning.github.io/knowledge-sprint-series/sprints/22/) · [Sprint 23](https://mt24learning.github.io/knowledge-sprint-series/sprints/23/) · [Sprint 24](https://mt24learning.github.io/knowledge-sprint-series/sprints/24/) · [Sprint 25](https://mt24learning.github.io/knowledge-sprint-series/sprints/25/)
+
 ## Phase summary
 
 <a href="MT24_Learning_Phase08_Summary.png"><img src="MT24_Learning_Phase08_Summary.png" width="760" alt="Phase 8 summary page: Tokenization & Parsing, 4 sprints, with what each sprint covers, what I can now do, mistakes avoided and the phase project."></a>
@@ -24,6 +26,8 @@
 
 **Try it.** A 32-piece toy vocabulary splits "unbelievably tokenizers" into seven pieces and decodes it back exactly.
 
+**Full text.** [Sprint 22 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/22/)
+
 **Run it.** [`sprint22_how_tokenization_works.py`](code/sprint22_how_tokenization_works.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 23/90 · Byte Pair Encoding & Its Edge Cases
@@ -35,6 +39,8 @@
 **Covers.** The merge loop, how ties decide the result, rare, capitalised and unseen words, and why numbers split oddly.
 
 **Try it.** Ten merges on a toy corpus reduce 95 symbols to 28, and show how "lowest", "newer" and "Lowest" are split.
+
+**Full text.** [Sprint 23 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/23/)
 
 **Run it.** [`sprint23_byte_pair_encoding_edge_cases.py`](code/sprint23_byte_pair_encoding_edge_cases.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
@@ -48,6 +54,8 @@
 
 **Try it.** A recursive-descent parser reads 2 + 3 * 4 as 14, and a strict hook rejects a duplicate JSON key that json.loads keeps silently.
 
+**Full text.** [Sprint 24 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/24/)
+
 **Run it.** [`sprint24_parsing_structured_meaning_from_text.py`](code/sprint24_parsing_structured_meaning_from_text.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 25/90 · Publishing a Package
@@ -59,6 +67,8 @@
 **Covers.** The pyproject file, wheels and source distributions, version numbers (Semantic Versioning and PEP 440), and why a release is permanent.
 
 **Try it.** Build the same package twice and get a byte-identical wheel; the mini project then publishes it to TestPyPI first.
+
+**Full text.** [Sprint 25 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/25/)
 
 **Run it.** [`sprint25_publishing_a_package.py`](code/sprint25_publishing_a_package.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 

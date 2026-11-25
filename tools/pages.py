@@ -83,16 +83,27 @@ def e(text):
     return escape(str(text), quote=True)
 
 
-def md(text):
-    """Escapes text, then **bold**, *italic* and no-break spaces inside thousands (3 941)."""
+def md(text, links=True):
+    """Escapes text, then **bold**, *italic*, ~~struck~~, W_{Q} subscripts, 10^{k/2} superscripts, `kept case` (a file name inside a heading that the
+    page sets in capitals), Zenodo DOIs as links, and no-break spaces inside thousands (3 941)."""
     t = e(text)
+    t = re.sub(r"`([^`]+)`", r'<span class="keep">\1</span>', t)
+    t = re.sub(r"~~(.+?)~~", r"<s>\1</s>", t)
+    t = re.sub(r"([A-Za-z])_\{(\w+)\}", r"\1<sub>\2</sub>", t)  # W_{Q}: a capital subscript Unicode lacks
+    t = re.sub(r"(\w)\^\{([^}]+)\}", r"\1<sup>\2</sup>", t)  # 10^{k/2}: a raised fraction Unicode lacks
     t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
     t = re.sub(r"(?<![\w*])\*(?!\s)(.+?)(?<!\s)\*(?![\w*])", r"<em>\1</em>", t)
+    t = t.replace("\n", "<br>")  # a line break printed on the image
+    if links:
+        t = re.sub(r"(?<![\w/.])(10\.5281/zenodo\.\d+)", r'<a href="https://doi.org/\1">\1</a>', t)
     return re.sub(r"(?<=\d) (?=\d{3}(?!\d))", " ", t)
 
 
 def plain(text):
-    return re.sub(r"\*\*?(.+?)\*\*?", r"\1", text)
+    text = re.sub(r"~~(.+?)~~", r"\1", text).replace("`", "")
+    text = re.sub(r"([A-Za-z])_\{(\w+)\}", r"\1_\2", text)
+    text = re.sub(r"(\w)\^\{([^}]+)\}", r"\1^(\2)", text)
+    return re.sub(r"\*\*?(.+?)\*\*?", r"\1", text).replace("\n", " ")
 
 
 def title_html(title, em):
@@ -467,7 +478,7 @@ def sprint_page(b, texts, p, s, t, prev_s, next_s):
         '      <ol class="sources">',
     ]
     for text, url in t["sources"]:
-        w.append(f'        <li><a href="{e(url)}" rel="noopener">{md(text)}</a></li>')
+        w.append(f'        <li><a href="{e(url)}" rel="noopener">{md(text, links=False)}</a></li>')
     w += ["      </ol>", "    </section>", "  </article>", "</div>"]
     w += pager(b, texts, prev_s, next_s, p, up)
     w += cite_block(b, p, f"cite-{n}")
@@ -487,18 +498,20 @@ def figure_words(fig):
          f'      <h2 id="fig">{e(fig.get("label", "Fig. 1"))} <span>in words</span></h2>']
     if fig.get("title"):
         w.append(f'      <p class="fig-title">{md(fig["title"])}</p>')
+    if fig.get("caption"):  # the image's own italic caption ("Fig. 1 — …"), in its own case
+        w.append(f'      <p class="fig-caption">{md(fig["caption"])}</p>')
     w.append(f'      <ol class="panels{" one" if len(fig["panels"]) == 1 else ""}">')
     numbered = len(fig["panels"]) > 1
     for k, (title, lines) in enumerate(fig["panels"]):
         ball = f'<span class="ball" data-pagefind-ignore>{k + 1}</span> ' if numbered else ""
-        w.append(f'        <li><h3>{ball}{md(title)}</h3><ul>')
+        w.append(f'        <li><h3>{ball}<span>{md(title)}</span></h3><ul>')
         w += [f"          <li>{md(x)}</li>" for x in lines]
         w.append("        </ul></li>")
     w.append("      </ol>")
     if fig.get("notes"):
         w.append(f'      <aside class="notes"><h3>{e(fig.get("notes_title", "Notes"))}</h3><ol>')
         for k, (key, text) in enumerate(fig["notes"]):
-            keypart = f"<b>{e(key)}</b> " if key else ""
+            keypart = f"<b>{md(key, links=False)}</b> " if key else ""
             w.append(f'        <li><span class="ball">{k + 1}</span>{keypart}{md(text)}</li>')
         w.append("      </ol></aside>")
     w.append("    </section>")
@@ -591,6 +604,12 @@ def pager(b, texts, prev_s, next_s, p, up):
 
 # ---------------------------------------------------------------- phase page
 
+def sacc(t, n):
+    """A sprint's colour on its phase summary: PHASE["summary_accents"] where the summary prints the sprints in
+    their own colours, else the sprint's accent."""
+    return t.PHASE.get("summary_accents", {}).get(n) or t.PHASE["accents"][n]
+
+
 def issue_cards(b, texts, p, up, heading, spot):
     t = texts[p["n"]]
     attr = f' data-spot="{spot}"' if spot else ' data-pagefind-ignore'
@@ -598,7 +617,7 @@ def issue_cards(b, texts, p, up, heading, spot):
     for s in p["sprints"]:
         st = t.SPRINTS[s["n"]]
         tag = tagline_of(s, st)
-        w.append(f'        <li><a href="{up}sprints/{s["n"]}/" style="--c:{tint(t.PHASE["accents"][s["n"]])}">'
+        w.append(f'        <li><a href="{up}sprints/{s["n"]}/" style="--c:{tint(sacc(t, s["n"]))}">'
                  f'<img src="../../img/pages/sprint-{s["n"]}-s.jpg" width="400" height="500" loading="lazy" alt="">'
                  f'<span class="meta"><span>Sprint {s["n"]}/{b.TOTAL_SPRINTS}</span></span>'
                  f'<b>{title_html(s["title"], st.get("em"))}</b>' + (f"<i>{md(tag)}</i>" if tag else "") + "</a></li>")
@@ -610,7 +629,7 @@ def ref_list(refs, title, spot="references"):
     w = [f'    <section class="t-sources" aria-labelledby="references" data-spot="{spot}">',
          f'      <h2 id="references"><span class="key" data-pagefind-ignore>R</span> {e(title)}</h2>',
          '      <ol class="sources">']
-    w += [f'        <li><a href="{e(url)}" rel="noopener">{md(text)}</a></li>' for text, url in refs]
+    w += [f'        <li><a href="{e(url)}" rel="noopener">{md(text, links=False)}</a></li>' for text, url in refs]
     w += ["      </ol>", "    </section>"]
     return w
 
@@ -618,7 +637,8 @@ def ref_list(refs, title, spot="references"):
 def block_html(blk, key, colour=None):
     style = f' style="--c:{colour}"' if colour else ""
     tag = f'<span class="tag" data-pagefind-ignore>{e(blk["tag"])}</span>' if blk.get("tag") else ""
-    w = [f'      <section class="blk"{style} data-spot="{key}"><h2>{md(blk["title"])} {tag}</h2>']
+    head = f'<h2>{md(blk["title"])} {tag}</h2>' if blk.get("title") else ""
+    w = [f'      <section class="blk"{style} data-spot="{key}">{head}']
     if blk.get("text"):
         w += [f"<p>{md(x)}</p>" for x in ([blk["text"]] if isinstance(blk["text"], str) else blk["text"])]
     if blk.get("items"):
@@ -640,7 +660,7 @@ def phase_page(b, texts, i, p):
     folder = b.phase_dir(p)
     png = os.path.join(b.ROOT, "phases", folder, p["summary"])
     full = f"{RAW}/phases/{folder}/{p['summary']}"
-    first_acc = t.PHASE["accents"][p["sprints"][0]["n"]]
+    first_acc = sacc(t, p["sprints"][0]["n"])
     description = f"Phase {p['n']} of {b.TOTAL_PHASES}, {b.sprint_label(p)}: {p['line']}"
     ld = {
         "@context": "https://schema.org", "@type": "CreativeWork",
@@ -658,12 +678,12 @@ def phase_page(b, texts, i, p):
     crumbs = [("Home", ""), (f"Phase {p['n']}: {p['title']}", path)]
     w = head(b, title=f"Phase {p['n']}: {p['title']} · Knowledge Sprint Series", description=description, path=path,
              image=f"img/social/phase-{p['n']}.jpg", image_size=(1200, 630), depth=2, jsonld=[ld, crumbs_ld(b, crumbs)])
-    grad = ", ".join(tint(t.PHASE["accents"][s["n"]]) for s in p["sprints"])
+    grad = ", ".join(tint(sacc(t, s["n"])) for s in p["sprints"])
     if len(p["sprints"]) == 1:
         grad = f"{grad}, {grad}"
     w.append(f'<main id="main" class="text-page phase" style="--acc:{first_acc};--acc-text:{tint(first_acc)};'
              f'--grad:linear-gradient(92deg, {grad})">')
-    chips = "".join(f'<a class="chip" style="--c:{tint(t.PHASE["accents"][s["n"]])}" href="{up}sprints/{s["n"]}/">{s["n"]}</a>'
+    chips = "".join(f'<a class="chip" style="--c:{tint(sacc(t, s["n"]))}" href="{up}sprints/{s["n"]}/">{s["n"]}</a>'
                     for s in p["sprints"])
     w += [
         '<nav class="crumbs wrap" aria-label="Breadcrumb" data-pagefind-ignore>',
@@ -677,6 +697,8 @@ def phase_page(b, texts, i, p):
         w.append('  <p class="ribbon">' + "".join(f"<span>{e(x)}</span>" for x in parts) + "</p>")
     w += [f'  <p class="eyebrow"><span>{e(S["kicker"])}</span></p>',
           f'  <h1 data-pagefind-meta="title">{title_html(p["title"], S.get("em"))}</h1>']
+    if S.get("sub"):
+        w.append(f'  <p class="subtitle">{md(S["sub"])}</p>')
     if S.get("dek"):
         w.append(f'  <p class="tagline">{md(S["dek"])}</p>')
     if S.get("badges"):
@@ -712,13 +734,13 @@ def journal_body(b, texts, p, up):
          '      <h2 id="highlights">Highlights</h2>',
          '      <ul class="highlights">']
     for n, text in S["highlights"]:
-        w.append(f'        <li><a class="chip" style="--c:{tint(t.PHASE["accents"][n])}" href="{up}sprints/{n}/">{n}</a>'
+        w.append(f'        <li><a class="chip" style="--c:{tint(sacc(t, n))}" href="{up}sprints/{n}/">{n}</a>'
                  f'<span>{md(text)}</span></li>')
     w += ["      </ul>", "    </section>",
           '    <section class="t-fig" aria-labelledby="figures" data-spot="figures">',
           '      <h2 id="figures">Figures <span>in words</span></h2>', '      <ol class="panels one">']
     for k, (n, title, lines) in enumerate(S["figures"], 1):
-        link = (f' <a class="fig-sprint" style="--c:{tint(t.PHASE["accents"][n])}" href="{up}sprints/{n}/">Sprint {n}</a>'
+        link = (f' <a class="fig-sprint" style="--c:{tint(sacc(t, n))}" href="{up}sprints/{n}/">Sprint {n}</a>'
                 if n else "")
         w.append(f'        <li><h3><span class="ball" data-pagefind-ignore>{k}</span> Fig. {k} · {md(title)}{link}</h3><ul>')
         w += [f"          <li>{md(x)}</li>" for x in lines]
@@ -737,7 +759,7 @@ def journal_body(b, texts, p, up):
     w += issue_cards(b, texts, p, up, "In This Issue", "issue")
     w.append('    <div class="boxes">')
     for k, (title, text) in enumerate(S["boxes"]):
-        c = tint(t.PHASE["accents"][p["sprints"][min(k, len(p["sprints"]) - 1)]["n"]])
+        c = tint(sacc(t, p["sprints"][min(k, len(p["sprints"]) - 1)]["n"]))
         w.append(f'      <section style="--c:{c}" data-spot="box-{k}"><h2>{e(title)}</h2><p>{md(text)}</p></section>')
     w.append("    </div>")
     w += ref_list(S["references"], S.get("references_title", "References"))
@@ -765,18 +787,18 @@ def catalog_body(b, texts, p, up):
           '      <div class="tiles">']
     for k, tile in enumerate(S["tiles"]):
         n = tile.get("sprint")
-        c = tint(t.PHASE["accents"][n]) if n in t.PHASE["accents"] else tint(t.PHASE["accents"][p["sprints"][0]["n"]])
+        c = tint(tile["colour"] if tile.get("colour") else sacc(t, n if n in t.PHASE["accents"] else p["sprints"][0]["n"]))
         tag = f'<span class="tag" data-pagefind-ignore>{md(tile["tag"])}</span>' if tile.get("tag") else ""
-        head_ = f'<a href="{up}sprints/{n}/">{md(tile["title"])}</a>' if n else md(tile["title"])
+        head_ = f'<a href="{up}sprints/{n}/">{md(tile["title"], links=False)}</a>' if n else md(tile["title"])
         body = "".join(f"<p>{md(x)}</p>" for x in ([tile["text"]] if isinstance(tile.get("text", ""), str) else tile["text"])
                        if x)
         if tile.get("items"):
             body += "<ul>" + "".join(f"<li>{md(x)}</li>" for x in tile["items"]) + "</ul>"
         w.append(f'        <section class="tile" style="--c:{c}" data-spot="tile-{k}"><h3>{head_}</h3>{body}{tag}</section>')
     w += ["      </div>", "    </section>", '    <div class="blocks">']
-    accents = [tint(t.PHASE["accents"][s["n"]]) for s in p["sprints"]]
+    accents = [tint(sacc(t, s["n"])) for s in p["sprints"]]
     for k, blk in enumerate(S["blocks"]):
-        w += block_html(blk, f"block-{k}", blk.get("colour") or accents[k % len(accents)])
+        w += block_html(blk, f"block-{k}", tint(blk["colour"]) if blk.get("colour") else accents[k % len(accents)])
     w.append("    </div>")
     if S.get("references"):
         w += ref_list(S["references"], S.get("references_title", "Trusted Sources"))
@@ -855,8 +877,12 @@ def extra_page(b, key, X):
           back_float(f"{up}#phases"),
           '<header class="t-head wrap" data-spot="head">',
           f'  <p class="eyebrow"><span>{e(X["kicker"])}</span></p>',
-          f'  <h1 data-pagefind-meta="title">{title_html(X.get("heading", title), X.get("em"))}</h1>',
-          f'  <p class="tagline">{md(X["dek"])}</p>']
+          f'  <h1 data-pagefind-meta="title">{title_html(X.get("heading", title), X.get("em"))}</h1>']
+    if X.get("sub"):
+        w.append(f'  <p class="subtitle">{md(X["sub"])}</p>')
+    w.append(f'  <p class="tagline">{md(X["dek"])}</p>')
+    if X.get("badges"):
+        w.append('  <p class="badges">' + "".join(f"<span>{md(x)}</span>" for x in X["badges"]) + "</p>")
     if doi:
         w.append(f'  <p class="byline"><b>Mohammed Tahri</b> · MT24 · DOI <a class="doi" href="https://doi.org/{doi}">{doi}</a></p>')
     w += [f'  <span hidden data-pagefind-filter="Type">{e(X.get("type", "Overview"))}</span>', "</header>",

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phase 5: Statistics &amp; Experimental Design · Knowledge Sprint Series</title>
+<meta name="description" content="Phase 5 of 27, Sprints 13–15: Distributions, power and design: three sprints on how evidence is counted.">
+<link rel="canonical" href="https://mt24learning.github.io/knowledge-sprint-series/phases/5/">
+<meta name="theme-color" content="#061127">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Knowledge Sprint Series · MT24 Learning">
+<meta property="og:title" content="Phase 5: Statistics &amp; Experimental Design · Knowledge Sprint Series">
+<meta property="og:description" content="Phase 5 of 27, Sprints 13–15: Distributions, power and design: three sprints on how evidence is counted.">
+<meta property="og:url" content="https://mt24learning.github.io/knowledge-sprint-series/phases/5/">
+<meta property="og:image" content="https://mt24learning.github.io/knowledge-sprint-series/img/social/phase-5.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../img/brand/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../img/brand/apple-touch-icon.png">
+<link rel="preload" href="../../fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../style.css">
+<script>document.documentElement.classList.add("js")</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Phase 5: Statistics & Experimental Design", "description": "Distributions, power and design: three sprints on how evidence is counted.", "url": "https://mt24learning.github.io/knowledge-sprint-series/phases/5/", "identifier": "https://doi.org/10.5281/zenodo.23063053", "sameAs": "https://doi.org/10.5281/zenodo.23063053", "datePublished": "2026-09-27", "image": "https://mt24learning.github.io/knowledge-sprint-series/img/pages/phase-5.jpg", "inLanguage": "en", "isAccessibleForFree": true, "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/", "author": {"@type": "Person", "name": "Mohammed Tahri", "alternateName": "MT24", "sameAs": ["https://orcid.org/0009-0000-9113-1687", "https://www.linkedin.com/in/mohammed-tahri24", "https://x.com/MohammedTahri24", "https://bsky.app/profile/mohammedtahri.bsky.social", "https://mathstodon.xyz/@mohammedtahri24", "https://www.threads.net/@mohammedtahri24", "https://www.instagram.com/mohammedtahri24", "https://www.facebook.com/mohammed.tahri24", "https://www.tiktok.com/@mohammed.tahri24", "https://substack.com/@mohammedtahri24"]}, "isPartOf": {"@type": "CreativeWorkSeries", "name": "MT24 Learning — Knowledge Sprint Series", "url": "https://mt24learning.github.io/knowledge-sprint-series/"}, "hasPart": [{"@type": "LearningResource", "name": "Sprint 13: Probability & Distributions", "url": "https://mt24learning.github.io/knowledge-sprint-series/sprints/13/"}, {"@type": "LearningResource", "name": "Sprint 14: Hypothesis Testing, Power & Sample Size", "url": "https://mt24learning.github.io/knowledge-sprint-series/sprints/14/"}, {"@type": "LearningResource", "name": "Sprint 15: Experimental Design & Rigorous Inference", "url": "https://mt24learning.github.io/knowledge-sprint-series/sprints/15/"}], "citation": [{"@type": "CreativeWork", "name": "Kolmogorov 1933", "url": "https://doi.org/10.1007/978-3-642-49888-6"}, {"@type": "CreativeWork", "name": "Fisher 1925, 1935", "url": "https://doi.org/10.1093/oso/9780198522294.001.0001"}, {"@type": "CreativeWork", "name": "Neyman & Pearson 1933", "url": "https://doi.org/10.1098/rsta.1933.0009"}, {"@type": "CreativeWork", "name": "Cohen 1992", "url": "https://doi.org/10.1037/0033-2909.112.1.155"}, {"@type": "CreativeWork", "name": "ASA 2016", "url": "https://doi.org/10.1080/00031305.2016.1154108"}, {"@type": "CreativeWork", "name": "Charig et al. 1986", "url": "https://doi.org/10.1136/bmj.292.6524.879"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://mt24learning.github.io/knowledge-sprint-series/"}, {"@type": "ListItem", "position": 2, "name": "Phase 5: Statistics & Experimental Design", "item": "https://mt24learning.github.io/knowledge-sprint-series/phases/5/"}]}</script>
+</head>
+<body class="page">
+<a class="skip" href="#main">Skip to the text</a>
+<header class="site">
+  <div class="bar wrap">
+    <a class="brand" href="../../" aria-label="Knowledge Sprint Series, home">
+      <img src="../../img/brand/mt24-badge.svg" width="40" height="40" alt="">
+      <span><b>Knowledge Sprint Series</b><small>MT24 Learning</small></span>
+    </a>
+    <form class="hsearch" action="../../search/" method="get" role="search">
+      <label for="hq" class="hs-icon" title="Search the series"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg><span class="sr-only">Search the series</span></label>
+      <input id="hq" name="q" type="search" placeholder="Search the series" autocomplete="off" enterkeyhint="search" spellcheck="false">
+      <kbd aria-hidden="true" title="Press / to search">/</kbd>
+    </form>
+    <nav aria-label="Sections">
+      <a href="../../#phases">Phases</a>
+      <a href="../../#results">Results</a>
+      <a href="../../#sprint">How it works</a>
+      <a href="../../#cite">Cite</a>
+      <a href="../../#follow">Follow</a>
+      <a class="gh" href="https://github.com/MT24Learning/knowledge-sprint-series"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg><span>GitHub</span></a>
+    </nav>
+  </div>
+</header>
+<main id="main" class="text-page phase" style="--acc:#1f4e9c;--acc-text:#708ec0;--grad:linear-gradient(92deg, #708ec0, #708ec0, #708ec0)">
+<nav class="crumbs wrap" aria-label="Breadcrumb" data-pagefind-ignore>
+  <a class="back" href="../../#phases" data-back title="Back to all phases"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/></svg><span>Back</span></a>
+  <a href="../../">Home</a><span>/</span><span aria-current="page">Phase 5 · Statistics &amp; Experimental Design</span>
+</nav>
+<a class="back-float" href="../../#phases" data-back aria-label="Back" title="Back"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/></svg></a>
+<header class="t-head wrap" data-spot="head">
+  <p class="eyebrow"><span>Phase 5 · Summary · Sprints 13–15 of 90</span></p>
+  <h1 data-pagefind-meta="title">Statistics &amp; Experimental <em>Design</em></h1>
+  <p class="tagline">Distributions, power and design: three sprints on how evidence is counted, every number rerun in code.</p>
+  <p class="badges"><span>3 sprints, 3 simulations</span><span>Verified sources</span><span>One phase project</span></p>
+  <p class="byline"><b>Mohammed Tahri</b> · MT24 · <a href="https://orcid.org/0009-0000-9113-1687">ORCID 0009-0000-9113-1687</a><a class="chip" style="--c:#708ec0" href="../../sprints/13/">13</a><a class="chip" style="--c:#708ec0" href="../../sprints/14/">14</a><a class="chip" style="--c:#708ec0" href="../../sprints/15/">15</a></p>
+  <span hidden data-pagefind-filter="Phase">Statistics &amp; Experimental Design</span><span hidden data-pagefind-filter="Type">Phase summary</span>
+</header>
+<div class="t-body wrap">
+  <figure class="t-image">
+    <div class="spotlit"><img src="../../img/pages/phase-5.jpg" width="1080" height="1350" alt="Phase 5 summary, a one-page catalog: Statistics &amp; Experimental Design. The full text of the page follows."><span class="spot" data-spot="head" aria-hidden="true" style="left:3.47%;top:2.78%;width:57.64%;height:23.15%"></span><span class="spot" data-spot="figure" aria-hidden="true" style="left:63.66%;top:10.00%;width:35.42%;height:16.48%"></span><span class="spot" data-spot="tile-0" aria-hidden="true" style="left:3.61%;top:29.56%;width:21.94%;height:16.81%"></span><span class="spot" data-spot="tile-1" aria-hidden="true" style="left:27.22%;top:29.56%;width:21.94%;height:16.81%"></span><span class="spot" data-spot="tile-2" aria-hidden="true" style="left:50.83%;top:29.56%;width:21.99%;height:16.81%"></span><span class="spot" data-spot="tile-3" aria-hidden="true" style="left:74.58%;top:29.56%;width:21.85%;height:16.81%"></span><span class="spot" data-spot="block-0" aria-hidden="true" style="left:3.61%;top:47.59%;width:21.94%;height:16.85%"></span><span class="spot" data-spot="block-1" aria-hidden="true" style="left:27.22%;top:47.59%;width:21.94%;height:16.85%"></span><span class="spot" data-spot="block-2" aria-hidden="true" style="left:50.83%;top:47.59%;width:21.99%;height:16.85%"></span><span class="spot" data-spot="references" aria-hidden="true" style="left:74.58%;top:47.59%;width:21.85%;height:16.85%"></span><span class="spot" data-spot="block-3" aria-hidden="true" style="left:3.66%;top:65.63%;width:21.90%;height:16.44%"></span><span class="spot" data-spot="next" aria-hidden="true" style="left:27.22%;top:65.63%;width:69.44%;height:16.44%"></span></div>
+    <span hidden data-pagefind-meta="image:/knowledge-sprint-series/img/thumbs/phase-05.jpg"></span>
+    <figcaption data-pagefind-ignore><a href="https://raw.githubusercontent.com/MT24Learning/knowledge-sprint-series/main/phases/phase-05-statistics-and-experimental-design/MT24_Learning_Phase05_Summary.png">Full resolution</a><span>2160 × 2700 PNG</span><a href="https://github.com/MT24Learning/knowledge-sprint-series/blob/main/phases/phase-05-statistics-and-experimental-design/README.md">Phase on GitHub</a></figcaption>
+    <p class="spot-hint" data-pagefind-ignore>The part of the image you are reading lights up. Tap a part to jump to its text.</p>
+  </figure>
+  <article class="t-text">
+    <section class="t-fig" aria-labelledby="figures" data-spot="figure">
+      <h2 id="figures">Figure <span>in words</span></h2>
+      <ul class="fig-lines"><li>a screen with a chart: a green bell curve with a red shaded tail, a blue S-shaped curve with a small blue dot where it crosses a dashed line, a larger blue dot and a gold dot</li><li>four labels: Distributions · Power · Confounding · Randomization</li></ul>
+    </section>
+    <section aria-labelledby="tiles">
+      <h2 id="tiles">The Sprints</h2>
+      <div class="tiles">
+        <section class="tile" style="--c:#6b8dc5" data-spot="tile-0"><h3><a href="../../sprints/13/">Distributions</a></h3><p>The exponential mean settled at 1.0. The Cauchy mean never did. Tails first.</p><span class="tag" data-pagefind-ignore>Sprint 13</span></section>
+        <section class="tile" style="--c:#599a72" data-spot="tile-1"><h3><a href="../../sprints/14/">Sample Size</a></h3><p>64 per group: power 0.79. At 20, the hits averaged 0.83 for a true 0.5.</p><span class="tag" data-pagefind-ignore>Sprint 14</span></section>
+        <section class="tile" style="--c:#b7832a" data-spot="tile-2"><h3><a href="../../sprints/15/">Confounding</a></h3><p>Open surgery won both stone sizes, then lost overall: 78% against 83%.</p><span class="tag" data-pagefind-ignore>Sprint 15</span></section>
+        <section class="tile" style="--c:#d66d65" data-spot="tile-3"><h3><a href="../../sprints/15/">Randomization</a></h3><p>Doctor&#x27;s choice: −1.262. Coin flip: 0.998. The true effect was +1.</p><span class="tag" data-pagefind-ignore>Sprint 15</span></section>
+      </div>
+    </section>
+    <div class="blocks">
+      <section class="blk" style="--c:#9488a9" data-spot="block-0"><h2>Now I Can <span class="tag" data-pagefind-ignore>Outcome</span></h2><p>Simulate a distribution, size a study for 80% power, spot a confounder.</p></section>
+      <section class="blk" style="--c:#d66e6b" data-spot="block-1"><h2>Mistakes Avoided <span class="tag" data-pagefind-ignore>Lessons</span></h2><p>Luck &quot;evening out&quot;, p as the chance H₀ is true, &quot;not significant&quot; as &quot;no effect&quot;.</p></section>
+      <section class="blk" style="--c:#52989a" data-spot="block-2"><h2>Habits Kept <span class="tag" data-pagefind-ignore>Practice</span></h2><p>Tails before the mean. n and α before the data. A coin decides.</p></section>
+      <section class="blk" style="--c:#6091bb" data-spot="block-3"><h2>Phase Project </h2><p>A blind tasting study: n planned for 80% power, cups ordered by coin, every result reported.</p></section>
+    </div>
+    <section class="t-sources" aria-labelledby="references" data-spot="references">
+      <h2 id="references"><span class="key" data-pagefind-ignore>R</span> Trusted Sources</h2>
+      <ol class="sources">
+        <li><a href="https://doi.org/10.1007/978-3-642-49888-6" rel="noopener">Kolmogorov 1933</a></li>
+        <li><a href="https://doi.org/10.1093/oso/9780198522294.001.0001" rel="noopener">Fisher 1925, 1935</a></li>
+        <li><a href="https://doi.org/10.1098/rsta.1933.0009" rel="noopener">Neyman &amp; Pearson 1933</a></li>
+        <li><a href="https://doi.org/10.1037/0033-2909.112.1.155" rel="noopener">Cohen 1992</a></li>
+        <li><a href="https://doi.org/10.1080/00031305.2016.1154108" rel="noopener">ASA 2016</a></li>
+        <li><a href="https://doi.org/10.1136/bmj.292.6524.879" rel="noopener">Charig et al. 1986</a></li>
+      </ol>
+    </section>
+    <aside class="next-issue" data-pagefind-ignore data-spot="next">
+      <p class="label">Next · Phase 6</p><p class="ni-title">How Paradigms Die</p><p class="ni-line">From evidence to revolutions.</p>
+    </aside>
+    <section aria-labelledby="issue" data-pagefind-ignore>
+      <h2 id="issue">The Sprint Pages</h2>
+      <ol class="issue">
+        <li><a href="../../sprints/13/" style="--c:#708ec0"><img src="../../img/pages/sprint-13-s.jpg" width="400" height="500" loading="lazy" alt=""><span class="meta"><span>Sprint 13/90</span></span><b>Probability &amp; <em>Distributions</em></b><i>An average is only as good as the tails behind it.</i></a></li>
+        <li><a href="../../sprints/14/" style="--c:#708ec0"><img src="../../img/pages/sprint-14-s.jpg" width="400" height="500" loading="lazy" alt=""><span class="meta"><span>Sprint 14/90</span></span><b>Hypothesis Testing, <em>Power</em> &amp; Sample Size</b><i>A test too small to find an effect cannot tell me the effect is absent.</i></a></li>
+        <li><a href="../../sprints/15/" style="--c:#708ec0"><img src="../../img/pages/sprint-15-s.jpg" width="400" height="500" loading="lazy" alt=""><span class="meta"><span>Sprint 15/90</span></span><b>Experimental Design &amp; <em>Rigorous</em> Inference</b><i>If I choose who gets the treatment, my choice becomes part of the result.</i></a></li>
+      </ol>
+    </section>
+  </article>
+</div>
+<nav class="pager wrap" aria-label="Phases" data-pagefind-ignore>
+  <a class="pg-prev" href="../../phases/4/"><small>← Phase 4</small><b>Mathematical &amp; Logical Foundations</b></a>
+  <a class="pg-up" href="../../#phases"><small>All phases</small><b>The path so far</b></a>
+  <a class="pg-next" href="../../phases/6/"><small>Phase 6 →</small><b>How Paradigms Die</b></a>
+</nav>
+<section class="cite-strip wrap" data-pagefind-ignore>
+  <p class="label">Cite this phase</p>
+  <div class="cite-box">
+    <pre id="cite-phase-5">Tahri, M. (2026). MT24 Learning — Knowledge Sprint Series, Phase 5: Statistics &amp; Experimental Design (Version 1.0) [Educational resource]. Zenodo. https://doi.org/10.5281/zenodo.23063053</pre>
+    <button class="copy" type="button" data-copy="cite-phase-5">Copy</button>
+  </div>
+  <p class="cite-note">Version DOI <a class="doi" href="https://doi.org/10.5281/zenodo.23063053">10.5281/zenodo.23063053</a> · all versions <a class="doi" href="https://doi.org/10.5281/zenodo.23063052">10.5281/zenodo.23063052</a> · first published 27 September 2026</p>
+</section>
+</main>
+<footer class="site">
+  <div class="wrap">
+  <div class="foot-top">
+    <a class="foot-brand" href="../../"><img src="../../img/brand/mt24-badge.svg" width="32" height="32" alt=""><span><b>Knowledge Sprint Series</b><small>MT24 Learning · Mohammed Tahri</small></span></a>
+    <ul class="socials" aria-label="The series online"><li><a rel="me" href="https://www.linkedin.com/in/mohammed-tahri24" title="LinkedIn" aria-label="LinkedIn"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg><span>LinkedIn</span></a></li><li><a rel="me" href="https://x.com/MohammedTahri24" title="X" aria-label="X"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/></svg><span>X</span></a></li><li><a rel="me" href="https://bsky.app/profile/mohammedtahri.bsky.social" title="Bluesky" aria-label="Bluesky"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3.468 1.948C5.303 3.325 7.276 6.118 8 7.616c.725-1.498 2.698-4.29 4.532-5.668C13.855.955 16 .186 16 2.632c0 .489-.28 4.105-.444 4.692-.572 2.04-2.653 2.561-4.504 2.246 3.236.551 4.06 2.375 2.281 4.2-3.376 3.464-4.852-.87-5.23-1.98-.07-.204-.103-.3-.103-.218 0-.081-.033.014-.102.218-.379 1.11-1.855 5.444-5.231 1.98-1.778-1.825-.955-3.65 2.28-4.2-1.85.315-3.932-.205-4.503-2.246C.28 6.737 0 3.12 0 2.632 0 .186 2.145.955 3.468 1.948"/></svg><span>Bluesky</span></a></li><li><a rel="me" href="https://mathstodon.xyz/@mohammedtahri24" title="Mastodon" aria-label="Mastodon"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a4 4 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522q0-1.288.66-2.046c.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764q.662.757.661 2.046z"/></svg><span>Mastodon</span></a></li><li><a rel="me" href="https://www.threads.net/@mohammedtahri24" title="Threads" aria-label="Threads"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M6.321 6.016c-.27-.18-1.166-.802-1.166-.802.756-1.081 1.753-1.502 3.132-1.502.975 0 1.803.327 2.394.948s.928 1.509 1.005 2.644q.492.207.905.484c1.109.745 1.719 1.86 1.719 3.137 0 2.716-2.226 5.075-6.256 5.075C4.594 16 1 13.987 1 7.994 1 2.034 4.482 0 8.044 0 9.69 0 13.55.243 15 5.036l-1.36.353C12.516 1.974 10.163 1.43 8.006 1.43c-3.565 0-5.582 2.171-5.582 6.79 0 4.143 2.254 6.343 5.63 6.343 2.777 0 4.847-1.443 4.847-3.556 0-1.438-1.208-2.127-1.27-2.127-.236 1.234-.868 3.31-3.644 3.31-1.618 0-3.013-1.118-3.013-2.582 0-2.09 1.984-2.847 3.55-2.847.586 0 1.294.04 1.663.114 0-.637-.54-1.728-1.9-1.728-1.25 0-1.566.405-1.967.868ZM8.716 8.19c-2.04 0-2.304.87-2.304 1.416 0 .878 1.043 1.168 1.6 1.168 1.02 0 2.067-.282 2.232-2.423a6.2 6.2 0 0 0-1.528-.161"/></svg><span>Threads</span></a></li><li><a rel="me" href="https://www.instagram.com/mohammedtahri24" title="Instagram" aria-label="Instagram"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/></svg><span>Instagram</span></a></li><li><a rel="me" href="https://www.facebook.com/mohammed.tahri24" title="Facebook" aria-label="Facebook"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/></svg><span>Facebook</span></a></li><li><a rel="me" href="https://www.tiktok.com/@mohammed.tahri24" title="TikTok" aria-label="TikTok"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z"/></svg><span>TikTok</span></a></li><li><a rel="me" href="https://substack.com/@mohammedtahri24" title="Substack" aria-label="Substack"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M15 3.604H1v1.891h14v-1.89ZM1 7.208V16l7-3.926L15 16V7.208zM15 0H1v1.89h14z"/></svg><span>Substack</span></a></li><li><a href="https://github.com/MT24Learning/knowledge-sprint-series" title="GitHub" aria-label="GitHub"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg><span>GitHub</span></a></li></ul>
+  </div>
+  <div class="foot-row">
+    <p>© 2026 Mohammed Tahri (MT24) · Images and text under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · Sprint code under <a href="https://github.com/MT24Learning/knowledge-sprint-series/blob/main/LICENSE-CODE">MIT</a></p>
+    <p><a href="https://orcid.org/0009-0000-9113-1687">ORCID</a> · <a href="https://zenodo.org/communities/mt24-learning">Zenodo</a> · <a href="https://github.com/MT24Learning/knowledge-sprint-series">Source and data</a> · <a href="../../fonts/OFL.txt">Font licences</a> · <a href="../../licenses/bootstrap-icons.txt">Icon licence</a></p>
+  </div>
+  </div>
+</footer>
+<script src="../../site.js" defer></script>
+</body>
+</html>

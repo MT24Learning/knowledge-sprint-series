@@ -6,6 +6,8 @@
 
 > A pipeline that reconciles, a split that cannot leak, a table that says no: three sprints on trusting data.
 
+**Full text on the website.** Every image of this phase is also written out as text, ready to read, search and quote: [Phase 7 summary](https://mt24learning.github.io/knowledge-sprint-series/phases/7/) · [Sprint 19](https://mt24learning.github.io/knowledge-sprint-series/sprints/19/) · [Sprint 20](https://mt24learning.github.io/knowledge-sprint-series/sprints/20/) · [Sprint 21](https://mt24learning.github.io/knowledge-sprint-series/sprints/21/)
+
 ## Phase summary
 
 <a href="MT24_Learning_Phase07_Summary.png"><img src="MT24_Learning_Phase07_Summary.png" width="760" alt="Phase 7 summary page: Data Skepticism & Evaluation Data, 3 sprints, with what each sprint covers, what I can now do, mistakes avoided and the phase project."></a>
@@ -24,6 +26,8 @@
 
 **Try it.** Six raw rows reconcile as three loaded, one merged and two quarantined, and a second run changes nothing.
 
+**Full text.** [Sprint 19 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/19/)
+
 **Run it.** [`sprint19_data_pipelines_extract_transform_load.py`](code/sprint19_data_pipelines_extract_transform_load.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 20/90 · Building an Evaluation Dataset
@@ -36,6 +40,8 @@
 
 **Try it.** With five copies of every item, a random split scores 1.000 by remembering copies; a split by group scores 0.440.
 
+**Full text.** [Sprint 20 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/20/)
+
 **Run it.** [`sprint20_building_an_evaluation_dataset.py`](code/sprint20_building_an_evaluation_dataset.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 21/90 · Data Validation & Storage
@@ -47,6 +53,8 @@
 **Covers.** Validation rules you can run, letting the table say no with STRICT tables and CHECK constraints, writing files atomically, and sealing them with a hash.
 
 **Try it.** The strict table rejects "n/a" and 1.7; changing one digit changes the SHA-256 digest, and the loader refuses the file.
+
+**Full text.** [Sprint 21 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/21/)
 
 **Run it.** [`sprint21_data_validation_and_storage.py`](code/sprint21_data_validation_and_storage.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 

@@ -6,6 +6,8 @@
 
 > From a rule with no dice to a coast with no single length: what simple rules can build, and how far their patterns can be trusted.
 
+**Full text on the website.** Every image of this phase is also written out as text, ready to read, search and quote: [Phase 12 summary](https://mt24learning.github.io/knowledge-sprint-series/phases/12/) · [Sprint 36](https://mt24learning.github.io/knowledge-sprint-series/sprints/36/) · [Sprint 37](https://mt24learning.github.io/knowledge-sprint-series/sprints/37/) · [Sprint 38](https://mt24learning.github.io/knowledge-sprint-series/sprints/38/)
+
 ## Phase summary
 
 <a href="MT24_Learning_Phase12_Summary.png"><img src="MT24_Learning_Phase12_Summary.png" width="760" alt="Phase 12 summary page: The Complexity Lens, 3 sprints, with what each sprint covers, what I can now do, mistakes avoided and the phase project."></a>
@@ -24,6 +26,8 @@
 
 **Try it.** Simulate the Lorenz system and forecast a real laser from its own past: the error grows pulse by pulse.
 
+**Full text.** [Sprint 36 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/36/)
+
 **Run it.** [`sprint36_dynamics_and_chaos.py`](code/sprint36_dynamics_and_chaos.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 37/90 · Emergence and Self-Organisation
@@ -36,6 +40,8 @@
 
 **Try it.** In Schelling's model, residents who want only half of their neighbours alike end at 79% alike; in a catalogue of 1,000 real Fiji earthquakes the b-value is 1.08 for magnitudes of 4.5 and above.
 
+**Full text.** [Sprint 37 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/37/)
+
 **Run it.** [`sprint37_emergence_and_self_organisation.py`](code/sprint37_emergence_and_self_organisation.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 38/90 · Fractals, Scaling and the Shape of Complexity
@@ -47,6 +53,8 @@
 **Covers.** Self-similar shapes, the length of the coast of Britain, why scaling holds only over a range, and how to test a power law properly.
 
 **Try it.** Britain measures 2,404 km with a 200 km ruler and 6,958 km with a 1.6 km ruler; the word counts of Moby Dick do not rule out a lognormal.
+
+**Full text.** [Sprint 38 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/38/)
 
 **Run it.** [`sprint38_fractals_scaling_shape_of_complexity.py`](code/sprint38_fractals_scaling_shape_of_complexity.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 

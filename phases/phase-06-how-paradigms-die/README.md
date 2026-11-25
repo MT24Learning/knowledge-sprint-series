@@ -6,6 +6,8 @@
 
 > A dated shift, six failure classes and one failure record: three sprints on how ideas break.
 
+**Full text on the website.** Every image of this phase is also written out as text, ready to read, search and quote: [Phase 6 summary](https://mt24learning.github.io/knowledge-sprint-series/phases/6/) · [Sprint 16](https://mt24learning.github.io/knowledge-sprint-series/sprints/16/) · [Sprint 17](https://mt24learning.github.io/knowledge-sprint-series/sprints/17/) · [Sprint 18](https://mt24learning.github.io/knowledge-sprint-series/sprints/18/)
+
 ## Phase summary
 
 <a href="MT24_Learning_Phase06_Summary.png"><img src="MT24_Learning_Phase06_Summary.png" width="760" alt="Phase 6 summary page: How Paradigms Die, 3 sprints, with what each sprint covers, what I can now do, mistakes avoided and the phase project."></a>
@@ -24,6 +26,8 @@
 
 **Try it.** Simulate 1,000 scientists with a small group of rivals, retirements and persuasion, and watch how long a shift takes.
 
+**Full text.** [Sprint 16 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/16/)
+
 **Run it.** [`sprint16_anatomy_of_a_paradigm_shift.py`](code/sprint16_anatomy_of_a_paradigm_shift.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 17/90 · A Taxonomy of Model Failure
@@ -36,6 +40,8 @@
 
 **Try it.** A degree-9 polynomial fits 20 points closely and misses badly outside the range it was trained on.
 
+**Full text.** [Sprint 17 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/17/)
+
 **Run it.** [`sprint17_taxonomy_of_model_failure.py`](code/sprint17_taxonomy_of_model_failure.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 18/90 · Documenting How a Model Failed
@@ -47,6 +53,8 @@
 **Covers.** Blameless records, drawing the boundary of a model with model cards and datasheets, Feynman's appendix to the Challenger report, and the file drawer problem.
 
 **Try it.** Write a failure record for the pendulum formula: within 1% to 22°, within 5% to 50°, fails at 90°.
+
+**Full text.** [Sprint 18 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/18/)
 
 **Run it.** [`sprint18_documenting_how_a_model_failed.py`](code/sprint18_documenting_how_a_model_failed.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 

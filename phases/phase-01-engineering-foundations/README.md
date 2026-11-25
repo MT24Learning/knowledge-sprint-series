@@ -6,6 +6,8 @@
 
 > Three sprints on the tools every project starts with: version control, content hashing and a project that checks itself.
 
+**Full text on the website.** Every image of this phase is also written out as text, ready to read, search and quote: [Phase 1 summary](https://mt24learning.github.io/knowledge-sprint-series/phases/1/) · [Sprint 1](https://mt24learning.github.io/knowledge-sprint-series/sprints/1/) · [Sprint 2](https://mt24learning.github.io/knowledge-sprint-series/sprints/2/) · [Sprint 3](https://mt24learning.github.io/knowledge-sprint-series/sprints/3/)
+
 ## Phase summary
 
 <a href="MT24_Learning_Phase01_Summary_Catalog_Style.png"><img src="MT24_Learning_Phase01_Summary_Catalog_Style.png" width="760" alt="Phase 1 summary page: Engineering Foundations, 3 sprints, with what each sprint covers, what I can now do, mistakes avoided and the phase project."></a>
@@ -22,6 +24,8 @@
 
 **Try it.** Create a local repository with a .gitignore and a README, make five meaningful commits and inspect one object by its hash.
 
+**Full text.** [Sprint 1 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/1/)
+
 **Run it.** [`sprint01_environment_git_foundations.sh`](code/sprint01_environment_git_foundations.sh) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 2/90 · Hashing + GitHub over SSH
@@ -32,6 +36,8 @@
 
 **Try it.** Hash "abc" and "abd" and compare, push a repository over SSH, clone it elsewhere and check that both copies match.
 
+**Full text.** [Sprint 2 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/2/)
+
 **Run it.** [`sprint02_hashing_github_ssh.sh`](code/sprint02_hashing_github_ssh.sh) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
 ### Sprint 3/90 · Project Structure & Quality Gates
@@ -41,6 +47,8 @@
 **Covers.** A src/ layout with pyproject.toml and tests, and quality gates that run in order (format, lint, types, tests) with CI blocking the merge; pre-commit hooks, and why CI repeats them.
 
 **Try it.** Install the project in editable mode and run ruff, mypy and pytest; fix the cause of a failure instead of muting the check.
+
+**Full text.** [Sprint 3 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/3/)
 
 **Run it.** [`sprint03_project_structure_quality_gates.sh`](code/sprint03_project_structure_quality_gates.sh) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 

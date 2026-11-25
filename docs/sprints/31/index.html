@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sprint 31: From Perceptron to Multilayer Network · Knowledge Sprint Series</title>
+<meta name="description" content="One neuron draws one straight line. XOR needs a bend, and a hidden layer supplies it. The artificial neuron and the perceptron, its convergence promise, why XOR defeats a single line, and how a hidden layer bends the space.">
+<link rel="canonical" href="https://mt24learning.github.io/knowledge-sprint-series/sprints/31/">
+<meta name="theme-color" content="#061127">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Knowledge Sprint Series · MT24 Learning">
+<meta property="og:title" content="Sprint 31: From Perceptron to Multilayer Network · Knowledge Sprint Series">
+<meta property="og:description" content="One neuron draws one straight line. XOR needs a bend, and a hidden layer supplies it. The artificial neuron and the perceptron, its convergence promise, why XOR defeats a single line, and how a hidden layer bends the space.">
+<meta property="og:url" content="https://mt24learning.github.io/knowledge-sprint-series/sprints/31/">
+<meta property="og:image" content="https://mt24learning.github.io/knowledge-sprint-series/img/social/sprint-31.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../img/brand/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../img/brand/apple-touch-icon.png">
+<link rel="preload" href="../../fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../style.css">
+<script>document.documentElement.classList.add("js")</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Sprint 31: From Perceptron to Multilayer Network", "headline": "From Perceptron to Multilayer Network", "description": "One neuron draws one straight line. XOR needs a bend, and a hidden layer supplies it. The artificial neuron and the perceptron, its convergence promise, why XOR defeats a single line, and how a hidden layer bends the space.", "url": "https://mt24learning.github.io/knowledge-sprint-series/sprints/31/", "image": "https://mt24learning.github.io/knowledge-sprint-series/img/pages/sprint-31.jpg", "inLanguage": "en", "isAccessibleForFree": true, "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/", "learningResourceType": "Infographic", "author": {"@type": "Person", "name": "Mohammed Tahri", "alternateName": "MT24", "sameAs": ["https://orcid.org/0009-0000-9113-1687", "https://www.linkedin.com/in/mohammed-tahri24", "https://x.com/MohammedTahri24", "https://bsky.app/profile/mohammedtahri.bsky.social", "https://mathstodon.xyz/@mohammedtahri24", "https://www.threads.net/@mohammedtahri24", "https://www.instagram.com/mohammedtahri24", "https://www.facebook.com/mohammed.tahri24", "https://www.tiktok.com/@mohammed.tahri24", "https://substack.com/@mohammedtahri24"]}, "position": 31, "isPartOf": {"@type": "CreativeWork", "name": "Phase 10: Neural Networks", "url": "https://mt24learning.github.io/knowledge-sprint-series/phases/10/", "identifier": "https://doi.org/10.5281/zenodo.23343237"}, "citation": [{"@type": "CreativeWork", "name": "McCulloch & Pitts (1943). A Logical Calculus of the Ideas Immanent in Nervous Activity. Bull. Math. Biophys. 5, 115–133", "url": "https://doi.org/10.1007/BF02478259"}, {"@type": "CreativeWork", "name": "Rosenblatt (1958). The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain. Psychol. Rev. 65(6), 386–408", "url": "https://doi.org/10.1037/h0042519"}, {"@type": "CreativeWork", "name": "Novikoff (1962). On Convergence Proofs on Perceptrons. Symp. Math. Theory of Automata 12, 615–622", "url": "https://apps.dtic.mil/sti/tr/pdf/AD0298258.pdf"}, {"@type": "CreativeWork", "name": "Minsky & Papert (1969). Perceptrons. MIT Press", "url": "https://doi.org/10.7551/mitpress/11301.001.0001"}, {"@type": "CreativeWork", "name": "Rumelhart, Hinton & Williams (1986). Learning Internal Representations by Error Propagation. Parallel Distributed Processing, vol. 1, ch. 8, MIT Press", "url": "https://doi.org/10.7551/mitpress/5236.001.0001"}, {"@type": "CreativeWork", "name": "Cybenko (1989). Approximation by Superpositions of a Sigmoidal Function. MCSS 2(4), 303–314", "url": "https://doi.org/10.1007/BF02551274"}, {"@type": "CreativeWork", "name": "Hornik, Stinchcombe & White (1989). Multilayer Feedforward Networks Are Universal Approximators. Neural Netw. 2(5), 359–366", "url": "https://doi.org/10.1016/0893-6080(89)90020-8"}, {"@type": "CreativeWork", "name": "Goodfellow, Bengio & Courville (2016). Deep Learning, ch. 6. MIT Press", "url": "https://www.deeplearningbook.org/contents/mlp.html"}, {"@type": "CreativeWork", "name": "Olazaran (1996). A Sociological Study of the Official History of the Perceptrons Controversy. Soc. Stud. Sci. 26(3), 611–659", "url": "https://doi.org/10.1177/030631296026003005"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://mt24learning.github.io/knowledge-sprint-series/"}, {"@type": "ListItem", "position": 2, "name": "Phase 10: Neural Networks", "item": "https://mt24learning.github.io/knowledge-sprint-series/phases/10/"}, {"@type": "ListItem", "position": 3, "name": "Sprint 31", "item": "https://mt24learning.github.io/knowledge-sprint-series/sprints/31/"}]}</script>
+</head>
+<body class="page">
+<a class="skip" href="#main">Skip to the text</a>
+<header class="site">
+  <div class="bar wrap">
+    <a class="brand" href="../../" aria-label="Knowledge Sprint Series, home">
+      <img src="../../img/brand/mt24-badge.svg" width="40" height="40" alt="">
+      <span><b>Knowledge Sprint Series</b><small>MT24 Learning</small></span>
+    </a>
+    <form class="hsearch" action="../../search/" method="get" role="search">
+      <label for="hq" class="hs-icon" title="Search the series"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg><span class="sr-only">Search the series</span></label>
+      <input id="hq" name="q" type="search" placeholder="Search the series" autocomplete="off" enterkeyhint="search" spellcheck="false">
+      <kbd aria-hidden="true" title="Press / to search">/</kbd>
+    </form>
+    <nav aria-label="Sections">
+      <a href="../../#phases">Phases</a>
+      <a href="../../#results">Results</a>
+      <a href="../../#sprint">How it works</a>
+      <a href="../../#cite">Cite</a>
+      <a href="../../#follow">Follow</a>
+      <a class="gh" href="https://github.com/MT24Learning/knowledge-sprint-series"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg><span>GitHub</span></a>
+    </nav>
+  </div>
+</header>
+<main id="main" class="text-page" style="--acc:#b5562a;--acc-text:#c57957">
+<nav class="crumbs wrap" aria-label="Breadcrumb" data-pagefind-ignore>
+  <a class="back" href="../../phases/10/" data-back title="Back to Phase 10"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/></svg><span>Back</span></a>
+  <a href="../../">Home</a><span>/</span><a href="../../phases/10/">Phase 10 · Neural Networks</a><span>/</span><span aria-current="page">Sprint 31</span>
+</nav>
+<a class="back-float" href="../../phases/10/" data-back aria-label="Back" title="Back"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/></svg></a>
+<header class="t-head wrap" data-spot="head">
+  <div class="road" role="img" aria-label="Sprint 31 of 90; 48 of 90 published"><a class="cell on" href="../1/" title="Sprint 1 · Environment + Git Foundations" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../2/" title="Sprint 2 · Hashing + GitHub over SSH" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../3/" title="Sprint 3 · Project Structure &amp; Quality Gates" aria-hidden="true" tabindex="-1"></a><a class="cell gap on" href="../4/" title="Sprint 4 · Knowledge, Truth and Evidence" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../5/" title="Sprint 5 · What Is a Model?" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../6/" title="Sprint 6 · The Scientific Method, Objectivity and Its Failures" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../7/" title="Sprint 7 · Four Minds on Science" aria-hidden="true" tabindex="-1"></a><a class="cell gap on" href="../8/" title="Sprint 8 · Calibrating Intuition Before Automation" aria-hidden="true" tabindex="-1"></a><a class="cell gap on" href="../9/" title="Sprint 9 · Linear Algebra &amp; Calculus for Machine Learning" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../10/" title="Sprint 10 · Logic, Propositions &amp; Inference" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../11/" title="Sprint 11 · Axioms &amp; Declared Assumptions" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../12/" title="Sprint 12 · Testing &amp; Phase Review" aria-hidden="true" tabindex="-1"></a><a class="cell gap on" href="../13/" title="Sprint 13 · Probability &amp; Distributions" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../14/" title="Sprint 14 · Hypothesis Testing, Power &amp; Sample Size" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../15/" title="Sprint 15 · Experimental Design &amp; Rigorous Inference" aria-hidden="true" tabindex="-1"></a><a class="cell gap on" href="../16/" title="Sprint 16 · Anatomy of a Paradigm Shift" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../17/" title="Sprint 17 · A Taxonomy of Model Failure" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../18/" title="Sprint 18 · Documenting How a Model Failed" aria-hidden="true" tabindex="-1"></a><a class="cell gap on" href="../19/" title="Sprint 19 · Data Pipelines: Extract, Transform, Load" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../20/" title="Sprint 20 · Building an Evaluation Dataset" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../21/" title="Sprint 21 · Data Validation &amp; Storage" aria-hidden="true" tabindex="-1"></a><a class="cell gap on" href="../22/" title="Sprint 22 · How Tokenization Works" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../23/" title="Sprint 23 · Byte Pair Encoding &amp; Its Edge Cases" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../24/" title="Sprint 24 · Parsing Structured Meaning from Text" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../25/" title="Sprint 25 · Publishing a Package" aria-hidden="true" tabindex="-1"></a><a class="cell gap on" href="../26/" title="Sprint 26 · Supervised Learning: From Examples to a Rule" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../27/" title="Sprint 27 · Baselines First" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../28/" title="Sprint 28 · Three Classical Learners: Linear, Tree &amp; Neighbours" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../29/" title="Sprint 29 · Regularisation &amp; Cross-Validation" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../30/" title="Sprint 30 · Statistical Learning Theory: Why Learning Generalises" aria-hidden="true" tabindex="-1"></a><span class="cell gap on here" title="Sprint 31 · From Perceptron to Multilayer Network"></span><a class="cell on" href="../32/" title="Sprint 32 · How Networks Train: Backpropagation &amp; Training Dynamics" aria-hidden="true" tabindex="-1"></a><a class="cell gap on" href="../33/" title="Sprint 33 · Meaning as Vectors: Word Embeddings" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../34/" title="Sprint 34 · How Attention Works" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../35/" title="Sprint 35 · Inside a Transformer" aria-hidden="true" tabindex="-1"></a><a class="cell gap on" href="../36/" title="Sprint 36 · Dynamics and Chaos" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../37/" title="Sprint 37 · Emergence and Self-Organisation" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../38/" title="Sprint 38 · Fractals, Scaling and the Shape of Complexity" aria-hidden="true" tabindex="-1"></a><a class="cell gap on" href="../39/" title="Sprint 39 · Keyword Search: Inverted Index &amp; BM25" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../40/" title="Sprint 40 · Searching by Meaning: Dense &amp; Hybrid Retrieval" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../41/" title="Sprint 41 · Retrieval-Augmented Generation: A Working Demo" aria-hidden="true" tabindex="-1"></a><a class="cell gap on" href="../42/" title="Sprint 42 · Adversarial Examples: Small Changes, Wrong Answers" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../43/" title="Sprint 43 · Poisoned Data: Attacks Through Training &amp; Retrieval" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../44/" title="Sprint 44 · Prompt Injection: When Data Becomes an Instruction" aria-hidden="true" tabindex="-1"></a><a class="cell gap on" href="../45/" title="Sprint 45 · Representing a Claim: From Sentence to Structure" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../46/" title="Sprint 46 · Ground Truth Is a Human Judgement: Measuring Agreement" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../47/" title="Sprint 47 · Checking a Claim Against Evidence" aria-hidden="true" tabindex="-1"></a><a class="cell on" href="../48/" title="Sprint 48 · Building a Verified Reference Set" aria-hidden="true" tabindex="-1"></a><span class="cell" title="Sprint 49"></span><span class="cell" title="Sprint 50"></span><span class="cell" title="Sprint 51"></span><span class="cell" title="Sprint 52"></span><span class="cell" title="Sprint 53"></span><span class="cell" title="Sprint 54"></span><span class="cell" title="Sprint 55"></span><span class="cell" title="Sprint 56"></span><span class="cell" title="Sprint 57"></span><span class="cell" title="Sprint 58"></span><span class="cell" title="Sprint 59"></span><span class="cell" title="Sprint 60"></span><span class="cell" title="Sprint 61"></span><span class="cell" title="Sprint 62"></span><span class="cell" title="Sprint 63"></span><span class="cell" title="Sprint 64"></span><span class="cell" title="Sprint 65"></span><span class="cell" title="Sprint 66"></span><span class="cell" title="Sprint 67"></span><span class="cell" title="Sprint 68"></span><span class="cell" title="Sprint 69"></span><span class="cell" title="Sprint 70"></span><span class="cell" title="Sprint 71"></span><span class="cell" title="Sprint 72"></span><span class="cell" title="Sprint 73"></span><span class="cell" title="Sprint 74"></span><span class="cell" title="Sprint 75"></span><span class="cell" title="Sprint 76"></span><span class="cell" title="Sprint 77"></span><span class="cell" title="Sprint 78"></span><span class="cell" title="Sprint 79"></span><span class="cell" title="Sprint 80"></span><span class="cell" title="Sprint 81"></span><span class="cell" title="Sprint 82"></span><span class="cell" title="Sprint 83"></span><span class="cell" title="Sprint 84"></span><span class="cell" title="Sprint 85"></span><span class="cell" title="Sprint 86"></span><span class="cell" title="Sprint 87"></span><span class="cell" title="Sprint 88"></span><span class="cell" title="Sprint 89"></span><span class="cell" title="Sprint 90"></span></div>
+  <p class="eyebrow"><span>Phase 10 · Sprint 31/90 · <span data-pagefind-filter="Phase">Neural Networks</span></span><span class="names">McCulloch · Rosenblatt · Minsky · Papert · Rumelhart</span></p>
+  <h1 data-pagefind-meta="title">From Perceptron to <em>Multilayer</em> Network</h1>
+  <p class="tagline">One neuron draws one straight line. XOR needs a bend, and a hidden layer supplies it.</p>
+  <p class="in-short"><b>In short.</b> The artificial neuron and the perceptron, its convergence promise, why XOR defeats a single line, and how a hidden layer bends the space.</p>
+  <span hidden data-pagefind-filter="Type">Sprint</span>
+</header>
+<div class="t-body wrap">
+  <figure class="t-image">
+    <div class="spotlit"><img src="../../img/pages/sprint-31.jpg" width="1080" height="1350" alt="Sprint 31 of 90 infographic: From Perceptron to Multilayer Network. One neuron draws one straight line. XOR needs a bend, and a hidden layer supplies it. The full text of the image is on this page."><span class="spot" data-spot="head" aria-hidden="true" style="left:2.59%;top:11.48%;width:94.81%;height:10.00%"></span><span class="spot" data-spot="fig" aria-hidden="true" style="left:2.59%;top:21.93%;width:94.81%;height:14.81%"></span><span class="spot" data-spot="01" aria-hidden="true" style="left:2.59%;top:37.48%;width:29.44%;height:15.26%"></span><span class="spot" data-spot="02" aria-hidden="true" style="left:32.78%;top:37.48%;width:29.44%;height:15.26%"></span><span class="spot" data-spot="03" aria-hidden="true" style="left:2.59%;top:53.19%;width:29.44%;height:15.26%"></span><span class="spot" data-spot="04" aria-hidden="true" style="left:32.78%;top:53.19%;width:29.44%;height:15.26%"></span><span class="spot" data-spot="06" aria-hidden="true" style="left:2.59%;top:68.89%;width:29.44%;height:15.26%"></span><span class="spot" data-spot="07" aria-hidden="true" style="left:32.78%;top:68.89%;width:29.44%;height:15.26%"></span><span class="spot" data-spot="05" aria-hidden="true" style="left:62.96%;top:37.48%;width:34.44%;height:33.56%"></span><span class="spot" data-spot="R" aria-hidden="true" style="left:62.96%;top:71.63%;width:34.44%;height:12.52%"></span></div>
+    <span hidden data-pagefind-meta="image:/knowledge-sprint-series/img/pages/sprint-31-s.jpg"></span>
+    <figcaption data-pagefind-ignore><a href="https://raw.githubusercontent.com/MT24Learning/knowledge-sprint-series/main/phases/phase-10-neural-networks/MT24_Learning_Phase10_Sprint31_From_Perceptron_to_Multilayer_Network.png">Full resolution</a><span>2160 × 2700 PNG</span><a href="../../phases/10/">Phase summary</a></figcaption>
+    <p class="spot-hint" data-pagefind-ignore>The part of the image you are reading lights up. Tap a part to jump to its text.</p>
+  </figure>
+  <article class="t-text">
+    <section class="t-fig" aria-labelledby="fig" data-spot="fig">
+      <h2 id="fig">Fig. 1 <span>in words</span></h2>
+      <p class="fig-title">XOR: one line fails, one hidden layer works · same data as code 05</p>
+      <ol class="panels">
+        <li><h3><span class="ball" data-pagefind-ignore>1</span> <span>Input space</span></h3><ul>
+          <li>a square with axes x₁ and x₂, ticks 0 and 1</li>
+          <li>filled blue points at top left and bottom right, open orange rings at bottom left and top right</li>
+          <li>0.5 inside the shaded square, between two dashed red lines</li>
+          <li>best line: 0.5 for all four</li>
+          <li>any line: 3 of 4 at most</li>
+        </ul></li>
+        <li><h3><span class="ball" data-pagefind-ignore>2</span> <span>Hidden layer by hand · §6.1</span></h3><ul>
+          <li>x₁ and x₂ each feed two Σ units through weights: ▭ all = 1</li>
+          <li>top unit c = 0, then a ReLU to h₁; bottom unit c = -1, then a ReLU to h₂</li>
+          <li>ReLU max(0, z)</li>
+          <li>h₁ goes to out with +1, h₂ with -2; out is a Σ unit</li>
+          <li>out = 0, 1, 1, 0 · exactly XOR</li>
+        </ul></li>
+        <li><h3><span class="ball" data-pagefind-ignore>3</span> <span>Hidden space</span></h3><ul>
+          <li>axes with ticks 1 (up) and 1, 2 (across)</li>
+          <li>open orange rings at the origin and at top right; one filled blue point on the axis at 1, marked ×2</li>
+          <li>a green line; the shaded side below it reads out 1</li>
+          <li><em>h₁ − 2h₂ = 0.5</em></li>
+          <li>one line now works</li>
+          <li>(0,1), (1,0) → (1,0)</li>
+        </ul></li>
+        <li><h3><span class="ball" data-pagefind-ignore>4</span> <span>100 seeds</span></h3><ul>
+          <li>a grid of dots, one per seed, green and red; one red dot boxed</li>
+          <li>2 hidden: 77 solve (green), 23 freeze (red)</li>
+          <li>4 hidden: 100 solve</li>
+        </ul></li>
+      </ol>
+      <aside class="notes"><h3>Net notes · ① - ④</h3><ol>
+        <li><span class="ball">1</span><b>Line</b> The best line answers 0.5 for all four. The perceptron loops: from epoch 2 every epoch ends on the same weights.</li>
+        <li><span class="ball">2</span><b>Hidden</b> Two ReLU units, weights set by hand (Goodfellow et al. 2016), send (0, 1) and (1, 0) to one point.</li>
+        <li><span class="ball">3</span><b>Split</b> In hidden space one line separates: h₁ − 2h₂ gives 0, 1, 1, 0.</li>
+        <li><span class="ball">4</span><b>Train</b> 100 seeds of gradient descent: 2 hidden units solve 77, 4 solve 100. Seed 6 (boxed) freezes at 0.5.</li>
+      </ol></aside>
+    </section>
+    <div class="t-cards">
+      <section class="t-card" aria-labelledby="card-01" data-spot="01">
+        <h2 id="card-01"><span class="key" data-pagefind-ignore>01</span> <span class="h">One Neuron, One Line</span> <span class="tag" data-pagefind-ignore>Unit</span></h2>
+        <ul>
+          <li>Sum weighted inputs, fire past a threshold: an idea from McCulloch &amp; Pitts (1943)</li>
+          <li>Its border is one straight line: w·x + b = 0</li>
+          <li>Rosenblatt (1958) made it learn. Modern rule: after a mistake, add error × input</li>
+        </ul>
+        <p class="note">Rosenblatt’s Mark I machine kept its weights in an array of potentiometers (Smithsonian).</p>
+      </section>
+      <section class="t-card" aria-labelledby="card-02" data-spot="02">
+        <h2 id="card-02"><span class="key" data-pagefind-ignore>02</span> <span class="h">A Promise, If…</span> <span class="tag" data-pagefind-ignore>Novikoff</span></h2>
+        <ul>
+          <li>If one line separates the classes, the rule stops after a finite number of mistakes (Novikoff 1962)</li>
+          <li>AND: no miss from epoch 6</li>
+          <li>XOR: from epoch 2 every epoch ends on the same weights. A loop, not slow progress</li>
+        </ul>
+        <p class="note">No line separates XOR, so the theorem promises nothing.</p>
+      </section>
+      <section class="t-card" aria-labelledby="card-03" data-spot="03">
+        <h2 id="card-03"><span class="key" data-pagefind-ignore>03</span> <span class="h">What XOR Asks</span> <span class="tag" data-pagefind-ignore>XOR</span></h2>
+        <ul>
+          <li>Answer 1 when exactly one input is on</li>
+          <li>The best straight line answers 0.5 for all four (Goodfellow et al. 2016, §6.1)</li>
+          <li>Minsky &amp; Papert (1969) proved limits of one-layer perceptrons, not of networks</li>
+        </ul>
+        <p class="note">“The book that killed neural nets” is the official history Olazaran (1996) examined, not a theorem.</p>
+      </section>
+      <section class="t-card" aria-labelledby="card-04" data-spot="04">
+        <h2 id="card-04"><span class="key" data-pagefind-ignore>04</span> <span class="h">Bend the Space</span> <span class="tag" data-pagefind-ignore>Hidden</span></h2>
+        <ul>
+          <li>Two ReLU units move (0, 1) and (1, 0) onto one point: (1, 0)</li>
+          <li>In that new space one line works: h₁ − 2h₂ gives 0, 1, 1, 0</li>
+          <li>Without a nonlinearity, stacked layers collapse into one linear map</li>
+        </ul>
+        <p class="note">The network does not find a better line. It builds a space where a line is enough.</p>
+      </section>
+    </div>
+    <section class="t-try" aria-labelledby="try" data-spot="05">
+      <h2 id="try"><span class="key" data-pagefind-ignore>05</span> Try It Yourself <span class="ver" data-pagefind-ignore>PYTHON 3.13.15</span></h2>
+      <div class="code-box">
+        <p class="file"><span>sprint31_from_perceptron_to_multilayer_network.py</span><button class="copy" type="button" data-copy="code-31">Copy</button></p>
+        <pre class="code" id="code-31" data-pagefind-ignore><code><span class="c-kw">import</span> numpy <span class="c-kw">as</span> np
+X = np.array([[<span class="c-num">0</span>, <span class="c-num">0</span>], [<span class="c-num">0</span>, <span class="c-num">1</span>], [<span class="c-num">1</span>, <span class="c-num">0</span>], [<span class="c-num">1</span>, <span class="c-num">1</span>]])
+AND, XOR = np.array([<span class="c-num">0</span>, <span class="c-num">0</span>, <span class="c-num">0</span>, <span class="c-num">1</span>]), np.array([<span class="c-num">0</span>, <span class="c-num">1</span>, <span class="c-num">1</span>, <span class="c-num">0</span>])
+<span class="c-kw">def</span> <span class="c-fn">perceptron</span>(y, epochs=<span class="c-num">100</span>):      <span class="c-com"># Rosenblatt&#x27;s rule</span>
+    w, b = np.zeros(<span class="c-num">2</span>), <span class="c-num">0.0</span>
+    <span class="c-kw">for</span> e <span class="c-kw">in</span> <span class="c-bi">range</span>(<span class="c-num">1</span>, epochs + <span class="c-num">1</span>):
+        miss = <span class="c-num">0</span>
+        <span class="c-kw">for</span> x, t <span class="c-kw">in</span> <span class="c-bi">zip</span>(X, y):
+            err = t - <span class="c-bi">int</span>(w @ x + b &gt; <span class="c-num">0</span>)
+            w += err * x; b += err; miss += err != <span class="c-num">0</span>
+        <span class="c-kw">if</span> miss == <span class="c-num">0</span>: <span class="c-kw">return</span> <span class="c-str">f&quot;</span><span class="c-str">no miss from epoch </span>{e}<span class="c-str">&quot;</span>
+    <span class="c-kw">return</span> <span class="c-str">f&quot;</span>{miss}<span class="c-str"> misses in epoch </span>{epochs}<span class="c-str">&quot;</span>
+<span class="c-bi">print</span>(<span class="c-str">&quot;AND&quot;</span>, perceptron(AND), <span class="c-str">&quot;| XOR&quot;</span>, perceptron(XOR))
+A1 = np.c_[X, np.ones(<span class="c-num">4</span>)]            <span class="c-com"># best straight line</span>
+<span class="c-bi">print</span>(<span class="c-str">&quot;line&quot;</span>, np.linalg.lstsq(A1, XOR)[<span class="c-num">0</span>].<span class="c-bi">round</span>(<span class="c-num">3</span>) + <span class="c-num">0.</span>)
+W, c = np.ones((<span class="c-num">2</span>, <span class="c-num">2</span>), <span class="c-bi">int</span>), np.array([<span class="c-num">0</span>, -<span class="c-num">1</span>])
+H = np.maximum(<span class="c-num">0</span>, X @ W + c)         <span class="c-com"># ReLU (§6.1)</span>
+<span class="c-bi">print</span>(<span class="c-str">&quot;hidden&quot;</span>, H.tolist(), <span class="c-str">&quot;out&quot;</span>, (H @ [<span class="c-num">1</span>, -<span class="c-num">2</span>]).tolist())
+sig = <span class="c-kw">lambda</span> z: <span class="c-num">1</span> / (<span class="c-num">1</span> + np.exp(-z))
+<span class="c-kw">def</span> <span class="c-fn">train</span>(h, seed, steps=<span class="c-num">5000</span>, lr=<span class="c-num">0.5</span>):   <span class="c-com"># 2-h-1 net</span>
+    rng = np.random.default_rng(seed)
+    W1, b1 = rng.normal(size=(<span class="c-num">2</span>, h)), np.zeros(h)
+    W2, b2 = rng.normal(size=h), <span class="c-num">0.0</span>
+    <span class="c-kw">for</span> _ <span class="c-kw">in</span> <span class="c-bi">range</span>(steps):
+        A = sig(X @ W1 + b1); p = sig(A @ W2 + b2)
+        d2 = p - XOR; d1 = np.outer(d2, W2) * A * (<span class="c-num">1</span> - A)
+        W2 -= lr * A.T @ d2; b2 -= lr * d2.<span class="c-bi">sum</span>()
+        W1 -= lr * X.T @ d1; b1 -= lr * d1.<span class="c-bi">sum</span>(<span class="c-num">0</span>)
+    <span class="c-kw">return</span> p
+ok = <span class="c-kw">lambda</span> h, s: <span class="c-bi">all</span>(<span class="c-bi">abs</span>(train(h, s) - XOR) &lt; <span class="c-num">.1</span>)
+n = [<span class="c-bi">sum</span>(ok(h, s) <span class="c-kw">for</span> s <span class="c-kw">in</span> <span class="c-bi">range</span>(<span class="c-num">100</span>)) <span class="c-kw">for</span> h <span class="c-kw">in</span> (<span class="c-num">2</span>, <span class="c-num">4</span>)]
+<span class="c-bi">print</span>(<span class="c-str">&quot;2 and 4 hidden units solve&quot;</span>, n, <span class="c-str">&quot;of 100&quot;</span>)
+bad = <span class="c-bi">next</span>(s <span class="c-kw">for</span> s <span class="c-kw">in</span> <span class="c-bi">range</span>(<span class="c-num">100</span>) <span class="c-kw">if</span> <span class="c-kw">not</span> ok(<span class="c-num">2</span>, s))
+<span class="c-bi">print</span>(<span class="c-str">&quot;seed&quot;</span>, bad, train(<span class="c-num">2</span>, bad).<span class="c-bi">round</span>(<span class="c-num">3</span>))</code></pre>
+        <p class="file out">Output, as printed on the image</p>
+        <pre class="output"><code>AND no miss from epoch 6 | XOR 4 misses in epoch 100
+line [0.  0.  0.5]
+hidden [[0, 0], [1, 0], [1, 0], [2, 1]] out [0, 1, 1, 0]
+2 and 4 hidden units solve [77, 100] of 100
+seed 6 [0.001 0.5   0.999 0.5  ]</code></pre>
+      </div>
+      <p class="run" data-pagefind-ignore><b>Run it.</b> <a href="https://github.com/MT24Learning/knowledge-sprint-series/blob/main/phases/phase-10-neural-networks/code/sprint31_from_perceptron_to_multilayer_network.py">sprint31_from_perceptron_to_multilayer_network.py</a> · <a href="https://github.com/MT24Learning/knowledge-sprint-series/blob/main/phases/phase-10-neural-networks/code/README.md">versions, data and steps</a></p>
+      <p class="check">Check: 1 − 2·0 = 1 · 2 − 2·1 = 0 · 77 + 23 = 100 · loss of seed 6: 1.389 ≈ 2 ln 2 = 1.386 · numpy 2.5.3</p>
+    </section>
+    <div class="t-cards">
+      <section class="t-card" aria-labelledby="card-06" data-spot="06">
+        <h2 id="card-06"><span class="key" data-pagefind-ignore>06</span> <span class="h">General Notes</span> <span class="tag" data-pagefind-ignore>Practice</span></h2>
+        <ul>
+          <li>One wide enough hidden layer can approximate any continuous function on a bounded box (Cybenko 1989; Hornik et al. 1989)</li>
+          <li>That proves the weights exist, not that training finds them (Goodfellow et al. §6.4.1)</li>
+        </ul>
+        <p class="note">Count the seeds that succeed. Here 23 of 100 runs froze at 0.5, still there after 200 000 steps.</p>
+      </section>
+      <section class="t-card" aria-labelledby="card-07" data-spot="07">
+        <h2 id="card-07"><span class="key" data-pagefind-ignore>07</span> <span class="h">Mini Project</span> <span class="tag" data-pagefind-ignore>Hands-on</span></h2>
+        <ul>
+          <li>Rerun with 1, 3 and 8 hidden units (here: 0, 99 and 100 of 100)</li>
+          <li>Add direct input-to-output wires (Rumelhart et al. 1986) and retry 1 hidden unit</li>
+          <li>Swap sigmoid for tanh; recount the freezes</li>
+          <li>Train the perceptron on OR and NAND</li>
+        </ul>
+        <p class="note">Seed 6 is the first run that freezes. Start there.</p>
+      </section>
+    </div>
+    <section class="t-sources" aria-labelledby="sources" data-spot="R">
+      <h2 id="sources"><span class="key" data-pagefind-ignore>R</span> Trusted Sources</h2>
+      <ol class="sources">
+        <li><a href="https://doi.org/10.1007/BF02478259" rel="noopener">McCulloch &amp; Pitts (1943). <em>A Logical Calculus of the Ideas Immanent in Nervous Activity.</em> Bull. Math. Biophys. 5, 115–133</a></li>
+        <li><a href="https://doi.org/10.1037/h0042519" rel="noopener">Rosenblatt (1958). <em>The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain.</em> Psychol. Rev. 65(6), 386–408</a></li>
+        <li><a href="https://apps.dtic.mil/sti/tr/pdf/AD0298258.pdf" rel="noopener">Novikoff (1962). <em>On Convergence Proofs on Perceptrons.</em> Symp. Math. Theory of Automata 12, 615–622</a></li>
+        <li><a href="https://doi.org/10.7551/mitpress/11301.001.0001" rel="noopener">Minsky &amp; Papert (1969). <em>Perceptrons.</em> MIT Press</a></li>
+        <li><a href="https://doi.org/10.7551/mitpress/5236.001.0001" rel="noopener">Rumelhart, Hinton &amp; Williams (1986). <em>Learning Internal Representations by Error Propagation.</em> <em>Parallel Distributed Processing</em>, vol. 1, ch. 8, MIT Press</a></li>
+        <li><a href="https://doi.org/10.1007/BF02551274" rel="noopener">Cybenko (1989). <em>Approximation by Superpositions of a Sigmoidal Function.</em> MCSS 2(4), 303–314</a></li>
+        <li><a href="https://doi.org/10.1016/0893-6080(89)90020-8" rel="noopener">Hornik, Stinchcombe &amp; White (1989). <em>Multilayer Feedforward Networks Are Universal Approximators.</em> Neural Netw. 2(5), 359–366</a></li>
+        <li><a href="https://www.deeplearningbook.org/contents/mlp.html" rel="noopener">Goodfellow, Bengio &amp; Courville (2016). <em>Deep Learning</em>, ch. 6. MIT Press</a></li>
+        <li><a href="https://doi.org/10.1177/030631296026003005" rel="noopener">Olazaran (1996). <em>A Sociological Study of the Official History of the Perceptrons Controversy.</em> Soc. Stud. Sci. 26(3), 611–659</a></li>
+      </ol>
+    </section>
+  </article>
+</div>
+<nav class="pager wrap" aria-label="Sprints" data-pagefind-ignore>
+  <a class="pg-prev" href="../../sprints/30/"><small>← Sprint 30</small><b>Statistical Learning Theory: Why Learning Generalises</b></a>
+  <a class="pg-up" href="../../phases/10/"><small>Phase 10</small><b>Neural Networks</b></a>
+  <a class="pg-next" href="../../sprints/32/"><small>Sprint 32 →</small><b>How Networks Train: Backpropagation &amp; Training Dynamics</b></a>
+</nav>
+<section class="cite-strip wrap" data-pagefind-ignore>
+  <p class="label">Cite this phase</p>
+  <div class="cite-box">
+    <pre id="cite-31">Tahri, M. (2026). MT24 Learning — Knowledge Sprint Series, Phase 10: Neural Networks (Version 1.0) [Educational resource]. Zenodo. https://doi.org/10.5281/zenodo.23343237</pre>
+    <button class="copy" type="button" data-copy="cite-31">Copy</button>
+  </div>
+  <p class="cite-note">Version DOI <a class="doi" href="https://doi.org/10.5281/zenodo.23343237">10.5281/zenodo.23343237</a> · all versions <a class="doi" href="https://doi.org/10.5281/zenodo.23343236">10.5281/zenodo.23343236</a> · first published 7 October 2026</p>
+</section>
+</main>
+<footer class="site">
+  <div class="wrap">
+  <div class="foot-top">
+    <a class="foot-brand" href="../../"><img src="../../img/brand/mt24-badge.svg" width="32" height="32" alt=""><span><b>Knowledge Sprint Series</b><small>MT24 Learning · Mohammed Tahri</small></span></a>
+    <ul class="socials" aria-label="The series online"><li><a rel="me" href="https://www.linkedin.com/in/mohammed-tahri24" title="LinkedIn" aria-label="LinkedIn"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg><span>LinkedIn</span></a></li><li><a rel="me" href="https://x.com/MohammedTahri24" title="X" aria-label="X"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/></svg><span>X</span></a></li><li><a rel="me" href="https://bsky.app/profile/mohammedtahri.bsky.social" title="Bluesky" aria-label="Bluesky"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3.468 1.948C5.303 3.325 7.276 6.118 8 7.616c.725-1.498 2.698-4.29 4.532-5.668C13.855.955 16 .186 16 2.632c0 .489-.28 4.105-.444 4.692-.572 2.04-2.653 2.561-4.504 2.246 3.236.551 4.06 2.375 2.281 4.2-3.376 3.464-4.852-.87-5.23-1.98-.07-.204-.103-.3-.103-.218 0-.081-.033.014-.102.218-.379 1.11-1.855 5.444-5.231 1.98-1.778-1.825-.955-3.65 2.28-4.2-1.85.315-3.932-.205-4.503-2.246C.28 6.737 0 3.12 0 2.632 0 .186 2.145.955 3.468 1.948"/></svg><span>Bluesky</span></a></li><li><a rel="me" href="https://mathstodon.xyz/@mohammedtahri24" title="Mastodon" aria-label="Mastodon"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a4 4 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522q0-1.288.66-2.046c.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764q.662.757.661 2.046z"/></svg><span>Mastodon</span></a></li><li><a rel="me" href="https://www.threads.net/@mohammedtahri24" title="Threads" aria-label="Threads"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M6.321 6.016c-.27-.18-1.166-.802-1.166-.802.756-1.081 1.753-1.502 3.132-1.502.975 0 1.803.327 2.394.948s.928 1.509 1.005 2.644q.492.207.905.484c1.109.745 1.719 1.86 1.719 3.137 0 2.716-2.226 5.075-6.256 5.075C4.594 16 1 13.987 1 7.994 1 2.034 4.482 0 8.044 0 9.69 0 13.55.243 15 5.036l-1.36.353C12.516 1.974 10.163 1.43 8.006 1.43c-3.565 0-5.582 2.171-5.582 6.79 0 4.143 2.254 6.343 5.63 6.343 2.777 0 4.847-1.443 4.847-3.556 0-1.438-1.208-2.127-1.27-2.127-.236 1.234-.868 3.31-3.644 3.31-1.618 0-3.013-1.118-3.013-2.582 0-2.09 1.984-2.847 3.55-2.847.586 0 1.294.04 1.663.114 0-.637-.54-1.728-1.9-1.728-1.25 0-1.566.405-1.967.868ZM8.716 8.19c-2.04 0-2.304.87-2.304 1.416 0 .878 1.043 1.168 1.6 1.168 1.02 0 2.067-.282 2.232-2.423a6.2 6.2 0 0 0-1.528-.161"/></svg><span>Threads</span></a></li><li><a rel="me" href="https://www.instagram.com/mohammedtahri24" title="Instagram" aria-label="Instagram"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/></svg><span>Instagram</span></a></li><li><a rel="me" href="https://www.facebook.com/mohammed.tahri24" title="Facebook" aria-label="Facebook"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/></svg><span>Facebook</span></a></li><li><a rel="me" href="https://www.tiktok.com/@mohammed.tahri24" title="TikTok" aria-label="TikTok"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z"/></svg><span>TikTok</span></a></li><li><a rel="me" href="https://substack.com/@mohammedtahri24" title="Substack" aria-label="Substack"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M15 3.604H1v1.891h14v-1.89ZM1 7.208V16l7-3.926L15 16V7.208zM15 0H1v1.89h14z"/></svg><span>Substack</span></a></li><li><a href="https://github.com/MT24Learning/knowledge-sprint-series" title="GitHub" aria-label="GitHub"><svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg><span>GitHub</span></a></li></ul>
+  </div>
+  <div class="foot-row">
+    <p>© 2026 Mohammed Tahri (MT24) · Images and text under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · Sprint code under <a href="https://github.com/MT24Learning/knowledge-sprint-series/blob/main/LICENSE-CODE">MIT</a></p>
+    <p><a href="https://orcid.org/0009-0000-9113-1687">ORCID</a> · <a href="https://zenodo.org/communities/mt24-learning">Zenodo</a> · <a href="https://github.com/MT24Learning/knowledge-sprint-series">Source and data</a> · <a href="../../fonts/OFL.txt">Font licences</a> · <a href="../../licenses/bootstrap-icons.txt">Icon licence</a></p>
+  </div>
+  </div>
+</footer>
+<script src="../../site.js" defer></script>
+</body>
+</html>

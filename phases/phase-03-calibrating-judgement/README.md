@@ -6,6 +6,8 @@
 
 > One sprint on scoring my own forecasts before trusting a machine's confidence.
 
+**Full text on the website.** Every image of this phase is also written out as text, ready to read, search and quote: [Phase 3 summary](https://mt24learning.github.io/knowledge-sprint-series/phases/3/) · [Sprint 8](https://mt24learning.github.io/knowledge-sprint-series/sprints/8/)
+
 ## Phase summary
 
 <a href="MT24_Learning_Phase03_Summary.png"><img src="MT24_Learning_Phase03_Summary.png" width="760" alt="Phase 3 summary page: Calibrating Judgement, 1 sprint, with what each sprint covers, what I can now do, mistakes avoided and the phase project."></a>
@@ -23,6 +25,8 @@
 **Covers.** Calibration and the Brier score, overconfidence, when expert intuition deserves trust, and what decades of studies say about human judgement against simple formulas.
 
 **Try it.** Score 10,000 simulated forecasts: always 50% gives 0.250, honest 0.188, overconfident 0.203; then log and score 30 forecasts of your own.
+
+**Full text.** [Sprint 8 on the website](https://mt24learning.github.io/knowledge-sprint-series/sprints/8/)
 
 **Run it.** [`sprint08_calibrating_intuition_before_automation.py`](code/sprint08_calibrating_intuition_before_automation.py) · [versions, data and steps](code/README.md) · archived on Zenodo, DOI [10.5281/zenodo.24201674](https://doi.org/10.5281/zenodo.24201674)
 
